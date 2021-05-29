@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
         {
           path: 'blog',
           loadChildren: () =>
-            import('./blog/blog.module').then((m) => m.BlogModule),
+            import('./modules/blog/blog.module').then((m) => m.BlogModule),
         },
       ],
       {
