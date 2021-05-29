@@ -1,0 +1,31 @@
+name: on-push-workflow
+on:
+  # run on push, but not on tag release
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '*.*'
+
+jobs:
+  lint-and-build:
+    name: lint test and build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: setup node v${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: install deps
+        run: npm ci
+
+      - name: lint
+        run: npm run lint
+
+      - name: build
+        run: npm run build
