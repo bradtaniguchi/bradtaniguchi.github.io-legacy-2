@@ -1,19 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { ScullyLibModule } from '@scullyio/ng-lib';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot([], {
-      initialNavigation: 'enabled',
-      paramsInheritanceStrategy: 'always',
-    }),
-    ScullyLibModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, ScullyLibModule],
   providers: [],
   bootstrap: [AppComponent],
 })
