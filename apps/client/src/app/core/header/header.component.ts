@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'bt-header',
   templateUrl: './header.component.html',
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  @HostBinding('class.Header') Header = true;
+}
