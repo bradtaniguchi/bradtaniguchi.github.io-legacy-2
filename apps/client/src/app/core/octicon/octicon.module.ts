@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { OcticonDirective } from './octicon.directive';
+import { OcticonComponent } from './octicon.component';
 
 @NgModule({
-  declarations: [OcticonDirective],
-  exports: [OcticonDirective],
+  declarations: [OcticonComponent],
+  exports: [OcticonComponent],
 })
 export class OcticonModule {}
