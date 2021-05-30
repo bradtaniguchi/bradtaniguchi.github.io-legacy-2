@@ -1,17 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'bt-snippets',
   templateUrl: './snippets.component.html',
-  styles: [
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SnippetsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class SnippetsComponent {}
