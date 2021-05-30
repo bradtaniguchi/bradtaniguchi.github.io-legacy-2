@@ -1,5 +1,34 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+  OnInit,
+} from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import * as octicons from '@primer/octicons';
 
-// TODO:
-// @Component({})
-export class OcticonComponent {}
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'octicon',
+  template: '<div [innerHtml]="svg">',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class OcticonComponent implements OnInit {
+  @HostBinding('role') role = 'img';
+  @HostBinding('aria-hidden') ariaHidden = true;
+  @Input() octicon?: string;
+
+  public svg?: SafeHtml;
+
+  constructor(private sanitizer: DomSanitizer) {}
+
+  ngOnInit() {
+    if (!this.octicon) return;
+    const octicon = octicons[this.octicon];
+    console.log('octicon', octicon);
+    if (!octicon) return;
+    if (this.octicon)
+      this.svg = this.sanitizer.bypassSecurityTrustHtml(octicon.toSVG());
+  }
+}
