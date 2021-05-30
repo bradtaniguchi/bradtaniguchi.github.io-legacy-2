@@ -13,11 +13,11 @@ Running this project using scully requires at least 2 terminal instances, and th
 
 **starting the Angular build process**
 
-```node
+```bash
 npm run build -- --watch
 ```
 
-```node
+```bash
 npm run scully -- --watch
 ```
 
@@ -28,3 +28,9 @@ At this point 2 servers should be running, the main client, and the static clien
 angular - http://localhost:4200
 
 scully - http://localhost:4201
+
+**note** running this project in github codespaces will result in the client not automatically reloading. To fix this use:
+
+```bash
+npm run start -- --host=0.0.0.0 --disable-host-check
+```
