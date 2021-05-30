@@ -40,6 +40,8 @@ Thumbs.db
 
 # Scully cache files
 /.scully
+*.client.config.js
+scully-routes.json
 
 # Log files
 *.log

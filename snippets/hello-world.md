@@ -1,8 +1,10 @@
 ---
 title: hello-world
-description: test snippet
-published: false
-date: 2021-05-29
+description: 'test snippet'
+published: true
+date: 2021-05-29T00:00:00.000Z
+slugs:
+  - hello-world
 ---
 
 ```javascript
