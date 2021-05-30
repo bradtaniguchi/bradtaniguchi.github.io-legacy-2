@@ -10,6 +10,13 @@ import { RouterModule } from '@angular/router';
           loadChildren: () =>
             import('./modules/blog/blog.module').then((m) => m.BlogModule),
         },
+        {
+          path: 'snippets',
+          loadChildren: () =>
+            import('./modules/snippets/snippets.module').then(
+              (m) => m.SnippetsModule
+            ),
+        },
       ],
       {
         initialNavigation: 'enabled',
