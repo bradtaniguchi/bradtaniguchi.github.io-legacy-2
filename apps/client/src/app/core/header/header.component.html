@@ -2,13 +2,36 @@
 
   <!--  left-side -->
   <div>
-    <a routerLink="/">
-      <octicon octicon="three-bars"></octicon>
-    </a>
+    <span class="d-flex">
+      <a routerLink="/">
+        <octicon octicon="three-bars"></octicon>
+      </a>
+    </span>
   </div>
 
   <div>
-    <!--  right-side -->
-    right
+    <!--  right-side, nav-links -->
+    <span class="d-flex flex-row">
+      <a routerLink="/home"
+         class="Link d-flex flex-row m-2">
+        <octicon octicon="home"></octicon>
+        Home
+      </a>
+      <a routerLink="/blog"
+         class="Link d-flex flex-row m-2">
+        <octicon octicon="markdown"></octicon>
+        Blog
+      </a>
+      <a routerLink="/snippets"
+         class="Link d-flex flex-row m-2">
+        <octicon octicon="code"></octicon>
+        Snippets
+      </a>
+      <a routerLink="/about"
+         class="Link d-flex flex-row m-2">
+        <octicon octicon="question"></octicon>
+        About
+      </a>
+    </span>
   </div>
 </div>
