@@ -15,3 +15,9 @@ npm ci
 
 # Get latest from repo
 git fetch
+
+# install and setup nvm version
+nvm install
+npm config delete prefix
+nvm use
+nvm alias default node
