@@ -1,13 +1,16 @@
-<div class="Box mb-4">
-  <a class="Box-header Link d-flex flex-row"
-     routerLink="link">
-    <octicon octicon="project"
-             class="mr-1"></octicon>
-    <h3 class="Box-title overflow-hidden flex-auto">
-      {{title}}
-    </h3>
-  </a>
-  <div class="Box-body">
-    <ng-content></ng-content>
+<div class="col-6 float-left p-2">
+  <div class="Box">
+    <a class="Box-header Link d-flex flex-row"
+       routerLink="link">
+      <octicon octicon="project"
+               class="mr-1"></octicon>
+      <h3 class="Box-title overflow-hidden flex-auto">
+        {{title}}
+      </h3>
+    </a>
+    <div class="Box-body"
+         style="min-height: 140px">
+      <ng-content></ng-content>
+    </div>
   </div>
 </div>
