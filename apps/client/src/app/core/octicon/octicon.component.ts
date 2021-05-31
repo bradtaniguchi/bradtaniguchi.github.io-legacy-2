@@ -18,6 +18,8 @@ export class OcticonComponent implements OnInit {
   @HostBinding('role') role = 'img';
   @HostBinding('aria-hidden') ariaHidden = true;
   @Input() octicon?: string;
+  @Input() height?: number;
+  @Input() width?: number;
 
   public svg?: SafeHtml;
 
@@ -29,6 +31,11 @@ export class OcticonComponent implements OnInit {
     console.log('octicon', octicon);
     if (!octicon) return;
     if (this.octicon)
-      this.svg = this.sanitizer.bypassSecurityTrustHtml(octicon.toSVG());
+      this.svg = this.sanitizer.bypassSecurityTrustHtml(
+        octicon.toSVG({
+          height: this.height || 16,
+          width: this.width || 16,
+        })
+      );
   }
 }
