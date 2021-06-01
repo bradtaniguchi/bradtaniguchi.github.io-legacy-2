@@ -3,6 +3,7 @@
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
+  "defaultProject": "client",
   "generators": {
     "@nrwl/angular:application": {
       "style": "scss",
@@ -137,7 +138,57 @@
           }
         }
       }
+    },
+    "json-generator": {
+      "root": "tools/json-generator",
+      "sourceRoot": "tools/json-generator/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/tools/json-generator",
+            "main": "tools/json-generator/src/main.ts",
+            "tsConfig": "tools/json-generator/tsconfig.app.json",
+            "assets": ["tools/json-generator/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "tools/json-generator/src/environments/environment.ts",
+                  "with": "tools/json-generator/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "json-generator:build",
+            "watch": false
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["tools/json-generator/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/tools/json-generator"],
+          "options": {
+            "jestConfig": "tools/json-generator/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
-  },
-  "defaultProject": "client"
+  }
 }
