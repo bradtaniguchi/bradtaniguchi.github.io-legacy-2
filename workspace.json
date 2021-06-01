@@ -167,11 +167,15 @@
             }
           }
         },
-        "serve": {
-          "executor": "@nrwl/node:execute",
+        "generate": {
+          "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "buildTarget": "json-generator:build",
-            "watch": false
+            "commands": [
+              "npx ts-node ./tools/json-generator/src/main.ts git:info",
+              "npx ts-node ./tools/json-generator/src/main.ts codewars:user --user={args.user}",
+              "npx ts-node ./tools/json-generator/src/main.ts codewars:challenges --user={args.user}"
+            ],
+            "parallel": true
           }
         },
         "lint": {
