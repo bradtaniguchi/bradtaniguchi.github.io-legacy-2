@@ -1,5 +1,6 @@
 #!npx ts-node
 import { Command } from 'commander';
+import { getCodewarsChallenges } from './app/get-codewars-challenges';
 import { getCodewarsUser } from './app/get-codewars-user';
 import { getGitInfo } from './app/get-git-info';
 
@@ -29,9 +30,7 @@ import { getGitInfo } from './app/get-git-info';
     .command('codewars:challenges')
     .requiredOption('--user <username>', 'the codewars username to get')
     .requiredOption('--file <filepath>', 'path of the file to output to')
-    .action((options: { user?: string; file?: string }) => {
-      console.log('[codewars challenges] called', { options });
-    });
+    .action(getCodewarsChallenges);
   // TODO: add github-api information
   // TODO: get github-gist information
 
