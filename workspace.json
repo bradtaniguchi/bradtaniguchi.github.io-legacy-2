@@ -171,9 +171,9 @@
           "builder": "@nrwl/workspace:run-commands",
           "options": {
             "commands": [
-              "npx ts-node ./tools/json-generator/src/main.ts git:info",
-              "npx ts-node ./tools/json-generator/src/main.ts codewars:user --user={args.user}",
-              "npx ts-node ./tools/json-generator/src/main.ts codewars:challenges --user={args.user}"
+              "./tools/json-generator/src/main.ts git:info",
+              "./tools/json-generator/src/main.ts codewars:user --user={args.user}",
+              "./tools/json-generator/src/main.ts codewars:challenges --user={args.user}"
             ],
             "parallel": true
           }
