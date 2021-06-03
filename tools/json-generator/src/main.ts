@@ -3,6 +3,7 @@ import { Command } from 'commander';
 import { getCodewarsChallenges } from './app/get-codewars-challenges';
 import { getCodewarsUser } from './app/get-codewars-user';
 import { getGitInfo } from './app/get-git-info';
+import { getGithubGists } from './app/get-github-gists';
 import { getGithubUser } from './app/get-github-user';
 
 (async () => {
@@ -32,14 +33,18 @@ import { getGithubUser } from './app/get-github-user';
     .requiredOption('--user <username>', 'the codewars username to get')
     .requiredOption('--file <filepath>', 'path of the file to output to')
     .action(getCodewarsChallenges);
-  // TODO: add github-api information
 
   program
     .command('github:user')
-    .requiredOption('--user <username>', 'the codewars username to get')
+    .requiredOption('--user <username>', 'the github username to get')
     .requiredOption('--file <filepath>', 'path of the file to output to')
     .action(getGithubUser);
-  // TODO: get github-gist information
+
+  program
+    .command('github:gists')
+    .requiredOption('--user <username>', 'the github username to get')
+    .requiredOption('--file <filepath>', 'path of the file to output to')
+    .action(getGithubGists);
 
   await program.parseAsync(process.argv);
   process.exit(0);

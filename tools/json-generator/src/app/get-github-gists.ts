@@ -1,22 +1,22 @@
 import { writeFile } from 'fs/promises';
 import { Octokit } from '@octokit/rest';
 
-export const getGithubUser = async ({
+export const getGithubGists = async ({
   file,
   user,
 }: {
   file: string;
   user: string;
 }) => {
-  console.log('[getGithubUser]', { file, user });
+  console.log('[getGithubGists]', { file, user });
 
   const octokit = new Octokit();
 
-  const userData = await octokit.users
-    .getByUsername({
+  const gistData = await octokit.gists
+    .list({
       username: user,
     })
     .then(({ data }) => data);
 
-  return writeFile(file, JSON.stringify(userData, null, 2));
+  return writeFile(file, JSON.stringify(gistData, null, 2));
 };
