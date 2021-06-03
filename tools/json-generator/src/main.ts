@@ -1,7 +1,7 @@
 #!npx ts-node
 import { Command } from 'commander';
-import { getCodewarsUser } from './app/get-git-info/get-codewars-user';
-import { getGitInfo } from './app/get-git-info/get-git-info';
+import { getCodewarsUser } from './app/get-codewars-user';
+import { getGitInfo } from './app/get-git-info';
 
 (async () => {
   const program = new Command();
