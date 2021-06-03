@@ -1,5 +1,6 @@
 #!npx ts-node
 import { Command } from 'commander';
+import { getCodewarsUser } from './app/get-git-info/get-codewars-user';
 import { getGitInfo } from './app/get-git-info/get-git-info';
 
 (async () => {
@@ -21,9 +22,7 @@ import { getGitInfo } from './app/get-git-info/get-git-info';
     .command('codewars:user')
     .requiredOption('--user <username>', 'the codewars username to get')
     .requiredOption('--file <filepath>', 'path of the file to output to')
-    .action((options: { user?: string; file?: string }) => {
-      console.log('[codwars user] called', { options });
-    });
+    .action(getCodewarsUser);
 
   program
     // get the codewars challenge information
