@@ -21,10 +21,12 @@ export const getGitInfo = async ({
   // format like: `Mon May 31 19:56:39 2021 -0700`
   // AKA RFC2822
   const rawDateTime = await execute('git log -1 --format=%aD');
-  const dateTime = DateTime.fromRFC2822(rawDateTime);
+  const dateTime = DateTime.fromRFC2822(rawDateTime).toISO();
 
-  console.log('test', {
-    rawDateTime,
+  const gitData = {
+    shortSha,
     dateTime,
-  });
+  };
+
+  return writeFile(file, JSON.stringify(gitData, null, 2));
 };
