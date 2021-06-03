@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: '-tools-json-generator',
-  preset: '../../../jest.preset.js',
+  displayName: 'json-generator',
+  preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',

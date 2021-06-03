@@ -1,5 +1,5 @@
 import { writeFile } from 'fs/promises';
-import { execute } from '../common/execute';
+import { execute } from './common/execute';
 import { DateTime } from 'luxon';
 
 /**
