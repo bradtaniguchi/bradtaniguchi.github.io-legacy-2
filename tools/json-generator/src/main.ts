@@ -1,4 +1,4 @@
-#!npx ts-node
+#!/usr/bin/env ./node_modules/.bin/ts-node
 import { Command } from 'commander';
 import { getCodewarsChallenges } from './app/get-codewars-challenges';
 import { getCodewarsUser } from './app/get-codewars-user';

@@ -148,9 +148,11 @@
           "builder": "@nrwl/workspace:run-commands",
           "options": {
             "commands": [
-              "./tools/json-generator/src/main.ts git:info",
-              "./tools/json-generator/src/main.ts codewars:user --user={args.user}",
-              "./tools/json-generator/src/main.ts codewars:challenges --user={args.user}"
+              "./tools/json-generator/src/main.ts git:info --file={args.gitInfoFile}",
+              "./tools/json-generator/src/main.ts codewars:user --user={args.user} --file={args.codewarsUserFile}",
+              "./tools/json-generator/src/main.ts codewars:challenges --user={args.user} --file={args.codewarsChallengesFile}",
+              "./tools/json-generator/src/main.ts github:user --user={args.user} --file={args.githubUserFile}",
+              "./tools/json-generator/src/main.ts github:gists --user={args.user} --file={args.githubGistsFile}"
             ],
             "parallel": true
           }
