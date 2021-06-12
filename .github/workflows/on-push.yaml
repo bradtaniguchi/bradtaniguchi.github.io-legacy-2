@@ -8,7 +8,8 @@ on:
       - '*.*'
 
 jobs:
-  lint-and-build:
+  lint-build-deploy:
+    timeout-minutes: 10
     name: lint test and build
     runs-on: ubuntu-latest
 
@@ -38,11 +39,11 @@ jobs:
           --githubGistsFile=apps/client/src/assets/github-gists.json \
           "
 
-      - name: affected:build
-        run: npm run affected:build -- --all
+      - name: build
+        run: npm run build -- -c=production
 
       - name: scully-build
-        run: npm run scully
+        run: npm run scully -- --prod
 
       - name: deploy-to-ghpages
         # only execute if on main branch
