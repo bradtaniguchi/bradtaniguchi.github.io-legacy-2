@@ -8,7 +8,8 @@ on:
       - '*.*'
 
 jobs:
-  lint-and-build:
+  lint-build-deploy:
+    timeout-minutes: 10
     name: lint test and build
     runs-on: ubuntu-latest
 
