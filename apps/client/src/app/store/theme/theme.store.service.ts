@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, switchMap, take, tap } from 'rxjs/operators';
 import { LOCAL_FORAGE } from '../../core/local-forage/local-forage';
 import { Theme, ThemeState } from './theme.state';
 
@@ -15,7 +15,7 @@ export class ThemeStoreService extends ComponentStore<ThemeState> {
   public theme$ = this.select((state) => state.theme);
 
   constructor(@Inject(LOCAL_FORAGE) private localforage: LocalForage) {
-    super();
+    super({});
 
     // get and set the default theme if available
     this.localforage
@@ -38,7 +38,7 @@ export class ThemeStoreService extends ComponentStore<ThemeState> {
   private readonly setThemeInLocalStorage$ = this.effect(
     (theme$: Observable<Theme>) =>
       theme$.pipe(
-        tap((theme) =>
+        switchMap((theme) =>
           this.localforage.setItem(ThemeStoreService.THEME_STORAGE_KEY, theme)
         )
       )
@@ -56,7 +56,8 @@ export class ThemeStoreService extends ComponentStore<ThemeState> {
   public toggleTheme() {
     const themeToSet$ = this.theme$.pipe(
       // **note** this may change, if there are more themes in the future
-      map((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))
+      map((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark')),
+      take(1)
     );
     this.setTheme(themeToSet$);
     this.setThemeInLocalStorage$(themeToSet$);
