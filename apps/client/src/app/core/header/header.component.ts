@@ -35,6 +35,7 @@ export class HeaderComponent {
    * Toggle the theme from dark to light mode
    */
   public toggleTheme() {
+    // TODO: remove, update
     this.themeStore.toggleTheme();
   }
 }

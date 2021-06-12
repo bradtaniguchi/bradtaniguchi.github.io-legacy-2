@@ -1,8 +1,8 @@
-export type Theme = 'dark' | 'light';
+export type Theme = 'light' | 'dark' | 'dark_dimmed';
 
 export interface ThemeState {
   /**
    * The currently selected theme
    */
-  theme?: Theme;
+  theme: Theme;
 }
