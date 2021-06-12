@@ -3,6 +3,7 @@
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
+  "defaultProject": "client",
   "generators": {
     "@nrwl/angular:application": {
       "style": "scss",
@@ -137,7 +138,40 @@
           }
         }
       }
+    },
+    "json-generator": {
+      "root": "tools/json-generator",
+      "sourceRoot": "tools/json-generator/src",
+      "projectType": "application",
+      "targets": {
+        "generate": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "./tools/json-generator/src/main.ts git:info --file={args.gitInfoFile}",
+              "./tools/json-generator/src/main.ts codewars:user --user={args.user} --file={args.codewarsUserFile}",
+              "./tools/json-generator/src/main.ts codewars:challenges --user={args.user} --file={args.codewarsChallengesFile}",
+              "./tools/json-generator/src/main.ts github:user --user={args.user} --file={args.githubUserFile}",
+              "./tools/json-generator/src/main.ts github:gists --user={args.user} --file={args.githubGistsFile}"
+            ],
+            "parallel": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["tools/json-generator/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/tools/json-generator"],
+          "options": {
+            "jestConfig": "tools/json-generator/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
-  },
-  "defaultProject": "client"
+  }
 }
