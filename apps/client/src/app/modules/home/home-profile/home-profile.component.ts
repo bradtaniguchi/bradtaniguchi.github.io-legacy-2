@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { GithubUserLoaderService } from '../../../core/github-user-loader.service';
+import {
+  GithubUser,
+  GithubUserLoaderService,
+} from '../../../core/github-user-loader.service';
 
 @Component({
   selector: 'bt-home-profile',
@@ -11,7 +14,7 @@ export class HomeProfileComponent {
   /**
    * The user loaded from the static assets git-info json
    */
-  public user$ = this.githubUserLoader.getUser();
+  public user$: Promise<GithubUser> = this.githubUserLoader.getUser();
 
   constructor(private githubUserLoader: GithubUserLoaderService) {}
 }

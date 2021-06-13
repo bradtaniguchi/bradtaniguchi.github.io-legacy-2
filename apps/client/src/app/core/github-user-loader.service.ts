@@ -19,9 +19,7 @@ export class GithubUserLoaderService {
    * Returns the user-data saved by the get-githubuser script.
    * Should be saved within /assets/github-user.json
    */
-  public getUser(): Promise<
-    RestEndpointMethodTypes['users']['getByUsername']['response']['data']
-  > {
+  public getUser(): Promise<GithubUser> {
     return this.json$;
   }
 }
