@@ -31,7 +31,7 @@ export class AppComponent {
     'dark' | 'dark_dimmed' | undefined
   > = this.theme$.pipe(
     map((theme) =>
-      (['dark', 'dark_dimmed'] as Array<Theme>).includes(theme)
+      theme && (['dark', 'dark_dimmed'] as Array<Theme>).includes(theme)
         ? (theme as 'dark' | 'dark_dimmed')
         : undefined
     )

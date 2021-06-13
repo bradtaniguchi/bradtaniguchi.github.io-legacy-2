@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { Observable } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
+import { map, share, shareReplay, switchMap, take, tap } from 'rxjs/operators';
 import { LOCAL_FORAGE } from '../../core/local-forage/local-forage';
 import { Theme, ThemeState } from './theme.state';
 
@@ -15,14 +15,15 @@ export class ThemeStoreService extends ComponentStore<ThemeState> {
   public theme$ = this.select((state) => state.theme);
 
   constructor(@Inject(LOCAL_FORAGE) private localforage: LocalForage) {
-    super({ theme: 'dark' });
+    super({});
 
     // get and set the default theme if available
     this.localforage
       .getItem(ThemeStoreService.THEME_STORAGE_KEY)
-      .then((theme: Theme | unknown) =>
-        this.isTheme(theme) ? this.setTheme(theme) : this.setTheme('dark')
-      )
+      .then((theme: Theme | unknown) => {
+        console.log('theme local-storage', theme);
+        this.isTheme(theme) && this.setTheme(theme);
+      })
       .catch((err: unknown) => console.error(err));
     this.state$.subscribe(console.log);
   }
@@ -57,15 +58,18 @@ export class ThemeStoreService extends ComponentStore<ThemeState> {
    *
    */
   public toggleTheme() {
-    const nextTheme$ = this.theme$.pipe(
-      map((theme) => this.getNextTheme(theme, ThemeStoreService.THEMES)),
-      take(1)
-    );
-    this.setTheme(nextTheme$);
-    this.setThemeInLocalStorage$(nextTheme$);
+    this.theme$
+      .pipe(
+        map((theme) => this.getNextTheme(theme, ThemeStoreService.THEMES)),
+        take(1)
+      )
+      .subscribe((theme) => {
+        this.setTheme(theme);
+        this.setThemeInLocalStorage$(theme);
+      });
   }
 
-  private getNextTheme(theme: Theme, themes: Theme[]): Theme {
+  private getNextTheme(theme: Theme = 'dark', themes: Theme[]): Theme {
     const nextIndex = themes.indexOf(theme) + 1;
     return themes[nextIndex % ThemeStoreService.THEMES.length];
   }
