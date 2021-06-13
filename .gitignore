@@ -47,4 +47,4 @@ scully-routes.json
 *.log
 
 # static json files
-apps/client/assets/json/**/*.json
+apps/client/src/assets/json/**/*.json
