@@ -8,7 +8,8 @@ on:
       - '*.*'
 
 jobs:
-  lint-and-build:
+  lint-build-deploy:
+    timeout-minutes: 10
     name: lint test and build
     runs-on: ubuntu-latest
 
@@ -24,14 +25,25 @@ jobs:
       - name: install deps
         run: npm ci
 
-      - name: lint
-        run: npm run lint
+      - name: affected:lint
+        run: npm run affected:lint -- --all
+
+      - name: generate:json
+        run: |
+          npx nx run json-generator:generate --args=" \
+          --user={{github.actor}} \
+          --gitInfoFile=apps/client/src/assets/git-info.json \
+          --codewarsUserFile=apps/client/src/assets/codewars-user.json \
+          --codewarsChallengesFile=apps/client/src/assets/codewars-challenges.json \
+          --githubUserFile=apps/client/src/assets/github-user.json \
+          --githubGistsFile=apps/client/src/assets/github-gists.json \
+          "
 
       - name: build
-        run: npm run build
+        run: npm run build -- -c=production
 
       - name: scully-build
-        run: npm run scully
+        run: npm run scully -- --prod
 
       - name: deploy-to-ghpages
         # only execute if on main branch
