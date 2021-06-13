@@ -14,9 +14,12 @@ import { getGithubUser } from './app/get-github-user';
   // or specific calls:
   // ./tools/json-generator/src/main.ts git:info --file=<filename>
   program
-    .allowExcessArguments(true)
     // generate build information
     .command('git:info')
+    .option(
+      '--user <username>',
+      'ignored flag, is provided only as a workaround'
+    )
     .requiredOption('--file <filepath>', 'path of the file to output to')
     .action(getGitInfo);
 
