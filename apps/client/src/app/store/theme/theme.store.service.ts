@@ -23,7 +23,7 @@ export class ThemeStoreService extends ComponentStore<ThemeState> {
       .then((theme: Theme | unknown) =>
         this.isTheme(theme) ? this.setTheme(theme) : this.setTheme('dark')
       )
-      .catch((err) => console.error(err));
+      .catch((err: unknown) => console.error(err));
     this.state$.subscribe(console.log);
   }
   /**
