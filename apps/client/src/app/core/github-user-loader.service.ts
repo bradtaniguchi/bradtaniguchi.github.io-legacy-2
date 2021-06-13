@@ -14,7 +14,7 @@ export type GithubUser = RestEndpointMethodTypes['users']['getByUsername']['resp
   providedIn: 'root',
 })
 export class GithubUserLoaderService {
-  private json$ = import('../../assets/github-user.json');
+  private json$ = import('../../assets/json/github-user.json');
   /**
    * Returns the user-data saved by the get-githubuser script.
    * Should be saved within /assets/github-user.json
