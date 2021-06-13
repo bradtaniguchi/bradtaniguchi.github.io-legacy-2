@@ -4,9 +4,10 @@ import { OcticonModule } from '../../core/octicon/octicon.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { LinkBoxComponent } from './link-box/link-box.component';
+import { HomeProfileComponent } from './home-profile/home-profile.component';
 
 @NgModule({
-  declarations: [HomeComponent, LinkBoxComponent],
+  declarations: [HomeComponent, LinkBoxComponent, HomeProfileComponent],
   imports: [
     // core modules
     CommonModule,
