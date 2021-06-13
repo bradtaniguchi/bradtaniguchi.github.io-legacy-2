@@ -148,7 +148,7 @@
           "builder": "@nrwl/workspace:run-commands",
           "options": {
             "commands": [
-              "./tools/json-generator/src/main.ts git:info --file=apps/client/src/assets/git-info.json",
+              "./tools/json-generator/src/main.ts git:info --user={args.user} --file=apps/client/src/assets/git-info.json",
               "./tools/json-generator/src/main.ts codewars:user --user={args.user} --file=apps/client/src/assets/codewars-user.json",
               "./tools/json-generator/src/main.ts codewars:challenges --user={args.user} --file=apps/client/src/assets/codewars-challenges.json",
               "./tools/json-generator/src/main.ts github:user --user={args.user} --file=apps/client/src/assets/github-user.json",
