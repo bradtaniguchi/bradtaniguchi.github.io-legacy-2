@@ -1,9 +1,10 @@
 import { Inject, Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { Observable } from 'rxjs';
-import { map, share, shareReplay, switchMap, take, tap } from 'rxjs/operators';
+import { map, switchMap, take } from 'rxjs/operators';
 import { LOCAL_FORAGE } from '../../core/local-forage/local-forage';
 import { Theme, ThemeState } from './theme.state';
+import LocalForage from 'localforage';
 
 @Injectable()
 export class ThemeStoreService extends ComponentStore<ThemeState> {
