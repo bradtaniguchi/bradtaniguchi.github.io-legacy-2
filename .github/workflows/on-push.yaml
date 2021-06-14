@@ -28,6 +28,9 @@ jobs:
       - name: affected:lint
         run: npm run affected:lint -- --all
 
+      - name: affected:test
+        run: npm run affected:test -- --all
+
       - name: generate:json
         run: |
           npx nx run json-generator:generate --args=" \

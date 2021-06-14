@@ -1,6 +1,7 @@
 <div class="main"
-     data-color-mode="dark"
-     data-dark-theme="dark_dimmed">
+     [attr.data-color-mode]="dataColorMode$ | async"
+     [attr.data-dark-theme]="dataDarkTheme$ | async"
+     [attr.data-light-theme]="dataLightTheme$ | async">
   <header>
     <bt-header></bt-header>
   </header>

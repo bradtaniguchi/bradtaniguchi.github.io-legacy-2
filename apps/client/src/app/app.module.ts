@@ -5,7 +5,9 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderModule } from './core/header/header.module';
+import { LOCAL_FORAGE } from './core/local-forage/local-forage';
 import { SidenavModule } from './core/sidenav/sidenav.module';
+import localforage from 'localforage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +22,12 @@ import { SidenavModule } from './core/sidenav/sidenav.module';
     HeaderModule,
     SidenavModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LOCAL_FORAGE,
+      useValue: localforage,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
