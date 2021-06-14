@@ -38,6 +38,13 @@ import { RouterModule } from '@angular/router';
               (m) => m.SnippetsModule
             ),
         },
+        {
+          path: 'apps',
+          loadChildren: () =>
+            import('./modules/webapps/webapps.module').then(
+              (m) => m.WebappsModule
+            ),
+        },
       ],
       {
         initialNavigation: 'enabled',
