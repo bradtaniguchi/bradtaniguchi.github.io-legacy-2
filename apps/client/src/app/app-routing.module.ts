@@ -12,12 +12,6 @@ import { RouterModule } from '@angular/router';
             import('./modules/about/about.module').then((m) => m.AboutModule),
         },
         {
-          path: 'home',
-          pathMatch: 'full',
-          loadChildren: () =>
-            import('./modules/home/home.module').then((m) => m.HomeModule),
-        },
-        {
           path: 'projects',
           pathMatch: 'full',
           loadChildren: () =>
@@ -38,6 +32,13 @@ import { RouterModule } from '@angular/router';
               (m) => m.SnippetsModule
             ),
         },
+        {
+          path: '',
+          pathMatch: 'full',
+          loadChildren: () =>
+            import('./modules/home/home.module').then((m) => m.HomeModule),
+        },
+        { path: '**', redirectTo: '/' },
       ],
       {
         initialNavigation: 'enabled',
