@@ -1,23 +1,23 @@
 {
   "username": "bradtaniguchi",
   "name": "Brad",
-  "honor": 337,
+  "honor": 348,
   "clan": null,
-  "leaderboardPosition": 98135,
+  "leaderboardPosition": 92782,
   "skills": null,
   "ranks": {
     "overall": {
       "rank": -5,
       "name": "5 kyu",
       "color": "yellow",
-      "score": 293
+      "score": 304
     },
     "languages": {
       "javascript": {
         "rank": -5,
         "name": "5 kyu",
         "color": "yellow",
-        "score": 291
+        "score": 302
       },
       "go": {
         "rank": -8,
@@ -29,6 +29,6 @@
   },
   "codeChallenges": {
     "totalAuthored": 0,
-    "totalCompleted": 52
+    "totalCompleted": 54
   }
 }

@@ -1,7 +1,25 @@
 {
   "totalPages": 1,
-  "totalItems": 52,
+  "totalItems": 54,
   "data": [
+    {
+      "id": "577ff873d648a1c5a9000143",
+      "name": "Recursion: An introduction",
+      "slug": "recursion-an-introduction",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2021-06-18T04:59:55.245Z"
+    },
+    {
+      "id": "5f0ed36164f2bc00283aed07",
+      "name": "Over The Road",
+      "slug": "over-the-road-1",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2021-06-18T04:32:48.427Z"
+    },
     {
       "id": "5ce9c1000bab0b001134f5af",
       "name": "Quarter of the year",
