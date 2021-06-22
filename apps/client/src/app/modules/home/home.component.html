@@ -1,1 +1,65 @@
-<p>home works!</p>
+<div class="container-xl">
+
+  <!-- GITHUB PROFILE -->
+  <div class="col-3 float-left p-4">
+    <div class="p-2">
+      <div class="Box">
+        <div class="Box-body p-4">
+          <bt-home-profile></bt-home-profile>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-9 float-right p-4">
+
+    <!-- main content -->
+    <div class="p-2">
+      <div class="Box mb-4">
+        <div class="Box-header">
+          <h3 class="Box-title">
+            README.md
+          </h3>
+        </div>
+        <div class="Box-body markdown-body">
+          Main README content
+        </div>
+      </div>
+    </div>
+
+    <!-- main application cards -->
+    <div class="clearfix">
+      <bt-link-box title="Projects"
+                   link="/projects">
+        <p>
+          Open source projects I've done. Most are using TypeScript, Angular, and Nodejs technologies. There are some
+          older project's that use Python and even C, however those are from my college project days and are no longer
+          maintained.
+        </p>
+      </bt-link-box>
+      <bt-link-box title="Apps"
+                   link="/apps">
+        <p>
+          Web applications you can use right now. Usual built using Angular and nx.
+        </p>
+      </bt-link-box>
+      <bt-link-box title="blog"
+                   link="/blog">
+        <p>
+          My blog, on topic such as programming, computer science, technology, and more broad topics like
+          science-fiction and philosophy.
+        </p>
+      </bt-link-box>
+      <bt-link-box title="Snippets"
+                   link="/snippets">
+        <p>
+          Code snippets I've found useful, this usually integrates directly with a github gist.
+        </p>
+      </bt-link-box>
+    </div>
+
+    <div>
+      <!-- secondary application cards, smaller, carries links -->
+    </div>
+  </div>
+</div>

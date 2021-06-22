@@ -1,0 +1,56 @@
+<!--
+  1. Profile Picture
+  2. Basic contact information
+    - email
+    - location
+    - social media handles
+  3. "Resume info"
+    - technologies
+    - years of experience
+    - college degree
+    - certs
+-->
+
+<ng-container *ngIf="user$ | async as user">
+  <div>
+    <!-- class="avatar avatar-user width-full border color-bg-primary" -->
+    <img style="height:auto;"
+         alt="Avatar"
+         width="260"
+         height="260"
+         [src]="user.avatar_url">
+  </div>
+  <div>
+    {{user.name}}
+  </div>
+  <div>
+    {{user.login}}
+  </div>
+  <div>
+    <a [href]="user.html_url">Actual Github Profile</a>
+  </div>
+  <div>
+    <p>
+      {{user.bio}}
+    </p>
+  </div>
+  <div>
+    <!-- TODO: add followers, following, starred-->
+  </div>
+  <!--
+    **NOTE** stuff after this point will be DIFFERENT than the github
+    profile version
+  -->
+  <div>
+    <!-- TODO: contact information (non-spam)-->
+  </div>
+  <div>
+    <!-- TODO: add work history, probably end up using markdown lists?-->
+  </div>
+  <div>
+    <!-- TODO: add technology icons, probably end up using markdown list?-->
+  </div>
+  <div>
+    <!-- TODO: add degree and certifications, this should be hard-coded-->
+  </div>
+</ng-container>

@@ -13,7 +13,7 @@ export const getGithubGists = async ({
   const octokit = new Octokit();
 
   const gistData = await octokit.gists
-    .list({
+    .listForUser({
       username: user,
     })
     .then(({ data }) => data);

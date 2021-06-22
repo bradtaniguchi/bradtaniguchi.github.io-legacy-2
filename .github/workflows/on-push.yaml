@@ -33,14 +33,7 @@ jobs:
 
       - name: generate:json
         run: |
-          npx nx run json-generator:generate --args=" \
-          --user={{github.actor}} \
-          --gitInfoFile=apps/client/src/assets/git-info.json \
-          --codewarsUserFile=apps/client/src/assets/codewars-user.json \
-          --codewarsChallengesFile=apps/client/src/assets/codewars-challenges.json \
-          --githubUserFile=apps/client/src/assets/github-user.json \
-          --githubGistsFile=apps/client/src/assets/github-gists.json \
-          "
+          npx nx run json-generator:generate --args="--user=${{github.actor}}"
 
       - name: build
         run: npm run build -- -c=production

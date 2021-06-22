@@ -9,7 +9,13 @@ tags:
   - ops
 ---
 
-Running this project using scully requires at least 2 terminal instances, and the following two commands:
+Running this project requires 1 "pre" step, and then fully running the "scully" build requires 2 extra commands.
+
+**building the static files for bradtaniguchi**
+
+```bash
+npm run build:static
+```
 
 **starting the Angular build process**
 
