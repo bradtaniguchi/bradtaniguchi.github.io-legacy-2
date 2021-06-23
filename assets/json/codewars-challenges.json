@@ -1,7 +1,16 @@
 {
   "totalPages": 1,
-  "totalItems": 54,
+  "totalItems": 55,
   "data": [
+    {
+      "id": "557cffec8c3e8e55cc00010f",
+      "name": "Count number of zeros from 1 to N",
+      "slug": "count-number-of-zeros-from-1-to-n",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2021-06-23T03:47:46.412Z"
+    },
     {
       "id": "577ff873d648a1c5a9000143",
       "name": "Recursion: An introduction",
