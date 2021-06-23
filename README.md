@@ -8,7 +8,7 @@ See [CONTRIBUTING](./CONTRIBUTING.md)
 
 ## Running this project
 
-Information on how to run this project is located in a "snippets" post located [here](./snippets/running-this-project.md)
+Information on how to run this project is located in a "snippets" post located [here](./static/snippets/running-this-project.md)
 
 ## Latest Deployment:
 
