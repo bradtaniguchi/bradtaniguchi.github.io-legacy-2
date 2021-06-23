@@ -10,19 +10,19 @@ export const config: ScullyConfig = {
     '/apps/:slug': {
       type: 'contentFolder',
       slug: {
-        folder: './web-apps',
+        folder: './static/web-apps',
       },
     },
     '/blog/:slug': {
       type: 'contentFolder',
       slug: {
-        folder: './blog',
+        folder: './static/blog',
       },
     },
     '/snippets/:slug': {
       type: 'contentFolder',
       slug: {
-        folder: './snippets',
+        folder: './static/snippets',
       },
     },
   },
