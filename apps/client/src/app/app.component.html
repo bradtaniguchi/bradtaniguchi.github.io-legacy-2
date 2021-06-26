@@ -5,7 +5,13 @@
   <header>
     <bt-header></bt-header>
   </header>
-  <main>
-    <router-outlet></router-outlet>
+  <main class="Layout">
+    <div>
+      <!-- SIDE-NAV TODO: automatic link component -->
+      side-nav
+    </div>
+    <div class="Layout-main">
+      <router-outlet></router-outlet>
+    </div>
   </main>
 </div>
