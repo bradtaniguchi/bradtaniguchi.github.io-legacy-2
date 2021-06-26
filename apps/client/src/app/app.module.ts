@@ -8,6 +8,7 @@ import { HeaderModule } from './core/header/header.module';
 import { LOCAL_FORAGE } from './core/local-forage/local-forage';
 import { SidenavModule } from './core/sidenav/sidenav.module';
 import localforage from 'localforage';
+import { ClientLoggerService } from './core/client-logger/client-logger.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +28,7 @@ import localforage from 'localforage';
       provide: LOCAL_FORAGE,
       useValue: localforage,
     },
+    ClientLoggerService,
   ],
   bootstrap: [AppComponent],
 })

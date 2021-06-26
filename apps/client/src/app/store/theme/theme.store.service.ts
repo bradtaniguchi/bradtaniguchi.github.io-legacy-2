@@ -5,6 +5,7 @@ import { map, switchMap, take } from 'rxjs/operators';
 import { LOCAL_FORAGE } from '../../core/local-forage/local-forage';
 import { Theme, ThemeState } from './theme.state';
 import LocalForage from 'localforage';
+import { ClientLoggerService } from '../../core/client-logger/client-logger.service';
 
 @Injectable()
 export class ThemeStoreService extends ComponentStore<ThemeState> {
@@ -15,18 +16,21 @@ export class ThemeStoreService extends ComponentStore<ThemeState> {
    */
   public theme$ = this.select((state) => state.theme);
 
-  constructor(@Inject(LOCAL_FORAGE) private localforage: LocalForage) {
+  constructor(
+    @Inject(LOCAL_FORAGE) private localforage: LocalForage,
+    private logger: ClientLoggerService
+  ) {
     super({});
 
     // get and set the default theme if available
     this.localforage
       .getItem(ThemeStoreService.THEME_STORAGE_KEY)
       .then((theme: Theme | unknown) => {
-        console.log('theme local-storage', theme);
+        this.logger.log('theme local-storage', theme);
         this.isTheme(theme) && this.setTheme(theme);
       })
-      .catch((err: unknown) => console.error(err));
-    this.state$.subscribe(console.log);
+      .catch((err: unknown) => logger.error(err));
+    this.state$.subscribe(logger.log);
   }
   /**
    * Directly set the theme of the app.

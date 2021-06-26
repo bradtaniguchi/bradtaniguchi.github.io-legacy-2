@@ -27,7 +27,8 @@
             "prefix": "bt",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "no-console": "error"
       }
     },
     {
