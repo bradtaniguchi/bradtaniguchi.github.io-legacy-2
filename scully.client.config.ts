@@ -1,4 +1,4 @@
-import { ScullyConfig } from '@scullyio/scully';
+import { ScullyConfig, RouteConfig } from '@scullyio/scully';
 export const config: ScullyConfig = {
   projectRoot: './apps/client/src',
   projectName: 'client',
@@ -26,4 +26,8 @@ export const config: ScullyConfig = {
       },
     },
   },
+  /**
+   * Extra routes to render automatically via scully. For SEO
+   */
+  extraRoutes: ['/blog/'],
 };
