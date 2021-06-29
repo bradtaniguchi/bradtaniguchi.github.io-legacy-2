@@ -4,7 +4,7 @@ import { BlogListComponent } from './blog-list.component';
 
 const routes: Routes = [
   {
-    path: '**',
+    path: '',
     component: BlogListComponent,
   },
 ];
