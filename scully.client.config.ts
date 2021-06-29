@@ -29,5 +29,5 @@ export const config: ScullyConfig = {
   /**
    * Extra routes to render automatically via scully. For SEO
    */
-  extraRoutes: ['/blog/'],
+  extraRoutes: ['/about/', '/blog/'],
 };
