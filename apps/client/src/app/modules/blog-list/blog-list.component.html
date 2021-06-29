@@ -1,0 +1,10 @@
+<bt-content-wrapper>
+  <h1>
+    Blog List
+  </h1>
+  <ul>
+    <li *ngFor="let route of routesAvailable$ | async">
+      <a [routerLink]="route.route">{{route.title}}</a>
+    </li>
+  </ul>
+</bt-content-wrapper>

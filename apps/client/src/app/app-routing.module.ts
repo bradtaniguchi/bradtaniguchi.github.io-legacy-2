@@ -22,6 +22,14 @@ import { RouterModule } from '@angular/router';
         // scully based routes
         {
           path: 'blog',
+          pathMatch: 'full',
+          loadChildren: () =>
+            import('./modules/blog-list/blog-list.module').then(
+              (m) => m.BlogListModule
+            ),
+        },
+        {
+          path: 'blog',
           loadChildren: () =>
             import('./modules/blog/blog.module').then((m) => m.BlogModule),
         },
