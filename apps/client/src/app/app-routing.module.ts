@@ -22,14 +22,38 @@ import { RouterModule } from '@angular/router';
         // scully based routes
         {
           path: 'blog',
+          pathMatch: 'full',
+          loadChildren: () =>
+            import('./modules/blog-list/blog-list.module').then(
+              (m) => m.BlogListModule
+            ),
+        },
+        {
+          path: 'blog',
           loadChildren: () =>
             import('./modules/blog/blog.module').then((m) => m.BlogModule),
+        },
+        {
+          path: 'snippets',
+          pathMatch: 'full',
+          loadChildren: () =>
+            import('./modules/snippets-list/snippets-list.module').then(
+              (m) => m.SnippetsListModule
+            ),
         },
         {
           path: 'snippets',
           loadChildren: () =>
             import('./modules/snippets/snippets.module').then(
               (m) => m.SnippetsModule
+            ),
+        },
+        {
+          path: 'apps',
+          pathMatch: 'full',
+          loadChildren: () =>
+            import('./modules/webapps-list/webapps-list.module').then(
+              (m) => m.WebappsListModule
             ),
         },
         {

@@ -1,4 +1,4 @@
-import { ScullyConfig } from '@scullyio/scully';
+import { ScullyConfig, RouteConfig } from '@scullyio/scully';
 export const config: ScullyConfig = {
   projectRoot: './apps/client/src',
   projectName: 'client',
@@ -10,7 +10,7 @@ export const config: ScullyConfig = {
     '/apps/:slug': {
       type: 'contentFolder',
       slug: {
-        folder: './static/web-apps',
+        folder: './static/webapps',
       },
     },
     '/blog/:slug': {
@@ -25,5 +25,22 @@ export const config: ScullyConfig = {
         folder: './static/snippets',
       },
     },
+    '/projects/:slug': {
+      type: 'contentFolder',
+      slug: {
+        folder: './static/projects',
+      },
+    },
   },
+  /**
+   * Extra routes to render automatically via scully. For SEO
+   */
+  extraRoutes: [
+    '/about/',
+    // static list pages
+    '/blog/',
+    '/snippets/',
+    '/projects/',
+    '/apps/',
+  ],
 };
