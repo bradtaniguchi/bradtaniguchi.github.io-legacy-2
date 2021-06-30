@@ -7,6 +7,9 @@ git config --global core.editor "vim"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+echo "export VISUAL=vim" >> ~/.bashrc
+echo "export EDITOR=\"$VISUAL\"" >> ~/.bashrc
+
 # setup git completion
 echo "source /usr/share/bash-completion/completions/git" >> ~/.bashrc
 
@@ -17,7 +20,10 @@ npm ci
 git fetch
 
 # install and setup nvm version
+nvm use
 nvm install
 npm config delete prefix
-nvm use
 nvm alias default node
+
+# install global nx cli, not always required but useful to have
+npm i -g @nrwl/cli
