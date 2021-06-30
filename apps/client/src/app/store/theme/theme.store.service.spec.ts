@@ -1,3 +1,4 @@
+import { ClientLoggerService } from '../../core/client-logger/client-logger.service';
 import { Theme } from './theme.state';
 import { ThemeStoreService } from './theme.store.service';
 
@@ -8,8 +9,9 @@ describe('ThemeStoreService', () => {
     getItem: () => Promise.resolve(),
   };
   beforeEach(() => {
+    const logger = new ClientLoggerService();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    service = new ThemeStoreService(localforageMock as any);
+    service = new ThemeStoreService(localforageMock as any, logger);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     getNextTheme = (service as any).getNextTheme;
   });
