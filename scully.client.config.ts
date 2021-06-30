@@ -10,7 +10,7 @@ export const config: ScullyConfig = {
     '/apps/:slug': {
       type: 'contentFolder',
       slug: {
-        folder: './static/web-apps',
+        folder: './static/webapps',
       },
     },
     '/blog/:slug': {
@@ -25,9 +25,22 @@ export const config: ScullyConfig = {
         folder: './static/snippets',
       },
     },
+    '/projects/:slug': {
+      type: 'contentFolder',
+      slug: {
+        folder: './static/projects',
+      },
+    },
   },
   /**
    * Extra routes to render automatically via scully. For SEO
    */
-  extraRoutes: ['/about/', '/blog/'],
+  extraRoutes: [
+    '/about/',
+    // static list pages
+    '/blog/',
+    '/snippets/',
+    '/projects/',
+    '/apps/',
+  ],
 };

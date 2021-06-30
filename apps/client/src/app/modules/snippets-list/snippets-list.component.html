@@ -1,0 +1,13 @@
+<bt-content-wrapper>
+  <h1>
+    All Snippets
+  </h1>
+  <div>
+    <!-- TODO: add search -->
+  </div>
+  <ul>
+    <li *ngFor="let route of availableSnippetRoutes$ | async">
+      <a [routerLink]="route.route">{{route.title}}</a>
+    </li>
+  </ul>
+</bt-content-wrapper>

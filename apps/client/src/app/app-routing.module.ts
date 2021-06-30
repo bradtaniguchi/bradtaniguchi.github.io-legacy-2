@@ -35,9 +35,25 @@ import { RouterModule } from '@angular/router';
         },
         {
           path: 'snippets',
+          pathMatch: 'full',
+          loadChildren: () =>
+            import('./modules/snippets-list/snippets-list.module').then(
+              (m) => m.SnippetsListModule
+            ),
+        },
+        {
+          path: 'snippets',
           loadChildren: () =>
             import('./modules/snippets/snippets.module').then(
               (m) => m.SnippetsModule
+            ),
+        },
+        {
+          path: 'apps',
+          pathMatch: 'full',
+          loadChildren: () =>
+            import('./modules/webapps-list/webapps-list.module').then(
+              (m) => m.WebappsListModule
             ),
         },
         {
