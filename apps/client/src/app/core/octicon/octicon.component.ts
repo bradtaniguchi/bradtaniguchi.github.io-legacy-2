@@ -28,7 +28,6 @@ export class OcticonComponent implements OnInit {
   ngOnInit() {
     if (!this.octicon) return;
     const octicon = octicons[this.octicon];
-    console.log('octicon', octicon);
     if (!octicon) return;
     if (this.octicon)
       this.svg = this.sanitizer.bypassSecurityTrustHtml(
