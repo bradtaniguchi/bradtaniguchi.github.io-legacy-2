@@ -39,7 +39,7 @@ jobs:
         run: npm run build -- -c=production
 
       - name: scully-build
-        run: npm run scully -- --prod
+        run: npm run scully -- --prod=true --no-prompt
 
       - name: deploy-to-ghpages
         # only execute if on main branch
