@@ -20,9 +20,9 @@ npm ci
 git fetch
 
 # install and setup nvm version
+nvm use
 nvm install
 npm config delete prefix
-nvm use
 nvm alias default node
 
 # install global nx cli, not always required but useful to have
