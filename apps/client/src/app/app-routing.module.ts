@@ -15,6 +15,13 @@ import { RouterModule } from '@angular/router';
           path: 'projects',
           pathMatch: 'full',
           loadChildren: () =>
+            import('./modules/projects-list/projects-list.module').then(
+              (m) => m.ProjectsListModule
+            ),
+        },
+        {
+          path: 'projects',
+          loadChildren: () =>
             import('./modules/projects/projects.module').then(
               (m) => m.ProjectsModule
             ),
