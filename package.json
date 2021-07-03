@@ -30,6 +30,7 @@
     "scully": "npx scully --project=client",
     "scully:serve": "npx scully serve --project=client",
     "build:static": "npx nx run json-generator:generate --args='--user=bradtaniguchi'",
+    "build:static-win": "npx nx run json-generator:generate-win --args='--user=bradtaniguchi'",
     "build:prod": "nx build -c=production",
     "build:smoke": "npm run clean && npm run build:static && npm run build:prod && npm run scully"
   },
