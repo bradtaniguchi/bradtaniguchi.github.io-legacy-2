@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ScullyRoutesService } from '@scullyio/ng-lib';
-import { map } from 'rxjs/operators';
+import { StaticService } from '../../core/static.service';
 
 @Component({
   selector: 'bt-webapps-list',
@@ -9,11 +8,6 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WebappsListComponent {
-  /**
-   * List of scully routes available
-   */
-  public availableWebappRoutes$ = this.routes.available$.pipe(
-    map((routes) => routes.filter((route) => route.webapp))
-  );
-  constructor(private routes: ScullyRoutesService) {}
+  public availableWebappRoutes$ = this.staticService.availableWebappRoutes$;
+  constructor(private staticService: StaticService) {}
 }
