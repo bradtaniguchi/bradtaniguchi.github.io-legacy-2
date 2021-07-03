@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ScullyRoutesService } from '@scullyio/ng-lib';
-import { map, tap } from 'rxjs/operators';
-import { ClientLoggerService } from '../../core/client-logger/client-logger.service';
+import { StaticService } from '../../core/static.service';
 
 @Component({
   selector: 'bt-projects-list',
@@ -10,15 +8,6 @@ import { ClientLoggerService } from '../../core/client-logger/client-logger.serv
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsListComponent {
-  /**
-   * List of scully routes available
-   */
-  public availableProjectsRoutes$ = this.routes.available$.pipe(
-    tap((val) => this.clientLogger.log(val)),
-    map((routes) => routes.filter((route) => route.project))
-  );
-  constructor(
-    private routes: ScullyRoutesService,
-    private clientLogger: ClientLoggerService
-  ) {}
+  public availableProjectsRoutes$ = this.staticService.availableProjectRoutes$;
+  constructor(private staticService: StaticService) {}
 }
