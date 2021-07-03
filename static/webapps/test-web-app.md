@@ -1,8 +1,10 @@
 ---
 title: test-web-app
 description: This is a test web-app.
-published: false
-webapp: true
+published: true
+date: 2021-06-02T00:00:00.000Z
+slugs:
+  - test-web-app
 ---
 
 # Test Web-App

@@ -7,10 +7,6 @@ const routes: Routes = [
     path: ':slug',
     component: SnippetsComponent,
   },
-  {
-    path: '**',
-    component: SnippetsComponent,
-  },
 ];
 
 @NgModule({

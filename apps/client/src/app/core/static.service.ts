@@ -12,23 +12,36 @@ import { map } from 'rxjs/operators';
 })
 export class StaticService {
   public availableBlogRoutes$ = this.routes.available$.pipe(
-    map((routes) => routes.filter((route) => route.route.startsWith('/blog')))
+    map((routes) =>
+      routes.filter(
+        (route) => route.published && route.route.startsWith('/blog')
+      )
+    )
   );
 
   public availableProjectRoutes$ = this.routes.available$.pipe(
     map((routes) =>
-      routes.filter((route) => route.route.startsWith('/project'))
+      routes.filter(
+        (route) => route.published && route.route.startsWith('/project')
+      )
     )
   );
 
   public availableSnippetsRoutes$ = this.routes.available$.pipe(
     map((routes) =>
-      routes.filter((route) => route.route.startsWith('/snippet'))
+      routes.filter(
+        (route) => route.published && route.route.startsWith('/snippet')
+      )
     )
   );
 
   public availableWebappRoutes$ = this.routes.available$.pipe(
-    map((routes) => routes.filter((route) => route.route.startsWith('/webapp')))
+    map((routes) =>
+      routes.filter(
+        // **note** this is different than the other routes, and is made simpler.
+        (route) => route.published && route.route.startsWith('/apps')
+      )
+    )
   );
   constructor(private routes: ScullyRoutesService) {}
 }

@@ -1,17 +1,12 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-
-import {WebappsComponent} from './webapps.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { WebappsComponent } from './webapps.component';
 
 const routes: Routes = [
   {
-    path: ':id',
+    path: ':slug',
     component: WebappsComponent,
   },
-  {
-    path: '**',
-    component: WebappsComponent,
-  }
 ];
 
 @NgModule({
@@ -19,4 +14,3 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class WebappsRoutingModule {}
-
