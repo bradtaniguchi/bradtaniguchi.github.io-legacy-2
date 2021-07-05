@@ -17,6 +17,8 @@ export class CodewarsApiService {
 
   /**
    * Returns the list of completed challenges completed by the given user.
+   *
+   * @see https://dev.codewars.com/#list-completed-challenges
    */
   public getCompletedChallenges(user: string) {
     return this.transferState.useScullyTransferState(
@@ -29,6 +31,8 @@ export class CodewarsApiService {
 
   /**
    * Returns the user for the given username
+   *
+   * @see https://dev.codewars.com/#get-user
    */
   public getUser(user: string) {
     return this.transferState.useScullyTransferState(
