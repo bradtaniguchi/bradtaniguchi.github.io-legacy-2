@@ -7,7 +7,15 @@ import {
 @Component({
   selector: 'bt-home-profile',
   templateUrl: './home-profile.component.html',
-  styles: [],
+  styles: [
+    `
+      .avatar {
+        width: 100%;
+        max-width: 260px;
+        height: auto;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeProfileComponent {

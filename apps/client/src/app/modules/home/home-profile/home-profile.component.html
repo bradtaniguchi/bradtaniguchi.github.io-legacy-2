@@ -13,11 +13,8 @@
 
 <ng-container *ngIf="user$ | async as user">
   <div>
-    <!-- class="avatar avatar-user width-full border color-bg-primary" -->
-    <img style="height:auto;"
+    <img class="avatar"
          alt="Avatar"
-         width="260"
-         height="260"
          [src]="user.avatar_url">
   </div>
   <div>
