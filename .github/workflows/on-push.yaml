@@ -48,6 +48,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v2
         with:
           configPath: './lighthouserc.yaml'
+          budgetPath: ./lighthouse-budget.json
           temporaryPublicStorage: true
           uploadArtifacts: true
 
