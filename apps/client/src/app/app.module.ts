@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -21,6 +22,7 @@ import { StaticService } from './core/static.service';
     BrowserModule,
     AppRoutingModule,
     ScullyLibModule,
+    HttpClientModule,
     // Core Template modules
     RouterModule,
     // Child Modules

@@ -4,9 +4,9 @@ import { RestEndpointMethodTypes } from '@octokit/rest';
 import { TransferStateService } from '@scullyio/ng-lib';
 import { GITHUB_API_USER_INJECTION_TOKEN } from './github-api-user-injection-token';
 
-export type ListForUserResponse = RestEndpointMethodTypes['gists']['listForUser']['response'];
+export type ListForUserResponse = RestEndpointMethodTypes['gists']['listForUser']['response']['data'];
 
-export type GetByUsernameResponse = RestEndpointMethodTypes['users']['getByUsername']['response'];
+export type GetByUsernameResponse = RestEndpointMethodTypes['users']['getByUsername']['response']['data'];
 
 @Injectable({
   providedIn: 'root',
