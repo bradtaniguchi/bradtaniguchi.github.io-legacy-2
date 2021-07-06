@@ -47,7 +47,7 @@ jobs:
       - name: run-lighthouse-ci
         uses: treosh/lighthouse-ci-action@v2
         with:
-          configPath: './lighthouserc.yaml'
+          configPath: ./lighthouserc.json
           budgetPath: ./lighthouse-budget.json
           temporaryPublicStorage: true
           uploadArtifacts: true
