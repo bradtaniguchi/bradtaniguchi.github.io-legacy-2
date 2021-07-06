@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { RestEndpointMethodTypes } from '@octokit/rest';
 import { TransferStateService } from '@scullyio/ng-lib';
+import { GITHUB_API_USER_INJECTION_TOKEN } from './github-api-user-injection-token';
 
 export type ListForUserResponse = RestEndpointMethodTypes['gists']['listForUser']['response'];
 
@@ -12,6 +13,7 @@ export type GetByUsernameResponse = RestEndpointMethodTypes['users']['getByUsern
 })
 export class GithubApiService {
   constructor(
+    @Inject(GITHUB_API_USER_INJECTION_TOKEN) private githubUser: string,
     private http: HttpClient,
     private transferState: TransferStateService
   ) {}
@@ -21,11 +23,11 @@ export class GithubApiService {
    *
    * @see https://docs.github.com/en/rest/reference/gists#list-gists-for-a-user
    */
-  public getPublicGists(user: string) {
+  public getPublicGists() {
     return this.transferState.useScullyTransferState(
       'githubGists',
       this.http.get<ListForUserResponse>(
-        `https://api.github.com/users/${user}/gists`
+        `https://api.github.com/users/${this.githubUser}/gists`
       )
     );
   }
@@ -35,11 +37,11 @@ export class GithubApiService {
    *
    * @see https://docs.github.com/en/rest/reference/users#get-a-user
    */
-  public getUser(user: string) {
+  public getUser() {
     return this.transferState.useScullyTransferState(
       'githubUser',
       this.http.get<GetByUsernameResponse>(
-        `https://api.github.com/users/${user}`
+        `https://api.github.com/users/${this.githubUser}`
       )
     );
   }

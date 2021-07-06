@@ -1,16 +1,18 @@
-import { Injectable } from '@angular/core';
-import { TransferStateService } from '@scullyio/ng-lib';
 import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { TransferStateService } from '@scullyio/ng-lib';
 import {
   CompletedChallengeResponse,
   User as CodwarsUser,
 } from 'codewars-node-api';
+import { CODEWARS_API_USER_INJECTION_TOKEN } from './codewars-api-user-injection-token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CodewarsApiService {
   constructor(
+    @Inject(CODEWARS_API_USER_INJECTION_TOKEN) private codwarsUser: string,
     private http: HttpClient,
     private transferState: TransferStateService
   ) {}
@@ -20,11 +22,11 @@ export class CodewarsApiService {
    *
    * @see https://dev.codewars.com/#list-completed-challenges
    */
-  public getCompletedChallenges(user: string) {
+  public getCompletedChallenges() {
     return this.transferState.useScullyTransferState(
       'codwarsCompletedChallenges',
       this.http.get<CompletedChallengeResponse>(
-        `/api/v1/users/${user}/completed-challenges`
+        `/api/v1/users/${this.codwarsUser}/completed-challenges`
       )
     );
   }
@@ -34,10 +36,10 @@ export class CodewarsApiService {
    *
    * @see https://dev.codewars.com/#get-user
    */
-  public getUser(user: string) {
+  public getUser() {
     return this.transferState.useScullyTransferState(
       'codewarsUser',
-      this.http.get<CodwarsUser>(`/api/v1/users/${user}`)
+      this.http.get<CodwarsUser>(`/api/v1/users/${this.codwarsUser}`)
     );
   }
 }
