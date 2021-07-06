@@ -44,7 +44,7 @@ jobs:
       - name: scully-build
         run: npm run scully -- --prod=true --no-prompt
 
-      - name: Run Lighthouse CI
+      - name: run-lighthouse-ci
         uses: treosh/lighthouse-ci-action@v2
         with:
           configPath: './lighthouserc.yaml'
