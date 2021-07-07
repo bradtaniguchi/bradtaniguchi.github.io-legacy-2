@@ -48,9 +48,6 @@ jobs:
         uses: treosh/lighthouse-ci-action@v7
         with:
           configPath: './lighthouserc.json'
-          budgetPath: './lighthouse-budget.json'
-          temporaryPublicStorage: true
-          uploadArtifacts: true
 
       - name: deploy-to-ghpages
         # only execute if on main branch
