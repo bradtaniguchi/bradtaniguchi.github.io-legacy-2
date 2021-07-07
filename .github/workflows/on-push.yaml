@@ -46,8 +46,6 @@ jobs:
 
       - name: run-lighthouse-ci
         uses: treosh/lighthouse-ci-action@v7
-        with:
-          configPath: './lighthouserc.json'
 
       - name: deploy-to-ghpages
         # only execute if on main branch
