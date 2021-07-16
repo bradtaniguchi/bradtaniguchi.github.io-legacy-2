@@ -1,7 +1,16 @@
 {
   "totalPages": 1,
-  "totalItems": 55,
+  "totalItems": 56,
   "data": [
+    {
+      "id": "57ed40e3bd793e9c92000fcb",
+      "name": "Chicken Sexing",
+      "slug": "chicken-sexing",
+      "completedLanguages": [
+        "javascript"
+      ],
+      "completedAt": "2021-07-10T00:12:54.385Z"
+    },
     {
       "id": "557cffec8c3e8e55cc00010f",
       "name": "Count number of zeros from 1 to N",
