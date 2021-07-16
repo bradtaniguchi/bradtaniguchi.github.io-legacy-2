@@ -34,10 +34,6 @@ jobs:
       - name: affected:test
         run: npm run affected:test -- --all
 
-      - name: generate:json
-        run: |
-          npx nx run json-generator:generate --args="--user=${{github.actor}}"
-
       - name: build
         run: npm run build -- -c=production
 
