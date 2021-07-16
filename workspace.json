@@ -139,53 +139,6 @@
           }
         }
       }
-    },
-    "json-generator": {
-      "root": "tools/json-generator",
-      "sourceRoot": "tools/json-generator/src",
-      "projectType": "application",
-      "targets": {
-        "generate": {
-          "builder": "@nrwl/workspace:run-commands",
-          "options": {
-            "commands": [
-              "./tools/json-generator/src/main.ts git:info --user={args.user} --file=apps/client/src/assets/json/git-info.json",
-              "./tools/json-generator/src/main.ts codewars:user --user={args.user} --file=apps/client/src/assets/json/codewars-user.json",
-              "./tools/json-generator/src/main.ts codewars:challenges --user={args.user} --file=apps/client/src/assets/json/codewars-challenges.json",
-              "./tools/json-generator/src/main.ts github:user --user={args.user} --file=apps/client/src/assets/json/github-user.json",
-              "./tools/json-generator/src/main.ts github:gists --user={args.user} --file=apps/client/src/assets/json/github-gists.json"
-            ],
-            "parallel": true
-          }
-        },
-        "generate-win": {
-          "builder": "@nrwl/workspace:run-commands",
-          "options": {
-            "commands": [
-              "npx ts-node ./tools/json-generator/src/main.ts git:info --user={args.user} --file=apps/client/src/assets/json/git-info.json",
-              "npx ts-node ./tools/json-generator/src/main.ts codewars:user --user={args.user} --file=apps/client/src/assets/json/codewars-user.json",
-              "npx ts-node ./tools/json-generator/src/main.ts codewars:challenges --user={args.user} --file=apps/client/src/assets/json/codewars-challenges.json",
-              "npx ts-node ./tools/json-generator/src/main.ts github:user --user={args.user} --file=apps/client/src/assets/json/github-user.json",
-              "npx ts-node ./tools/json-generator/src/main.ts github:gists --user={args.user} --file=apps/client/src/assets/json/github-gists.json"
-            ],
-            "parallel": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["tools/json-generator/**/*.ts"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/tools/json-generator"],
-          "options": {
-            "jestConfig": "tools/json-generator/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
     }
   }
 }
