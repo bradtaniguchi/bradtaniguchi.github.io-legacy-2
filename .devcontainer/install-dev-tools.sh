@@ -27,3 +27,12 @@ nvm alias default node
 
 # install global nx cli, not always required but useful to have
 npm i -g @nrwl/cli
+
+# we need google-chrome to run lighthouse tests, install it
+# mkdir ./tmp
+# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+# mv google-chrome-stable_current_amd64.deb ./google-chrome-stable_current_amd64.deb
+# sudo apt install ./tmp/google-chrome-stable_current_amd64.deb
+
+# clean up  codespace install
+# rm -rf ./tmp

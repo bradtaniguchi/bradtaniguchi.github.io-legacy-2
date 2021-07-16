@@ -27,12 +27,13 @@
     "clean": "npx rimraf dist",
     "generate": "npx nx run json-generator:generate --args='--user=bradtaniguchi'",
     "postinstall": "ngcc --properties es2015 browser module main",
-    "scully": "npx scully --project=client --scan",
+    "scully": "npx scully --project=client --scan --no-warning",
     "scully:serve": "npx scully serve --project=client",
     "build:static": "npx nx run json-generator:generate --args='--user=bradtaniguchi'",
     "build:static-win": "npx nx run json-generator:generate-win --args='--user=bradtaniguchi'",
     "build:prod": "nx build -c=production",
-    "build:smoke": "npm run clean && npm run build:static && npm run build:prod && npm run scully"
+    "build:smoke": "npm run clean && npm run build:static && npm run build:prod && npm run scully",
+    "lighthouse": "npx lhci autorun"
   },
   "private": true,
   "dependencies": {
@@ -69,6 +70,7 @@
     "@angular-eslint/template-parser": "~12.0.0",
     "@angular/compiler-cli": "12.0.0",
     "@angular/language-service": "12.0.0",
+    "@lhci/cli": "^0.8.0",
     "@nrwl/angular": "^12.3.5",
     "@nrwl/cli": "12.3.5",
     "@nrwl/cypress": "12.3.5",

@@ -23,15 +23,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14
-
-      - uses: actions/cache@v2
-        id: load-cache
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          cache: npm
 
       - name: Install dependencies
-        if: steps.load-cache.outputs.cache-hit != 'true'
         run: npm install
 
       - name: affected:lint
@@ -49,6 +43,14 @@ jobs:
 
       - name: scully-build
         run: npm run scully -- --prod=true --no-prompt
+
+      - name: run-lighthouse-ci
+        uses: treosh/lighthouse-ci-action@v7
+        with:
+          configPath: ./lighthouserc.json
+          budgetPath: ./lighthouse-budget.json
+          temporaryPublicStorage: true
+          uploadArtifacts: true
 
       - name: deploy-to-ghpages
         # only execute if on main branch
