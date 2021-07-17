@@ -1,2 +1,9 @@
-@import '@primer/css/index.scss';
+// @import '@primer/css/index.scss';
+
+// **note** this can be optimized more
+@import '@primer/css/base/index.scss';
+
+@import '@primer/css/utilities/index.scss';
+@import '@primer/css/layout/index.scss';
+
 @import '@primer/octicons/build/build.css';

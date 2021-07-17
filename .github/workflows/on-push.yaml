@@ -38,7 +38,13 @@ jobs:
         run: npm run affected:test -- --all
 
       - name: build
-        run: npm run build -- -c=production
+        run: npm run build -- -c=production --statsJson
+
+      - name: Upload json-stats
+        uses: actions/upload-artifact@v2
+        with:
+          name: json-stats
+          path: dist/apps/client/stats.json
 
       - name: scully-build
         run: npx scully -- --project=client --scan --no-warning --prod=true --no-prompt --host 0.0.0.0
