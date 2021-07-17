@@ -6,7 +6,10 @@ import { GithubApiService } from '../../../api/github/github-api.service';
   templateUrl: './home-profile.component.html',
   styles: [
     `
-      .avatar {
+      @import '@primer/css/avatars/index.scss';
+    `,
+    `
+      .home-profile-avatar {
         width: 100%;
         max-width: 260px;
         height: auto;

@@ -16,6 +16,7 @@ import { SidenavStoreService } from '../sidenav/sidenav.store.service';
   styles: [
     `
       @import '@primer/css/header/index.scss';
+      @import '@primer/css/buttons/index.scss';
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
