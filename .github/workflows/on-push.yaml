@@ -41,7 +41,7 @@ jobs:
         run: npm run build -- -c=production
 
       - name: scully-build
-        run: npm run scully -- --prod=true --no-prompt
+        run: npx scully -- --project=client --scan --no-warning --prod=true --no-prompt --host 0.0.0.0
 
       - name: run-lighthouse-ci
         uses: treosh/lighthouse-ci-action@v7
