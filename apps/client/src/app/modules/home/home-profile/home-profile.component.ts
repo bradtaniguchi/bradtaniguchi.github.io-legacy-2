@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { GithubApiService } from '../../../api/github-api.service';
+import { GithubApiService } from '../../../api/github/github-api.service';
 
 @Component({
   selector: 'bt-home-profile',
