@@ -5,8 +5,9 @@ import { RouterModule } from '@angular/router';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 import localforage from 'localforage';
 import { environment } from '../environments/environment';
-import { CODEWARS_API_USER_INJECTION_TOKEN } from './api/codewars-api-user-injection-token';
-import { GITHUB_API_USER_INJECTION_TOKEN } from './api/github-api-user-injection-token';
+import { CODEWARS_API_USER_INJECTION_TOKEN } from './api/codewars/codewars-api-user-injection-token';
+import { FREE_CODE_CAMP_USER_INJECTION_TOKEN } from './api/free-code-camp/free-code-camp-user.injection-token';
+import { GITHUB_API_USER_INJECTION_TOKEN } from './api/github/github-api-user-injection-token';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientLoggerService } from './core/client-logger/client-logger.service';
@@ -41,6 +42,10 @@ import { StaticService } from './core/static.service';
     {
       provide: GITHUB_API_USER_INJECTION_TOKEN,
       useValue: environment.githubUser,
+    },
+    {
+      provide: FREE_CODE_CAMP_USER_INJECTION_TOKEN,
+      useValue: environment.freeCodeCampUser,
     },
     ClientLoggerService,
     StaticService,
