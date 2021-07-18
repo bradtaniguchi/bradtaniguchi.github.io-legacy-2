@@ -51,4 +51,9 @@ npm ci
 
 # install global nx cli, not always required but useful to have
 npm i -g @nrwl/cli
+
+# manually install cypress, as it doesn't work out of the box for some reason
+echo ">> re-installing cypress"
+npx cypress install
+
 echo ">> done"

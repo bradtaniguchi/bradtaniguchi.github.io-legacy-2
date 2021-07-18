@@ -12,13 +12,13 @@ snippet: true
 
 Running this project requires 1 "pre" step, and then fully running the "scully" build requires 2 extra commands.
 
-**building the static files for bradtaniguchi**
+## building the static files for bradtaniguchi
 
 ```bash
 npm run build:static
 ```
 
-**starting the Angular build process**
+## starting the Angular build process
 
 ```bash
 npm run build -- --watch
@@ -41,3 +41,11 @@ scully - http://localhost:4201
 ```bash
 npm run start -- --host=0.0.0.0 --disable-host-check
 ```
+
+## running e2e testing in codespaces
+
+```bash
+nm run e2e -- --project=client-e2e --headless
+```
+
+**note** this may change in the future to support scully builds instead.
