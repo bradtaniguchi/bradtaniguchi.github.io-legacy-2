@@ -26,7 +26,9 @@
     "zhuangtongfa.material-theme"
   ],
   // Adds VS Code settings.json values into the environment.
-  "postCreateCommand": "bash .devcontainer/install-dev-tools.sh",
+  "postCreateCommand": "bash .devcontainer/install-dev-tools.sh"
+
   // use a Dockerfile to setup the environment
-  "build": { "dockerfile": "Dockerfile" }
+  // "build": { "dockerfile": "Dockerfile" }
+  // **note** removed the Dockerfile build, due to build failures?, sticking with shell script version
 }
