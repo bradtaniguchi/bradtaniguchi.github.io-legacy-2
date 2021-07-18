@@ -12,10 +12,10 @@ npm config delete prefix
 nvm alias default node
 
 # install cypress dependencies
-apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+apt-get install
 
-# install neovim, required by dotfiles
-sudo apt install -y --no-install-recommends neovim
+# install neovim and cypress deps, required by dotfiles
+sudo apt install -y --no-install-recommends neovim libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
 
 
 # we need google-chrome to run lighthouse tests, install it
