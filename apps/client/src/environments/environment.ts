@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   githubUser: 'bradtaniguchi',
+  githubRepo: 'bradtaniguchi.github.io',
   codewarsUser: 'bradtaniguchi',
   freeCodeCampUser: 'bradtaniguchi',
 };
