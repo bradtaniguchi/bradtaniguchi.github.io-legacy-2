@@ -49,6 +49,17 @@ jobs:
       - name: scully-build
         run: npx scully -- --project=client --scan --no-warning --prod=true --no-prompt --host 0.0.0.0
 
+      - name: run e2e
+        run: npm run e2e -- --project=client-e2e --headless
+
+      - name: Upload cypress files
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-dist
+          path: dist/cypress
+          retention-days: 5
+
       - name: run-lighthouse-ci
         uses: treosh/lighthouse-ci-action@v7
         with:
