@@ -13,6 +13,21 @@ nvm install
 npm config delete prefix
 nvm alias default node
 
+# set vim as git editor
+echo ">> updating git config"
+git config --global core.editor "nvim"
+
+# set vim as other editors in general
+echo ">> setting environment variables"
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+echo "export VISUAL=nvim" >> ~/.bashrc
+echo "export EDITOR=nvim" >> ~/.bashrc
+
+# setup git completion
+echo ">> set git completion"
+echo "source /usr/share/bash-completion/completions/git" >> ~/.bashrc
+
 
 # install neovim and cypress deps, required by dotfiles
 echo ">> installing dependencies"
