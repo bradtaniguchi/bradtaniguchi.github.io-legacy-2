@@ -1,79 +1,88 @@
-<div class="d-flex flex-1 flex-justify-between">
-  <!--  left-side -->
-  <div class="d-flex flex-justify-center flex-column">
-    <span class="d-flex">
-      <a routerLink="/"
-         class="d-flex flex-row m-2">
-        <octicon octicon="person"
-                 class="mr-1"></octicon>
-        <div>
-          <h4>
-            bradtaniguchi.github.io
-          </h4>
-        </div>
+<div class="d-flex flex-column flex-1">
+  <!-- <div class="flex-row flex-1"> -->
+  <div class="d-flex flex-row flex-1 flex-justify-between">
+    <!--  left-side -->
+    <div class="d-flex flex-justify-center flex-column">
+      <span class="d-flex">
+        <a routerLink="/"
+           class="d-flex flex-row m-2">
+          <octicon octicon="person"
+                   class="mr-1"></octicon>
+          <div>
+            <h4>
+              bradtaniguchi.github.io
+            </h4>
+          </div>
 
-      </a>
-    </span>
-  </div>
+        </a>
+      </span>
+    </div>
 
-  <div>
-    <ng-container *ngIf="isSmallScreen$ | async else isLargeScreen">
-      <span>
-        <button type="button"
-                aria-label="toggle navigation"
-                class="btn m-2"
-                (toggleMenu)="toggleSidenav()">
-          <octicon octicon="three-bars"></octicon>
-        </button>
-      </span>
-    </ng-container>
-    <ng-template #isLargeScreen>
-      <!--  right-side, nav-links -->
-      <span class="d-flex flex-row">
-        <a routerLink="/home"
-           class="Link d-flex flex-row m-2">
-          <octicon octicon="home"
-                   class="mr-1"></octicon>
-          <span>Home</span>
-        </a>
-        <a routerLink="/blog"
-           class="Link d-flex flex-row m-2">
-          <octicon octicon="markdown"
-                   class="mr-1"></octicon>
-          <span>Blog</span>
-        </a>
-        <a routerLink="/projects"
-           class="Link d-flex flex-row m-2">
-          <octicon octicon="project"
-                   class="mr-1"></octicon>
-          <span>Projects</span>
-        </a>
-        <a routerLink="/apps"
-           class="Link d-flex flex-row m-2">
-          <octicon octicon="rocket"
-                   class="mr-1"></octicon>
-          <span>Apps</span>
-        </a>
-        <a routerLink="/snippets"
-           class="Link d-flex flex-row m-2">
-          <octicon octicon="code"
-                   class="mr-1"></octicon>
-          <span>Snippets</span>
-        </a>
-        <a routerLink="/about"
-           class="Link d-flex flex-row m-2">
-          <octicon octicon="question"
-                   class="mr-1"></octicon>
-          <span>About</span>
-        </a>
-        <button type="button"
-                aria-label="toggle theme"
-                class="btn d-flex flex-row m-2"
-                (click)="toggleTheme()">
-          <!-- TODO: make toggle dynamic-icon -->
-          <octicon octicon="moon"></octicon>
-        </button>
-      </span>
-    </ng-template>
+    <div>
+      <ng-container *ngIf="isSmallScreen$ | async else isLargeScreen">
+        <span>
+          <button type="button"
+                  aria-label="toggle navigation"
+                  class="btn m-2"
+                  (click)="mobileMenuOpened = !mobileMenuOpened">
+            <octicon octicon="three-bars"></octicon>
+          </button>
+        </span>
+      </ng-container>
+      <ng-template #isLargeScreen>
+        <!--  right-side, nav-links -->
+        <span class="d-flex flex-row">
+          <a routerLink="/home"
+             class="Link d-flex flex-row m-2">
+            <octicon octicon="home"
+                     class="mr-1"></octicon>
+            <span>Home</span>
+          </a>
+          <a routerLink="/blog"
+             class="Link d-flex flex-row m-2">
+            <octicon octicon="markdown"
+                     class="mr-1"></octicon>
+            <span>Blog</span>
+          </a>
+          <a routerLink="/projects"
+             class="Link d-flex flex-row m-2">
+            <octicon octicon="project"
+                     class="mr-1"></octicon>
+            <span>Projects</span>
+          </a>
+          <a routerLink="/apps"
+             class="Link d-flex flex-row m-2">
+            <octicon octicon="rocket"
+                     class="mr-1"></octicon>
+            <span>Apps</span>
+          </a>
+          <a routerLink="/snippets"
+             class="Link d-flex flex-row m-2">
+            <octicon octicon="code"
+                     class="mr-1"></octicon>
+            <span>Snippets</span>
+          </a>
+          <a routerLink="/about"
+             class="Link d-flex flex-row m-2">
+            <octicon octicon="question"
+                     class="mr-1"></octicon>
+            <span>About</span>
+          </a>
+          <button type="button"
+                  aria-label="toggle theme"
+                  class="btn d-flex flex-row m-2"
+                  (click)="toggleTheme()">
+            <!-- TODO: make toggle dynamic-icon -->
+            <octicon octicon="moon"></octicon>
+          </button>
+        </span>
+      </ng-template>
+      <!-- </div> -->
+    </div>
   </div>
+  <ng-container *ngIf="mobileMenuOpened">
+    <div>
+      MOBILE MENU
+    </div>
+  </ng-container>
 </div>

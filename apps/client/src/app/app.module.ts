@@ -14,7 +14,6 @@ import { AppComponent } from './app.component';
 import { ClientLoggerService } from './core/client-logger/client-logger.service';
 import { HeaderModule } from './core/header/header.module';
 import { LOCAL_FORAGE } from './core/local-forage/local-forage';
-import { SidenavModule } from './core/sidenav/sidenav.module';
 import { StaticService } from './core/static.service';
 
 @NgModule({
@@ -29,7 +28,6 @@ import { StaticService } from './core/static.service';
     RouterModule,
     // Child Modules
     HeaderModule,
-    SidenavModule,
   ],
   providers: [
     {

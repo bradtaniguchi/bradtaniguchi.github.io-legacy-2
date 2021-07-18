@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SidenavStoreService } from './core/sidenav/sidenav.store.service';
 import { Theme } from './store/theme/theme.state';
 import { ThemeStoreService } from './store/theme/theme.store.service';
 
@@ -10,7 +9,7 @@ import { ThemeStoreService } from './store/theme/theme.store.service';
   templateUrl: './app.component.html',
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [SidenavStoreService, ThemeStoreService],
+  providers: [ThemeStoreService],
 })
 export class AppComponent {
   /**
