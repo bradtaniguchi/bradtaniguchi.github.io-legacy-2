@@ -6,9 +6,8 @@ import {
 } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { ThemeStoreService } from '../../store/theme/theme.store.service';
-import { SidenavStoreService } from '../sidenav/sidenav.store.service';
 
 @Component({
   selector: 'bt-header',
@@ -25,22 +24,22 @@ import { SidenavStoreService } from '../sidenav/sidenav.store.service';
 export class HeaderComponent {
   @HostBinding('class.Header') Header = true;
   public isSmallScreen$: Observable<boolean>;
-
+  /**
+   * If the mobile menu is opened
+   */
+  public mobileMenuOpened = false;
   constructor(
     media: MediaObserver,
-    private sidenavStore: SidenavStoreService,
+
     private themeStore: ThemeStoreService
   ) {
     this.isSmallScreen$ = media
       .asObservable()
       .pipe(map(([change]) => ['xs', 'sm'].includes(change.mqAlias)));
-  }
 
-  /**
-   * Toggle the mobile navigation menu.
-   */
-  public toggleSidenav() {
-    this.sidenavStore.toggleSidenav();
+    this.isSmallScreen$
+      .pipe(filter((_) => !_))
+      .subscribe(() => (this.mobileMenuOpened = false));
   }
 
   /**
