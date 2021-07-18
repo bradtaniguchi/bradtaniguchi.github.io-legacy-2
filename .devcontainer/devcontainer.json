@@ -1,61 +1,34 @@
 {
-  // Open port 3000 by default
-  "forwardPorts": [8080, 4200],
+  // 4200 is for Angular
+  /// 4201 is for Scully
+  "forwardPorts": [4200, 4201],
 
   // Installed extensions
   "extensions": [
     "aaron-bond.better-comments",
     "Angular.ng-template",
     "christian-kohler.path-intellisense",
-    "cssho.vscode-svgviewer",
     "dbaeumer.vscode-eslint",
     "eamodio.gitlens",
     "EditorConfig.EditorConfig",
     "eg2.vscode-npm-script",
     "esbenp.prettier-vscode",
-    "firefox-devtools.vscode-firefox-debug",
-    "firsttris.vscode-jest-runner",
     "GitHub.github-vscode-theme",
     "GitHub.vscode-pull-request-github",
     "HookyQR.beautify",
     "johnpapa.angular-essentials",
     "johnpapa.Angular2",
     "johnpapa.vscode-peacock",
-    "mhutchie.git-graph",
     "ms-vscode.vscode-typescript-tslint-plugin",
     "nrwl.angular-console",
     "PKief.material-icon-theme",
-    "redhat.vscode-yaml",
     "streetsidesoftware.code-spell-checker",
     "zhuangtongfa.material-theme"
   ],
-
   // Adds VS Code settings.json values into the environment.
-  "settings": {
-    "workbench.colorCustomizations": {
-      "activityBar.activeBackground": "#1f6fd0",
-      "activityBar.activeBorder": "#ee90bb",
-      "activityBar.background": "#1f6fd0",
-      "activityBar.foreground": "#e7e7e7",
-      "activityBar.inactiveForeground": "#e7e7e799",
-      "activityBarBadge.background": "#ee90bb",
-      "activityBarBadge.foreground": "#15202b",
-      "statusBar.background": "#1857a4",
-      "statusBar.foreground": "#e7e7e7",
-      "statusBarItem.hoverBackground": "#1f6fd0",
-      "titleBar.activeBackground": "#1857a4",
-      "titleBar.activeForeground": "#e7e7e7",
-      "titleBar.inactiveBackground": "#1857a499",
-      "titleBar.inactiveForeground": "#e7e7e799"
-    },
-    "peacock.color": "#1857a4",
-    "cSpell.words": [
-      "Bradtaniguchi",
-      "Taniguchi's",
-      "octicon",
-      "octicons",
-      "scully"
-    ]
-  },
   "postCreateCommand": "bash .devcontainer/install-dev-tools.sh"
+
+  // use a Dockerfile to setup the environment
+  // "build": { "dockerfile": "Dockerfile" }
+  // **note** removed the Dockerfile build, due to build failures?, sticking with shell script version
 }

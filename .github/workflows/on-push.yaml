@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - '**'
-    tags-ignore:
-      - '*.*'
 
 jobs:
   lint-build-deploy:
@@ -18,12 +16,17 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
+        with:
+          # get lfs items
+          lfs: true
+          # fetch all commits, slower but required to pass to nx
+          fetch-depth: 0
 
       - name: setup node v${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node-version: 14
-          cache: npm
+          node-version: '14'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
@@ -34,15 +37,28 @@ jobs:
       - name: affected:test
         run: npm run affected:test -- --all
 
-      - name: generate:json
-        run: |
-          npx nx run json-generator:generate --args="--user=${{github.actor}}"
-
       - name: build
-        run: npm run build -- -c=production
+        run: npm run build -- -c=production --statsJson
+
+      - name: Upload json-stats
+        uses: actions/upload-artifact@v2
+        with:
+          name: json-stats
+          path: dist/apps/client/stats.json
 
       - name: scully-build
-        run: npm run scully -- --prod=true --no-prompt
+        run: npx scully -- --project=client --scan --no-warning --prod=true --no-prompt --host 0.0.0.0
+
+      - name: run e2e
+        run: npm run e2e -- --project=client-e2e --headless
+
+      - name: Upload cypress files
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-dist
+          path: dist/cypress
+          retention-days: 5
 
       - name: run-lighthouse-ci
         uses: treosh/lighthouse-ci-action@v7

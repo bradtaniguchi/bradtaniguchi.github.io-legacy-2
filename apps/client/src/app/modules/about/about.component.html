@@ -1,1 +1,45 @@
-<p>about works!</p>
+<div class="p-4">
+
+  <div class="p-2">
+    <div class="Box">
+      <div class="Box-header">
+        <h3 class="Box-title">
+          About
+        </h3>
+      </div>
+      <div class="Box-body">
+        <p>
+          This project is built using github, Angular, nx, scully and primer-css. It uses github for project management,
+          ci/cd and hosting. Overall this project cn be considered a "JAMStack app", or really just a fancy static site
+          that also uses
+          Angular.
+        </p>
+        <p>
+          If you see any issues or just want to provide feedback, please create an issue <a
+             href="github.com/bradtaniguchi/bradtaniguchi.github.io/issues">here</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-2">
+    <div class="Box">
+      <div class="Box-header">
+        <h3 class="Box-title">
+          Build Stats
+        </h3>
+      </div>
+      <div class="Box-body">
+        <p>
+          The following are statistics on the actual build of the project.
+          These statistics are built by scully at build-time and are "self-referencing" in that scully+angular makes
+          requests against the repo build on github to get these statistics.
+        </p>
+        <pre>
+          {{buildStats | json}}
+        </pre>
+      </div>
+    </div>
+  </div>
+
+</div>

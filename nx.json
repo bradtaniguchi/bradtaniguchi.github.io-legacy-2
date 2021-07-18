@@ -25,9 +25,6 @@
     "client-e2e": {
       "tags": [],
       "implicitDependencies": ["client"]
-    },
-    "json-generator": {
-      "tags": ["tool"]
     }
   }
 }

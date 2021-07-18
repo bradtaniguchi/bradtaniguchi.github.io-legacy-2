@@ -5,6 +5,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './home.component.html',
   styles: [
     `
+      @import '@primer/css/box/index.scss';
+    `,
+    `
       .link-box-text {
         float: left;
       }

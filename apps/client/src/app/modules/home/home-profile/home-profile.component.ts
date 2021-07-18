@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {
-  GithubUser,
-  GithubUserLoaderService,
-} from '../../../core/github-user-loader.service';
+import { GithubApiService } from '../../../api/github/github-api.service';
 
 @Component({
   selector: 'bt-home-profile',
   templateUrl: './home-profile.component.html',
   styles: [
     `
-      .avatar {
+      @import '@primer/css/avatars/index.scss';
+    `,
+    `
+      .home-profile-avatar {
         width: 100%;
         max-width: 260px;
         height: auto;
@@ -22,7 +22,7 @@ export class HomeProfileComponent {
   /**
    * The user loaded from the static assets git-info json
    */
-  public user$: Promise<GithubUser> = this.githubUserLoader.getUser();
+  public user$ = this.githubApi.getUser();
 
-  constructor(private githubUserLoader: GithubUserLoaderService) {}
+  constructor(private githubApi: GithubApiService) {}
 }
