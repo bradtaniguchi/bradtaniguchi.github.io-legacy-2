@@ -81,8 +81,52 @@
     </div>
   </div>
   <ng-container *ngIf="mobileMenuOpened">
-    <div>
-      MOBILE MENU
+    <div class="d-flex flex-column">
+      <a routerLink="/home"
+         class="Link d-flex flex-row m-2">
+        <octicon octicon="home"
+                 class="mr-1"></octicon>
+        <span>Home</span>
+      </a>
+      <a routerLink="/blog"
+         class="Link d-flex flex-row m-2">
+        <octicon octicon="markdown"
+                 class="mr-1"></octicon>
+        <span>Blog</span>
+      </a>
+      <a routerLink="/projects"
+         class="Link d-flex flex-row m-2">
+        <octicon octicon="project"
+                 class="mr-1"></octicon>
+        <span>Projects</span>
+      </a>
+      <a routerLink="/apps"
+         class="Link d-flex flex-row m-2">
+        <octicon octicon="rocket"
+                 class="mr-1"></octicon>
+        <span>Apps</span>
+      </a>
+      <a routerLink="/snippets"
+         class="Link d-flex flex-row m-2">
+        <octicon octicon="code"
+                 class="mr-1"></octicon>
+        <span>Snippets</span>
+      </a>
+      <a routerLink="/about"
+         class="Link d-flex flex-row m-2">
+        <octicon octicon="question"
+                 class="mr-1"></octicon>
+        <span>About</span>
+      </a>
+      <div>
+        <button type="button"
+                aria-label="toggle theme"
+                class="btn d-flex flex-row m-2"
+                (click)="toggleTheme()">
+          <!-- TODO: make toggle dynamic-icon -->
+          <octicon octicon="moon"></octicon>
+        </button>
+      </div>
     </div>
   </ng-container>
 </div>
