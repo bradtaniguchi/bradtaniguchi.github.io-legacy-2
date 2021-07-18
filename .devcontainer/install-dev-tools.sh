@@ -1,17 +1,6 @@
 #!/bin/bash
 
-# set vim as git editor
-git config --global core.editor "vim"
-
-# set vim as other editors in general
-export VISUAL=vim
-export EDITOR="$VISUAL"
-
-echo "export VISUAL=vim" >> ~/.bashrc
-echo "export EDITOR=\"$VISUAL\"" >> ~/.bashrc
-
-# setup git completion
-echo "source /usr/share/bash-completion/completions/git" >> ~/.bashrc
+# **note** dotfiles execution will setup nvim
 
 # Setup local dev environment
 npm ci
