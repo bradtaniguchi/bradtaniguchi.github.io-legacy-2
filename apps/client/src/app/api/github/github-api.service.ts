@@ -1,19 +1,22 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { RestEndpointMethodTypes } from '@octokit/rest';
 import { TransferStateService } from '@scullyio/ng-lib';
+import { GITHUB_API_REPO_INJECTION_TOKEN } from './github-api-repo-injection-token';
 import { GITHUB_API_USER_INJECTION_TOKEN } from './github-api-user-injection-token';
 
 export type ListForUserResponse = RestEndpointMethodTypes['gists']['listForUser']['response']['data'];
 
 export type GetByUsernameResponse = RestEndpointMethodTypes['users']['getByUsername']['response']['data'];
 
+// export type GetLatestCommitsResponse = RestEndpointMethodTypes['repos']['getCommit']
 @Injectable({
   providedIn: 'root',
 })
 export class GithubApiService {
   constructor(
     @Inject(GITHUB_API_USER_INJECTION_TOKEN) private githubUser: string,
+    @Inject(GITHUB_API_REPO_INJECTION_TOKEN) private githubRepo: string,
     private http: HttpClient,
     private transferState: TransferStateService
   ) {}
@@ -42,6 +45,22 @@ export class GithubApiService {
       'githubUser',
       this.http.get<GetByUsernameResponse>(
         `https://api.github.com/users/${this.githubUser}`
+      )
+    );
+  }
+
+  /**
+   * Returns the last commit information for the current project
+   */
+  public getRepoCommits() {
+    return this.transferState.useScullyTransferState(
+      'githubRepoCommits',
+      this.http.get(
+        `https://api.github.com/repos/${this.githubUser}/${this.githubRepo}/commits`,
+        {
+          // only get the last 5 commits, no need for more
+          params: new HttpParams().append('per_page', 5),
+        }
       )
     );
   }

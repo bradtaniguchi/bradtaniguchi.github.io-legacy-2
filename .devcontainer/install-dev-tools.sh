@@ -1,17 +1,6 @@
 #!/bin/bash
 
-# set vim as git editor
-git config --global core.editor "vim"
-
-# set vim as other editors in general
-export VISUAL=vim
-export EDITOR="$VISUAL"
-
-echo "export VISUAL=vim" >> ~/.bashrc
-echo "export EDITOR=\"$VISUAL\"" >> ~/.bashrc
-
-# setup git completion
-echo "source /usr/share/bash-completion/completions/git" >> ~/.bashrc
+# **note** dotfiles execution will setup nvim
 
 # Get latest from repo
 git fetch
@@ -24,6 +13,10 @@ nvm alias default node
 
 # install cypress dependencies
 apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+
+# install neovim, required by dotfiles
+sudo apt install -y --no-install-recommends neovim
+
 
 # we need google-chrome to run lighthouse tests, install it
 mkdir ./tmp

@@ -1,6 +1,7 @@
 {
-  // Open port 3000 by default
-  "forwardPorts": [8080, 4200, 4201],
+  // 4200 is for Angular
+  /// 4201 is for Scully
+  "forwardPorts": [4200, 4201],
 
   // Installed extensions
   "extensions": [
@@ -26,4 +27,8 @@
   ],
   // Adds VS Code settings.json values into the environment.
   "postCreateCommand": "bash .devcontainer/install-dev-tools.sh"
+
+  // use a Dockerfile to setup the environment
+  // "build": { "dockerfile": "Dockerfile" }
+  // **note** removed the Dockerfile build, due to build failures?, sticking with shell script version
 }
