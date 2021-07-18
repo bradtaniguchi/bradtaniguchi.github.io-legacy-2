@@ -8,8 +8,8 @@ git fetch
 
 # install and setup nvm version
 echo ">> updating nvm"
-nvm install
 nvm use
+nvm install
 npm config delete prefix
 nvm alias default node
 
