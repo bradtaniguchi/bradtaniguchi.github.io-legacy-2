@@ -22,7 +22,7 @@ jobs:
           # fetch all commits, slower but required to pass to nx
           fetch-depth: 0
 
-      - name: setup node v${{ matrix.node-version }}
+      - name: setup node 14
         uses: actions/setup-node@v2
         with:
           node-version: '14'
