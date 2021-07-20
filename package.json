@@ -95,6 +95,7 @@
     "jest": "26.2.2",
     "jest-preset-angular": "8.4.0",
     "lint-staged": "^11.0.0",
+    "postcss": "^8.3.5",
     "prettier": "2.2.1",
     "rimraf": "^3.0.2",
     "ts-jest": "26.5.5",
