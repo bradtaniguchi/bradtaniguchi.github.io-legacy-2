@@ -91,6 +91,7 @@
     "eslint": "7.22.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
+    "http-server": "^0.12.3",
     "husky": "^6.0.0",
     "jest": "26.2.2",
     "jest-preset-angular": "8.4.0",
