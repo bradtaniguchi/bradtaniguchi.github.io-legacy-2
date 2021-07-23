@@ -1,4 +1,4 @@
-<div class="main"
+<div class="top-level"
      [attr.data-color-mode]="dataColorMode$ | async"
      [attr.data-dark-theme]="dataDarkTheme$ | async"
      [attr.data-light-theme]="dataLightTheme$ | async">
@@ -6,8 +6,7 @@
     <bt-header></bt-header>
   </header>
   <main class="scroll">
-    <!-- TODO: update responsiveness! -->
-    <div class="container-xl">
+    <div class="container-xl height-full">
       <router-outlet></router-outlet>
     </div>
   </main>
