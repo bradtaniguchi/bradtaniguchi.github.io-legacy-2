@@ -11,7 +11,7 @@ import * as octicons from '@primer/octicons';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'octicon',
-  template: '<div [innerHtml]="svg">',
+  template: '<div [innerHtml]="svg"></div>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OcticonComponent implements OnInit {

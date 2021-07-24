@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { GithubApiService } from '../../../api/github/github-api.service';
+import { Socials } from '../../../core/socials/socials';
+import { SOCIALS_INJECTION_TOKEN } from '../../../core/socials/socials-injection-token';
 
 @Component({
   selector: 'bt-home-profile',
@@ -7,6 +9,7 @@ import { GithubApiService } from '../../../api/github/github-api.service';
   styles: [
     `
       @import '@primer/css/avatars/index.scss';
+      @import '@primer/css/links/index.scss';
     `,
     `
       .home-profile-avatar {
@@ -24,5 +27,8 @@ export class HomeProfileComponent {
    */
   public user$ = this.githubApi.getUser();
 
-  constructor(private githubApi: GithubApiService) {}
+  constructor(
+    private githubApi: GithubApiService,
+    @Inject(SOCIALS_INJECTION_TOKEN) public socials: Socials
+  ) {}
 }

@@ -21,16 +21,11 @@
     {{user.name}}
   </div>
   <div>
-    {{user.login}}
-  </div>
-  <div>
-    <a [href]="user.html_url">Actual Github Profile</a>
-  </div>
-  <div>
     <p>
       {{user.bio}}
     </p>
   </div>
+  <!-- TODO: add spacing here-->
   <div>
     <!-- TODO: add followers, following, starred-->
   </div>
@@ -38,6 +33,45 @@
     **NOTE** stuff after this point will be DIFFERENT than the github
     profile version
   -->
+  <div class="d-flex flex-column">
+    <!-- social media handles -->
+    <a [href]="user.html_url"
+       class="Link--primary d-flex flex-row m-1">
+      <octicon octicon="mark-github"
+               [height]="23"
+               [width]="23"
+               class="mr-1"></octicon>
+      <span>{{user.login}}</span>
+    </a>
+
+    <a [href]="socials.linkedIn"
+       class="Link--primary d-flex flex-row m-1">
+      <svg-loader path="assets/socials/iconmonstr-linkedin-4.svg"></svg-loader>
+      <span>LinkedIn</span>
+    </a>
+
+    <a [href]="socials.twitter"
+       class="Link--primary d-flex flex-row m-1">
+      <svg-loader path="assets/socials/iconmonstr-twitter-4.svg"></svg-loader>
+      <span>Twitter</span>
+    </a>
+    <a [href]="socials.freeCodeCamp"
+       class="Link--primary d-flex flex-row m-1">
+      <!-- TODO: this doesn't scale correctly!, use temp icon -->
+      <!-- <svg-loader path="assets/socials/fcc_primary_small.svg"></svg-loader> -->
+      <octicon octicon="code"
+               [height]="23"
+               [width]="23"
+               class="mr-1"></octicon>
+      <span>FreeCodeCamp</span>
+    </a>
+    <a [href]="socials.npm"
+       class="Link--primary d-flex flex-row m-1">
+      <!-- **NOTE** update to open source version, this was taken from official site-->
+      <svg-loader path="assets/socials/node-official.svg"></svg-loader>
+      <span>npm</span>
+    </a>
+  </div>
   <div>
     <!-- TODO: contact information (non-spam)-->
   </div>
