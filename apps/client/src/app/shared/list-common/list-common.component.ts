@@ -2,10 +2,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Inject,
   Input,
-  Output,
+  Optional,
+  Output
 } from '@angular/core';
 import { ScullyRoute } from '@scullyio/ng-lib';
+import { ListCommonConfig } from './list-common-config';
+import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './list-common-config-injection-token';
 
 @Component({
   selector: 'bt-list-common',
@@ -56,4 +60,8 @@ export class ListCommonComponent {
    * **note** might change default
    */
   @Input() sortDir: 'asc' | 'des' = 'asc';
+
+  constructor(
+    @Inject(LIST_COMMON_CONFIG_INJECTION_TOKEN) @Optional() public config: ListCommonConfig
+  ) {}
 }

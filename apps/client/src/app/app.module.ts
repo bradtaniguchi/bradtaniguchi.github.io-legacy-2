@@ -15,6 +15,8 @@ import { ClientLoggerService } from './core/client-logger/client-logger.service'
 import { HeaderModule } from './core/header/header.module';
 import { LOCAL_FORAGE } from './core/local-forage/local-forage';
 import { StaticService } from './core/static.service';
+import { ListCommonConfig } from './shared/list-common/list-common-config';
+import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './shared/list-common/list-common-config-injection-token';
 
 @NgModule({
   declarations: [AppComponent],
@@ -49,6 +51,15 @@ import { StaticService } from './core/static.service';
     {
       provide: FREE_CODE_CAMP_USER_INJECTION_TOKEN,
       useValue: environment.freeCodeCampUser,
+    },
+    {
+      provide: LIST_COMMON_CONFIG_INJECTION_TOKEN,
+      useValue: {
+        // **note** none of these features are ready yet, hide behind feature flag
+        hideSearch: environment.production,
+        hideSortByDate: environment.production,
+        hideTagFilter: environment.production,
+      } as ListCommonConfig,
     },
     ClientLoggerService,
     StaticService,
