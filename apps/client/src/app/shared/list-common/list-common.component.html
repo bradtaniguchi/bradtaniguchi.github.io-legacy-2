@@ -1,16 +1,49 @@
-<div>
-  <div>
-    <!-- search input -->
-    <input class="form-control input-block"
-           type="text"
-           placeholder="Search"
-           aria-label="Search"
-           [(ngModel)]="search" />
+<div class="p-4">
+  <div class="pb-3 px-2">
+    <div class="subnav-search">
+      <!-- search input -->
+      <!-- TODO: can't get the icon to work??-->
+      <!-- <octicon octicon="search"
+               class="subnav-search-icon"></octicon> -->
+      <input class="form-control subnav-search-input"
+             type="text"
+             name="search"
+             placeholder="Search"
+             aria-label="Search"
+             [(ngModel)]="search" />
+    </div>
     <!-- TODO: add search button -->
   </div>
   <!-- TODO: add filtering and search -->
-  <div>
-    <!-- TODO: list of items-->
+  <div class="pb-2 px-2">
+    <div class="Box">
+      <div class="Box-header"
+           *ngIf="title">
+        <h1 class="Box-title">
+          {{title}}
+        </h1>
+      </div>
+      <ul>
+        <ng-container *ngFor="let route of routeItems">
+          <!-- TODO: migrate into its own component -->
+          <a [routerLink]="route.route"
+             class="Link--primary">
+            <li class="Box-row">
+              <div flex-row>
+                <div>
+                  {{route.title}}
+                </div>
+                <div [title]="route.date | date: 'medium'">
+                  {{route.date | date:'shortDate'}}
+                </div>
+              </div>
+              <div>
+                {{route.description}}
+              </div>
+            </li>
+          </a>
+        </ng-container>
+      </ul>
+    </div>
   </div>
-
 </div>
