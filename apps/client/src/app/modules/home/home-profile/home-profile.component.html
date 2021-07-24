@@ -36,14 +36,19 @@
   <div class="d-flex flex-column">
     <!-- social media handles -->
     <a [href]="user.html_url"
-       class="Link--primary">
+       class="Link--primary flex-row">
       <octicon octicon="mark-github"
-               class="mr-1"></octicon> {{user.login}}
+               class="mr-1"></octicon>
+      <span>{{user.login}}</span>
     </a>
+
     <a [href]="socials.linkedIn"
-       class="Link--primary">
+       class="Link--primary flex-row">
+      <!-- <img src="assets/socials/iconmonstr-linkedin-3.svg"> -->
+      <svg-loader path="assets/socials/iconmonstr-linkedin-3.svg"></svg-loader>
       LinkedIn
     </a>
+
     <a [href]="socials.twitter"
        class="Link--primary">
       Twitter
