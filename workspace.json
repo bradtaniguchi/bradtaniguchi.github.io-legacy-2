@@ -39,10 +39,17 @@
             "polyfills": "apps/client/src/polyfills.ts",
             "tsConfig": "apps/client/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
-            "styles": ["apps/client/src/styles.scss"],
+            "assets": [
+              "apps/client/src/favicon.ico",
+              "apps/client/src/assets"
+            ],
+            "styles": [
+              "apps/client/src/styles.scss"
+            ],
             "scripts": [],
-            "allowedCommonJsDependencies": ["@primer/octicons"]
+            "allowedCommonJsDependencies": [
+              "@primer/octicons"
+            ]
           },
           "configurations": {
             "production": {
@@ -90,21 +97,27 @@
           "defaultConfiguration": "development"
         },
         "scully": {
-          "builder": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["npx scully --scan --project=client"]
+            "commands": [
+              "npx scully --scan --project=client"
+            ]
           }
         },
         "scully-serve": {
-          "builder": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["npx scully serve --scan --project=client"]
+            "commands": [
+              "npx scully serve --scan --project=client"
+            ]
           }
         },
         "smoke": {
-          "builder": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["npx http-server dist/static -p 4201"]
+            "commands": [
+              "npx http-server dist/static -p 4201"
+            ]
           }
         },
         "extract-i18n": {
@@ -124,10 +137,45 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/client"],
+          "outputs": [
+            "coverage/apps/client"
+          ],
           "options": {
             "jestConfig": "apps/client/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "apps/client/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/client",
+            "config": {
+              "configFolder": "apps/client/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
           }
         }
       }
@@ -138,9 +186,12 @@
       "projectType": "application",
       "targets": {
         "e2e": {
-          "builder": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["nx run client:smoke", "nx run client-e2e:e2e-run"],
+            "commands": [
+              "nx run client:smoke",
+              "nx run client-e2e:e2e-run"
+            ],
             "parallel": true,
             "readyWhen": "Run Finished"
           }
@@ -157,7 +208,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/client-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/client-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }

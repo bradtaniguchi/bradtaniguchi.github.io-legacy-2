@@ -5,7 +5,7 @@ import {
   Inject,
   Input,
   Optional,
-  Output
+  Output,
 } from '@angular/core';
 import { ScullyRoute } from '@scullyio/ng-lib';
 import { ListCommonConfig } from './list-common-config';
@@ -62,6 +62,8 @@ export class ListCommonComponent {
   @Input() sortDir: 'asc' | 'des' = 'asc';
 
   constructor(
-    @Inject(LIST_COMMON_CONFIG_INJECTION_TOKEN) @Optional() public config: ListCommonConfig
+    @Inject(LIST_COMMON_CONFIG_INJECTION_TOKEN)
+    @Optional()
+    public config?: ListCommonConfig
   ) {}
 }
