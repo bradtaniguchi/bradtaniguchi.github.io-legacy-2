@@ -1,14 +1,5 @@
 <bt-content-wrapper>
-  <h1>
-    All Apps
-  </h1>
-  <div>
-    <!-- TODO: add search -->
-  </div>
-  <!-- TODO: Change to "card based display"-->
-  <ul>
-    <li *ngFor="let route of availableWebappRoutes$ | async">
-      <a [routerLink]="route.route">{{route.title}}</a>
-    </li>
-  </ul>
+  <bt-list-common title="All Apps"
+                  [routeItems]="(availableWebappRoutes$ | async) || []">
+  </bt-list-common>
 </bt-content-wrapper>

@@ -17,6 +17,8 @@ import { LOCAL_FORAGE } from './core/local-forage/local-forage';
 import { Socials } from './core/socials/socials';
 import { SOCIALS_INJECTION_TOKEN } from './core/socials/socials-injection-token';
 import { StaticService } from './core/static.service';
+import { ListCommonConfig } from './shared/list-common/list-common-config';
+import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './shared/list-common/list-common-config-injection-token';
 
 @NgModule({
   declarations: [AppComponent],
@@ -62,6 +64,15 @@ import { StaticService } from './core/static.service';
           twitter: environment.twitter,
         } as Socials),
       deps: [FREE_CODE_CAMP_USER_INJECTION_TOKEN],
+    },
+    {
+      provide: LIST_COMMON_CONFIG_INJECTION_TOKEN,
+      useValue: {
+        // **note** none of these features are ready yet, hide behind feature flag
+        hideSearch: environment.production,
+        hideSortByDate: environment.production,
+        hideTagFilter: environment.production,
+      } as ListCommonConfig,
     },
     ClientLoggerService,
     StaticService,

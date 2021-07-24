@@ -1,13 +1,5 @@
 <bt-content-wrapper>
-  <h1>
-    All Projects
-  </h1>
-  <div>
-    <!-- TODO: add search -->
-  </div>
-  <ul>
-    <li *ngFor="let route of availableProjectsRoutes$ | async">
-      <a [routerLink]="route.route">{{route.title}}</a>
-    </li>
-  </ul>
+  <bt-list-common title="All Projects"
+                  [routeItems]="(availableProjectsRoutes$ | async) || []">
+  </bt-list-common>
 </bt-content-wrapper>
