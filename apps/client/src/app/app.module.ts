@@ -14,6 +14,8 @@ import { AppComponent } from './app.component';
 import { ClientLoggerService } from './core/client-logger/client-logger.service';
 import { HeaderModule } from './core/header/header.module';
 import { LOCAL_FORAGE } from './core/local-forage/local-forage';
+import { Socials } from './core/socials/socials';
+import { SOCIALS_INJECTION_TOKEN } from './core/socials/socials-injection-token';
 import { StaticService } from './core/static.service';
 
 @NgModule({
@@ -49,6 +51,17 @@ import { StaticService } from './core/static.service';
     {
       provide: FREE_CODE_CAMP_USER_INJECTION_TOKEN,
       useValue: environment.freeCodeCampUser,
+    },
+    {
+      provide: SOCIALS_INJECTION_TOKEN,
+      useFactory: (freeCodeCampUser: string) =>
+        ({
+          freeCodeCamp: `https://freeCodeCamp.org/${freeCodeCampUser}`,
+          linkedIn: environment.linkedIn,
+          npm: environment.npm,
+          twitter: environment.twitter,
+        } as Socials),
+      deps: [FREE_CODE_CAMP_USER_INJECTION_TOKEN],
     },
     ClientLoggerService,
     StaticService,
