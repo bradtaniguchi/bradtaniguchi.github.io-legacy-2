@@ -133,13 +133,13 @@
         "docs-json": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "command": "npx compodoc --tsconfig=apps/client/tsconfig.app.json --exportFormat=json --output=apps/client"
+            "command": "npx compodoc --tsconfig=apps/client/tsconfig.json --exportFormat=json --output=apps/client"
           }
         },
         "docs-html": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "command": "npx compodoc --tsconfig=apps/client/tsconfig.app.json --exportFormat=html --output=dist/docs/client"
+            "command": "npx compodoc --tsconfig=apps/client/tsconfig.json --exportFormat=html --output=dist/docs/client"
           }
         },
         "docs-smoke": {
