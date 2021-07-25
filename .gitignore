@@ -45,3 +45,6 @@ scully-routes.json
 
 # Log files
 *.log
+
+# compodoc generated files
+documentation.json

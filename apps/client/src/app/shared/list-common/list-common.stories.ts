@@ -42,19 +42,19 @@ const noSearchDecorator = injectionDecorator([
   {
     provide: LIST_COMMON_CONFIG_INJECTION_TOKEN,
     useValue: {
-      hideSearch: false,
+      hideSearch: true,
     } as ListCommonConfig,
   },
 ]);
 export const DarkModePrimaryNoSearch: Story<ListCommonComponent> = Template.bind(
   {}
 );
-DarkModePrimaryEmpty.decorators = [
+DarkModePrimaryNoSearch.decorators = [
   ...(DarkModePrimaryEmpty.decorators || []),
   darkThemeDecorator,
   noSearchDecorator,
 ];
-DarkModePrimaryEmpty.args = {
+DarkModePrimaryNoSearch.args = {
   title: 'Dark mode Primary',
   routeItems: [],
 };
@@ -74,12 +74,12 @@ LightModePrimaryEmpty.args = {
 export const LightModePrimaryEmptyNoSearch: Story<ListCommonComponent> = Template.bind(
   {}
 );
-LightModePrimaryEmpty.decorators = [
+LightModePrimaryEmptyNoSearch.decorators = [
   ...(LightModePrimaryEmpty.decorators || []),
   lightThemeDecorator,
   noSearchDecorator,
 ];
-LightModePrimaryEmpty.args = {
+LightModePrimaryEmptyNoSearch.args = {
   title: 'Light mode Primary',
   routeItems: [],
 };
