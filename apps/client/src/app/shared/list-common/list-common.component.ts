@@ -60,10 +60,24 @@ export class ListCommonComponent {
    * **note** might change default
    */
   @Input() sortDir: 'asc' | 'des' = 'asc';
+  /**
+   * The configuration for the list-component, can be used to override properties
+   */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  @Input('config') localConfig?: ListCommonConfig;
 
+  /**
+   * The calculated config from the local and global configs
+   */
+  public get config(): ListCommonConfig {
+    return {
+      ...this.globalConfig,
+      ...this.localConfig,
+    };
+  }
   constructor(
     @Inject(LIST_COMMON_CONFIG_INJECTION_TOKEN)
     @Optional()
-    public config?: ListCommonConfig
+    public globalConfig?: ListCommonConfig
   ) {}
 }
