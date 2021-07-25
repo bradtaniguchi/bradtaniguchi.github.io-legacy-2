@@ -10,6 +10,7 @@ import {
 import { ListCommonConfig } from './list-common-config';
 import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './list-common-config-injection-token';
 import { ListCommonComponent } from './list-common.component';
+import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'ui-elements/ListCommon',
@@ -20,11 +21,21 @@ export default {
       imports: [CommonModule, FormsModule, OcticonModule],
     }),
   ],
+  excludeStories: /.*Data$/,
 } as Meta<ListCommonComponent>;
 
-const Template: Story<ListCommonComponent> = (args: ListCommonComponent) => ({
-  component: ListCommonComponent,
-  props: args,
+const actionsData = {
+  searchChange: action('searchChange'),
+  selectedTagChange: action('onSelectedTag'),
+  sortByChange: action('onSortBy'),
+  sortDirChange: action('onSortDir'),
+};
+const Template: Story<ListCommonComponent> = (args) => ({
+  // component: ListCommonComponent,
+  props: {
+    ...args,
+    ...actionsData,
+  },
 });
 
 export const DarkModePrimaryEmpty: Story<ListCommonComponent> = Template.bind(

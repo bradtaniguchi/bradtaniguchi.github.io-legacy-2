@@ -11,7 +11,8 @@
              name="search"
              placeholder="Search"
              aria-label="Search"
-             [(ngModel)]="search" />
+             [ngModel]="search"
+             (ngModelChange)="searchChange.emit($event)" />
     </div>
     <!-- TODO: add search button -->
   </div>
