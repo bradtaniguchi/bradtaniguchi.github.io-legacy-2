@@ -21,6 +21,7 @@ import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './list-common-config-injecti
       @import '@primer/css/forms/index.scss';
       @import '@primer/css/box/index.scss';
       @import '@primer/css/links/index.scss';
+      @import '@primer/css/blankslate/index.scss';
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -39,6 +40,10 @@ export class ListCommonComponent {
    * from the route.
    */
   @Input() search?: string;
+  /**
+   * If we are to show a loading spinner on the list of results
+   */
+  @Input() loading?: boolean;
   /**
    * The event emitted when search changes.
    */

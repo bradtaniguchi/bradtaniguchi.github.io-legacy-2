@@ -12,6 +12,10 @@ import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './list-common-config-injecti
 import { ListCommonComponent } from './list-common.component';
 import { action } from '@storybook/addon-actions';
 
+import '!style-loader!css-loader!sass-loader!@primer/css/forms/index.scss';
+import '!style-loader!css-loader!sass-loader!@primer/css/box/index.scss';
+import '!style-loader!css-loader!sass-loader!@primer/css/links/index.scss';
+
 export default {
   title: 'ui-elements/ListCommon',
   component: ListCommonComponent,
