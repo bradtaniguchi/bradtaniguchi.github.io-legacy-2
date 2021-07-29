@@ -19,11 +19,24 @@
   <!-- TODO: add filtering and search -->
   <div class="pb-2 px-2">
     <div class="Box">
-      <div class="Box-header"
+      <div class="Box-header d-flex flex-row flex-justify-between "
            *ngIf="title">
         <h1 class="Box-title">
           {{title}}
         </h1>
+        <!-- **NOTE** this doesn't look right, go with list-menu.-->
+        <!-- <div>
+          <pre>{{selectedTags | json}}</pre>
+          <select class="form-select select-sm"
+                  aria-label="Important decision"
+                  [ngModel]="selectedTags"
+                  (ngModelChange)="selectedTagsChange.emit($event)"
+                  multiple>
+            <option [value]="null">Tags</option>
+            <option value="first">First Tag</option>
+            <option value="second">Second Tag</option>
+          </select>
+        </div> -->
       </div>
       <ng-container *ngIf="loading else routeItemsContent">
         <div class="d-flex flex-row">
