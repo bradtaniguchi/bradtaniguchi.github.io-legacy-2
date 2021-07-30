@@ -17,6 +17,7 @@ import '!style-loader!css-loader!sass-loader!@primer/css/box/index.scss';
 import '!style-loader!css-loader!sass-loader!@primer/css/links/index.scss';
 import '!style-loader!css-loader!sass-loader!@primer/css/blankslate/index.scss';
 import '!style-loader!css-loader!sass-loader!@primer/css/select-menu/index.scss';
+import { ScullyTag } from '../../models/scully-tags';
 
 export default {
   title: 'ui-elements/ListCommon',
@@ -37,67 +38,97 @@ const actionsData = {
   sortByChange: action('sortByChange'),
   sortByOpenedChange: action('sortByOpenedChange'),
 };
+
 const Template: Story<ListCommonComponent> = (args) => ({
   // component: ListCommonComponent,
   props: {
-    ...args,
     ...actionsData,
+    ...args,
   },
 });
-
-export const DarkModePrimaryEmpty: Story<ListCommonComponent> = Template.bind(
-  {}
-);
-DarkModePrimaryEmpty.decorators = [
-  ...(DarkModePrimaryEmpty.decorators || []),
-  darkThemeDecorator,
-];
-DarkModePrimaryEmpty.args = {
-  title: 'Dark mode Primary',
-  routeItems: [],
-};
-const noSearchDecorator = injectionDecorator([
+const simpleFeatureFlagDecorator = injectionDecorator([
   {
     provide: LIST_COMMON_CONFIG_INJECTION_TOKEN,
     useValue: {
       hideSearch: true,
+      hideSortBy: true,
+      hideTagFilter: true,
     } as ListCommonConfig,
   },
 ]);
-export const DarkModePrimaryNoSearch: Story<ListCommonComponent> = Template.bind(
-  {}
-);
-DarkModePrimaryNoSearch.decorators = [
-  ...(DarkModePrimaryEmpty.decorators || []),
+const fancyFeatureFlagDecorator = injectionDecorator([
+  {
+    provide: LIST_COMMON_CONFIG_INJECTION_TOKEN,
+    useValue: {
+      hideSearch: false,
+      hideSortBy: false,
+      hideTagFilter: false,
+    } as ListCommonConfig,
+  },
+]);
+
+export const Primary: Story<ListCommonComponent> = Template.bind({});
+Primary.args = {
+  // set array arguments, as to not break the template
+  routeItems: [],
+  selectedTags: [],
+  availableTags: [ScullyTag('tag-one'), ScullyTag('tag-two')],
+  title: 'Card Title',
+};
+
+export const SimpleEmptyDarkMode: Story<ListCommonComponent> = Primary.bind({});
+SimpleEmptyDarkMode.decorators = [
+  ...(Template.decorators || []),
   darkThemeDecorator,
-  noSearchDecorator,
+  simpleFeatureFlagDecorator,
 ];
-DarkModePrimaryNoSearch.args = {
-  title: 'Dark mode Primary',
-  routeItems: [],
+SimpleEmptyDarkMode.args = {
+  ...Primary.args,
 };
 
-export const LightModePrimaryEmpty: Story<ListCommonComponent> = Template.bind(
-  {}
-);
-LightModePrimaryEmpty.decorators = [
-  ...(LightModePrimaryEmpty.decorators || []),
-  lightThemeDecorator,
+export const FancyEmptyDarkMode: Story<ListCommonComponent> = Primary.bind({});
+FancyEmptyDarkMode.decorators = [
+  ...(Template.decorators || []),
+  darkThemeDecorator,
+  fancyFeatureFlagDecorator,
 ];
-LightModePrimaryEmpty.args = {
-  title: 'Light mode Primary',
-  routeItems: [],
+FancyEmptyDarkMode.args = {
+  ...Primary.args,
 };
 
-export const LightModePrimaryEmptyNoSearch: Story<ListCommonComponent> = Template.bind(
+export const FancyFilledDarkMode: Story<ListCommonComponent> = Primary.bind({});
+FancyEmptyDarkMode.decorators = [
+  ...(Template.decorators || []),
+  darkThemeDecorator,
+  fancyFeatureFlagDecorator,
+];
+FancyEmptyDarkMode.args = {
+  ...Primary.args,
+  routeItems: [], // TODO: load with base user-stories
+};
+
+// LIGHT MODE WIDGETS
+
+export const SimpleEmptyLightMode: Story<ListCommonComponent> = Primary.bind(
   {}
 );
-LightModePrimaryEmptyNoSearch.decorators = [
-  ...(LightModePrimaryEmpty.decorators || []),
+SimpleEmptyLightMode.decorators = [
+  ...(Template.decorators || []),
   lightThemeDecorator,
-  noSearchDecorator,
+  simpleFeatureFlagDecorator,
 ];
-LightModePrimaryEmptyNoSearch.args = {
-  title: 'Light mode Primary',
-  routeItems: [],
+SimpleEmptyLightMode.args = {
+  ...Primary.args,
 };
+
+export const FancyEmptyLightMode: Story<ListCommonComponent> = Primary.bind({});
+FancyEmptyLightMode.decorators = [
+  ...(Template.decorators || []),
+  lightThemeDecorator,
+  fancyFeatureFlagDecorator,
+];
+FancyEmptyLightMode.args = {
+  ...Primary.args,
+};
+
+// TODO: ADD DARK_DIMMED widgets

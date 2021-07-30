@@ -4,8 +4,6 @@
     <div class="subnav-search">
       <!-- search input -->
       <!-- TODO: can't get the icon to work??-->
-      <!-- <octicon octicon="search"
-               class="subnav-search-icon"></octicon> -->
       <input class="form-control subnav-search-input"
              type="text"
              name="search"
@@ -16,7 +14,6 @@
     </div>
     <!-- TODO: add search button -->
   </div>
-  <!-- TODO: add filtering and search -->
   <div class="pb-2 px-2">
     <div class="Box">
       <div class="Box-header d-flex flex-row flex-justify-between "
@@ -41,7 +38,13 @@
                   <button class="SelectMenu-item"
                           *ngFor="let sortByKey of sortByKeys"
                           (click)="sortByChange.emit(sortByKey)"
-                          role="menuitem">{{sortByKey}}</button>
+                          role="menuitem">
+                    <octicon octicon="check"
+                             role="icon"
+                             [attr.aria-hidden]="sortBy !== sortByKey"
+                             *ngIf="sortBy === sortByKey"></octicon>
+                    <span>{{sortByKey}}</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -61,7 +64,11 @@
                   <button class="SelectMenu-item"
                           *ngFor="let tag of availableTags"
                           (click)="selectedTagsChange.emit(tag)"
-                          role="menuitem">{{tag}}</button>
+                          role="menuitem">
+                    <!-- <octicon octicon="check"
+                             *ngIf="selectedTags?.includes(tag)"></octicon> -->
+                    <span>{{tag}}</span>
+                  </button>
                 </div>
               </div>
             </div>

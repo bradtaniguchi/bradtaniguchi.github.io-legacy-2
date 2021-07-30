@@ -57,11 +57,9 @@ export class ListCommonComponent {
   /**
    * The list of tags that are available to select, should
    * be compiled from the list of routeItems.
+   *
    */
-  @Input() availableTags?: ScullyTag[] = [
-    ScullyTag('tag-one'),
-    ScullyTag('tag-two'),
-  ];
+  @Input() availableTags?: ScullyTag[];
   /**
    * The event emitted when the selected tags changes
    */
