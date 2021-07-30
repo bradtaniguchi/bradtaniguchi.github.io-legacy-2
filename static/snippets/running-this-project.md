@@ -45,7 +45,16 @@ npm run start -- --host=0.0.0.0 --disable-host-check
 ## running e2e testing in codespaces
 
 ```bash
-nm run e2e -- --project=client-e2e --headless
+nmx run e2e -- --project=client-e2e --headless
 ```
 
 **note** this may change in the future to support scully builds instead.
+
+## running storybook in codespaces
+
+```bash
+npx nx run client:docs-json
+npx nx run client:storybook
+```
+
+**note** the docs-json is required to display methods via compodoc.
