@@ -65,8 +65,10 @@
                           *ngFor="let tag of availableTags"
                           (click)="selectedTagsChange.emit(tag)"
                           role="menuitem">
-                    <!-- <octicon octicon="check"
-                             *ngIf="selectedTags?.includes(tag)"></octicon> -->
+                    <octicon octicon="check"
+                             role="icon"
+                             [attr.aria-hidden]="selectedTags?.includes(tag)"
+                             *ngIf="selectedTags?.includes(tag)"></octicon>
                     <span>{{tag}}</span>
                   </button>
                 </div>
@@ -91,10 +93,11 @@
         <ul>
           <ng-container *ngFor="let route of routeItems">
             <!-- TODO: migrate into its own component -->
-            <a [routerLink]="route.route"
-               class="Link--primary">
-              <li class="Box-row">
-                <div flex-row>
+            <li class="Box-row">
+              <a [routerLink]="route.route"
+                 class="Box-row-link Link--primary"
+                 style="cursor: pointer">
+                <div class="d-flex flex-row flex-justify-between">
                   <div>
                     {{route.title}}
                   </div>
@@ -105,8 +108,8 @@
                 <div>
                   {{route.description}}
                 </div>
-              </li>
-            </a>
+              </a>
+            </li>
           </ng-container>
         </ul>
       </ng-template>

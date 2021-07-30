@@ -18,6 +18,7 @@ import '!style-loader!css-loader!sass-loader!@primer/css/links/index.scss';
 import '!style-loader!css-loader!sass-loader!@primer/css/blankslate/index.scss';
 import '!style-loader!css-loader!sass-loader!@primer/css/select-menu/index.scss';
 import { ScullyTag } from '../../models/scully-tags';
+import { ScullyRoute } from '@scullyio/ng-lib';
 
 export default {
   title: 'ui-elements/ListCommon',
@@ -97,14 +98,38 @@ FancyEmptyDarkMode.args = {
 };
 
 export const FancyFilledDarkMode: Story<ListCommonComponent> = Primary.bind({});
-FancyEmptyDarkMode.decorators = [
+FancyFilledDarkMode.decorators = [
   ...(Template.decorators || []),
   darkThemeDecorator,
   fancyFeatureFlagDecorator,
 ];
-FancyEmptyDarkMode.args = {
+FancyFilledDarkMode.args = {
   ...Primary.args,
-  routeItems: [], // TODO: load with base user-stories
+  routeItems: [
+    {
+      route: '/myRoute1',
+      title: 'My Post',
+      date: new Date(),
+      // these are optionally added, and used
+      description: 'My description',
+    },
+    {
+      route: '/myRoute2',
+      title: 'My Post2 ',
+      date: new Date(),
+      // these are optionally added, and used
+      description: 'My description 2',
+    },
+    {
+      route: '/myRoute3',
+      title: 'My Post With Extra long Title',
+      date: new Date(),
+      // these are optionally added, and used
+      description:
+        'My description that is extra long to test out responsivnesss and wrapping.' +
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula neque mi. Vivamus finibus blandit arcu sit amet maximus. Nulla facilisi. Donec fermentum aliquam justo in fringilla. Nam tellus erat, aliquam nec elit vitae, volutpat porta enim. Etiam elementum ullamcorper interdum. Duis non mauris dolor.',
+    },
+  ],
 };
 
 // LIGHT MODE WIDGETS
