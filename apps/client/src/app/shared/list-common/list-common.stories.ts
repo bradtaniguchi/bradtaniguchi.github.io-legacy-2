@@ -15,6 +15,8 @@ import { action } from '@storybook/addon-actions';
 import '!style-loader!css-loader!sass-loader!@primer/css/forms/index.scss';
 import '!style-loader!css-loader!sass-loader!@primer/css/box/index.scss';
 import '!style-loader!css-loader!sass-loader!@primer/css/links/index.scss';
+import '!style-loader!css-loader!sass-loader!@primer/css/blankslate/index.scss';
+import '!style-loader!css-loader!sass-loader!@primer/css/select-menu/index.scss';
 
 export default {
   title: 'ui-elements/ListCommon',
@@ -30,9 +32,10 @@ export default {
 
 const actionsData = {
   searchChange: action('searchChange'),
-  selectedTagChange: action('onSelectedTag'),
-  sortByChange: action('onSortBy'),
-  sortDirChange: action('onSortDir'),
+  selectedTagChange: action('selectedTagChange'),
+  tagsOpenedChange: action('tagsOpenedChange'),
+  sortByChange: action('sortByChange'),
+  sortByOpenedChange: action('sortByOpenedChange'),
 };
 const Template: Story<ListCommonComponent> = (args) => ({
   // component: ListCommonComponent,

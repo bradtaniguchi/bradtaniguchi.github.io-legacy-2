@@ -6,6 +6,7 @@ import {
   Input,
   Optional,
   Output,
+  ViewEncapsulation,
 } from '@angular/core';
 import { ScullyRoute } from '@scullyio/ng-lib';
 import { ScullyTag } from '../../models/scully-tags';
@@ -22,6 +23,7 @@ import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './list-common-config-injecti
       @import '@primer/css/box/index.scss';
       @import '@primer/css/links/index.scss';
       @import '@primer/css/blankslate/index.scss';
+      @import '@primer/css/select-menu/index.scss';
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -47,7 +49,7 @@ export class ListCommonComponent {
   /**
    * The event emitted when search changes.
    */
-  @Output() searchChange = new EventEmitter();
+  @Output() searchChange = new EventEmitter<string>();
   /**
    * The list of tags that have already been selected
    */
@@ -56,11 +58,22 @@ export class ListCommonComponent {
    * The list of tags that are available to select, should
    * be compiled from the list of routeItems.
    */
-  @Input() availableTags?: ScullyTag[];
+  @Input() availableTags?: ScullyTag[] = [
+    ScullyTag('tag-one'),
+    ScullyTag('tag-two'),
+  ];
   /**
    * The event emitted when the selected tags changes
    */
-  @Output() selectedTagsChange = new EventEmitter();
+  @Output() selectedTagsChange = new EventEmitter<ScullyTag>();
+  /**
+   * If the tags selection menu is opened or not.
+   */
+  @Input() tagsOpened?: boolean;
+  /**
+   * The event emitted when the tags opened changes
+   */
+  @Output() tagsOpenedChange = new EventEmitter<boolean>();
   /**
    * The key to sort by, defaults to `date`
    */
@@ -68,16 +81,20 @@ export class ListCommonComponent {
   /**
    * The event emitted when the sortBy changes.
    */
-  @Output() sortByChange = new EventEmitter();
+  @Output() sortByChange = new EventEmitter<keyof ScullyRoute>();
+  /**
+   * If the sort-by menu is opened or not.
+   */
+  @Input() sortByOpened?: boolean;
+  /**
+   * The event emitted when the sortByOpened changes.
+   */
+  @Output() sortByOpenedChange = new EventEmitter<boolean>();
   /**
    * The direction to sort by, defaults to `asc`
    * **note** might change default
    */
   @Input() sortDir: 'asc' | 'des' = 'asc';
-  /**
-   * The event emitted when the sortDir changes
-   */
-  @Output() sortDirChange = new EventEmitter();
   /**
    * The configuration for the list-component, can be used to override properties
    * set by the injectable `LIST_COMMON_CONFIG_INJECTION_TOKEN`
@@ -94,6 +111,10 @@ export class ListCommonComponent {
       ...this.localConfig,
     };
   }
+  /**
+   * List of keys to sort by
+   */
+  public readonly sortByKeys: Array<keyof ScullyRoute> = ['date', 'title'];
   constructor(
     @Inject(LIST_COMMON_CONFIG_INJECTION_TOKEN)
     @Optional()
