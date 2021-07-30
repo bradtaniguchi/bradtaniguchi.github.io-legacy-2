@@ -5,8 +5,7 @@ import {
   Inject,
   Input,
   Optional,
-  Output,
-  ViewEncapsulation,
+  Output
 } from '@angular/core';
 import { ScullyRoute } from '@scullyio/ng-lib';
 import { ScullyTag } from '../../models/scully-tags';
@@ -24,6 +23,7 @@ import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './list-common-config-injecti
       @import '@primer/css/links/index.scss';
       @import '@primer/css/blankslate/index.scss';
       @import '@primer/css/select-menu/index.scss';
+      @import '@primer/css/labels/index.scss';
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -97,12 +97,21 @@
               <a [routerLink]="route.route"
                  class="Box-row-link Link--primary"
                  style="cursor: pointer">
+                <!-- TODO: make responsive -->
                 <div class="d-flex flex-row flex-justify-between">
                   <div>
                     {{route.title}}
                   </div>
-                  <div [title]="route.date | date: 'medium'">
-                    {{route.date | date:'shortDate'}}
+                  <div class="d-flex flex-row">
+                    <div class="mr-4">
+                      <span *ngFor="let tag of route?.tags"
+                            class="Label Label--primary ml-1">
+                        {{tag}}
+                      </span>
+                    </div>
+                    <div [title]="route.date | date: 'medium'">
+                      {{route.date | date:'shortDate'}}
+                    </div>
                   </div>
                 </div>
                 <div>

@@ -1,7 +1,15 @@
+import '!style-loader!css-loader!sass-loader!@primer/css/blankslate/index.scss';
+import '!style-loader!css-loader!sass-loader!@primer/css/box/index.scss';
+import '!style-loader!css-loader!sass-loader!@primer/css/forms/index.scss';
+import '!style-loader!css-loader!sass-loader!@primer/css/labels/index.scss';
+import '!style-loader!css-loader!sass-loader!@primer/css/links/index.scss';
+import '!style-loader!css-loader!sass-loader!@primer/css/select-menu/index.scss';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { action } from '@storybook/addon-actions';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { OcticonModule } from '../../core/octicon/octicon.module';
+import { ScullyTag } from '../../models/scully-tags';
 import { injectionDecorator } from '../storybook-utils/injection-decorator';
 import {
   darkThemeDecorator,
@@ -10,15 +18,6 @@ import {
 import { ListCommonConfig } from './list-common-config';
 import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './list-common-config-injection-token';
 import { ListCommonComponent } from './list-common.component';
-import { action } from '@storybook/addon-actions';
-
-import '!style-loader!css-loader!sass-loader!@primer/css/forms/index.scss';
-import '!style-loader!css-loader!sass-loader!@primer/css/box/index.scss';
-import '!style-loader!css-loader!sass-loader!@primer/css/links/index.scss';
-import '!style-loader!css-loader!sass-loader!@primer/css/blankslate/index.scss';
-import '!style-loader!css-loader!sass-loader!@primer/css/select-menu/index.scss';
-import { ScullyTag } from '../../models/scully-tags';
-import { ScullyRoute } from '@scullyio/ng-lib';
 
 export default {
   title: 'ui-elements/ListCommon',
@@ -110,6 +109,7 @@ FancyFilledDarkMode.args = {
       route: '/myRoute1',
       title: 'My Post',
       date: new Date(),
+      tags: ['tag-one'],
       // these are optionally added, and used
       description: 'My description',
     },
@@ -117,6 +117,7 @@ FancyFilledDarkMode.args = {
       route: '/myRoute2',
       title: 'My Post2 ',
       date: new Date(),
+      tags: [], // legacy no tag
       // these are optionally added, and used
       description: 'My description 2',
     },
@@ -124,6 +125,7 @@ FancyFilledDarkMode.args = {
       route: '/myRoute3',
       title: 'My Post With Extra long Title',
       date: new Date(),
+      tags: ['tag-one', 'tag-two'],
       // these are optionally added, and used
       description:
         'My description that is extra long to test out responsivnesss and wrapping.' +
