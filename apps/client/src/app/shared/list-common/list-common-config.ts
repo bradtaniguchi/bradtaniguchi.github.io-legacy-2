@@ -9,10 +9,9 @@ export interface ListCommonConfig {
    */
   hideSearch?: boolean;
   /**
-   * If we are to hide the sort-by-date field.
-   * **note** not available yet
+   * If we are to hide the sort-by field.
    */
-  hideSortByDate?: boolean;
+  hideSortBy?: boolean;
   /**
    * If we are to hide the tag-filtering field.
    * **note** not available yet

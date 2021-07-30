@@ -1,50 +1,127 @@
 <div class="p-4">
   <div class="pb-3 px-2"
-       *ngIf="config.hideSearch !== true">
+       *ngIf="config?.hideSearch !== true">
     <div class="subnav-search">
       <!-- search input -->
       <!-- TODO: can't get the icon to work??-->
-      <!-- <octicon octicon="search"
-               class="subnav-search-icon"></octicon> -->
       <input class="form-control subnav-search-input"
              type="text"
              name="search"
              placeholder="Search"
              aria-label="Search"
-             [(ngModel)]="search" />
+             [ngModel]="search"
+             (ngModelChange)="searchChange.emit($event)" />
     </div>
     <!-- TODO: add search button -->
   </div>
-  <!-- TODO: add filtering and search -->
   <div class="pb-2 px-2">
     <div class="Box">
-      <div class="Box-header"
+      <div class="Box-header d-flex flex-row flex-justify-between "
            *ngIf="title">
         <h1 class="Box-title">
           {{title}}
         </h1>
+
+        <div class="d-flex flex-row">
+          <!-- right-side elements-->
+          <details class="details-reset details-overlay mr-4"
+                   *ngIf="config?.hideSortBy !== true"
+                   [open]="sortByOpened"
+                   (toggle)="sortByOpenedChange.emit(sortByOpened)">
+            <summary class="btn"
+                     aria-haspopup="true">
+              Sort By
+            </summary>
+            <div class="SelectMenu">
+              <div class="SelectMenu-modal">
+                <div class="SelectMenu-list">
+                  <button class="SelectMenu-item"
+                          *ngFor="let sortByKey of sortByKeys"
+                          (click)="sortByChange.emit(sortByKey)"
+                          role="menuitem">
+                    <octicon octicon="check"
+                             role="icon"
+                             [attr.aria-hidden]="sortBy !== sortByKey"
+                             *ngIf="sortBy === sortByKey"></octicon>
+                    <span>{{sortByKey}}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="details-reset details-overlay"
+                   *ngIf="config?.hideSortBy !== true"
+                   [open]="tagsOpened"
+                   (toggle)="tagsOpenedChange.emit(tagsOpened)">
+            <summary class="btn"
+                     aria-haspopup="true">
+              Tags
+            </summary>
+            <div class="SelectMenu">
+              <div class="SelectMenu-modal">
+                <div class="SelectMenu-list">
+                  <button class="SelectMenu-item"
+                          *ngFor="let tag of availableTags"
+                          (click)="selectedTagsChange.emit(tag)"
+                          role="menuitem">
+                    <octicon octicon="check"
+                             role="icon"
+                             [attr.aria-hidden]="selectedTags?.includes(tag)"
+                             *ngIf="selectedTags?.includes(tag)"></octicon>
+                    <span>{{tag}}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+
       </div>
-      <ul>
-        <ng-container *ngFor="let route of routeItems">
-          <!-- TODO: migrate into its own component -->
-          <a [routerLink]="route.route"
-             class="Link--primary">
-            <li class="Box-row">
-              <div flex-row>
-                <div>
-                  {{route.title}}
-                </div>
-                <div [title]="route.date | date: 'medium'">
-                  {{route.date | date:'shortDate'}}
-                </div>
-              </div>
-              <div>
-                {{route.description}}
-              </div>
-            </li>
-          </a>
+      <ng-container *ngIf="loading else routeItemsContent">
+        <div class="d-flex flex-row">
+          <div class="AnimatedEllipsis">loading</div>
+        </div>
+      </ng-container>
+      <ng-template #routeItemsContent>
+        <ng-container *ngIf="routeItems?.length === 0">
+          <div class="blankslate">
+            <h3 class="mb-1">Nothing for this route!</h3>
+            <p>This is probably a bug, or there really is no content. Which would be weird</p>
+          </div>
         </ng-container>
-      </ul>
+        <ul>
+          <ng-container *ngFor="let route of routeItems">
+            <!-- TODO: migrate into its own component -->
+            <li class="Box-row">
+              <a [routerLink]="route.route"
+                 class="Box-row-link Link--primary"
+                 style="cursor: pointer">
+                <!-- TODO: make responsive -->
+                <div class="d-flex flex-row flex-justify-between">
+                  <div>
+                    {{route.title}}
+                  </div>
+                  <div class="d-flex flex-row">
+                    <div class="mr-4">
+                      <span *ngFor="let tag of route?.tags"
+                            class="Label Label--primary ml-1">
+                        {{tag}}
+                      </span>
+                    </div>
+                    <div [title]="route.date | date: 'medium'">
+                      {{route.date | date:'shortDate'}}
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  {{route.description}}
+                </div>
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+      </ng-template>
     </div>
   </div>
 </div>

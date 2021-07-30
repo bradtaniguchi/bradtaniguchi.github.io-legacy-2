@@ -1,7 +1,7 @@
 {
   // 4200 is for Angular
   /// 4201 is for Scully
-  "forwardPorts": [4200, 4201],
+  "forwardPorts": [4200, 4201, 4400],
 
   // Installed extensions
   "extensions": [
