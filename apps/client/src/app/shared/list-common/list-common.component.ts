@@ -5,7 +5,7 @@ import {
   Inject,
   Input,
   Optional,
-  Output
+  Output,
 } from '@angular/core';
 import { ScullyRoute } from '@scullyio/ng-lib';
 import { ScullyTag } from '../../models/scully-tags';
@@ -34,7 +34,7 @@ export class ListCommonComponent {
    */
   @Input() routeItems?: ScullyRoute[];
   /**
-   * The title to show at the top of th elist of route items
+   * The title to show at the top of the list of route items
    */
   @Input() title?: string;
   /**
