@@ -49,12 +49,12 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "1mb",
                   "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "25kb",
+                  "maximumWarning": "40kb",
                   "maximumError": "50kb"
                 }
               ],
@@ -93,6 +93,14 @@
           "executor": "@nrwl/workspace:run-commands",
           "options": {
             "commands": ["npx scully --scan --project=client"]
+          },
+          "configurations": {
+            "prod": {
+              "commands": [
+                "npx scully --scan --project=client --prod=true --no-warning --no-prompt"
+              ],
+              "readyWhen": "Rendering the pages took"
+            }
           }
         },
         "scully-serve": {
