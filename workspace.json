@@ -93,6 +93,14 @@
           "executor": "@nrwl/workspace:run-commands",
           "options": {
             "commands": ["npx scully --scan --project=client"]
+          },
+          "configurations": {
+            "prod": {
+              "commands": [
+                "npx scully --scan --project=client --prod=true --no-warning --no-prompt"
+              ],
+              "readyWhen": "Rendering the pages took"
+            }
           }
         },
         "scully-serve": {
