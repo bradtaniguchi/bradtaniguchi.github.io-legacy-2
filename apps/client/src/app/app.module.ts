@@ -70,7 +70,7 @@ import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './shared/list-common/list-co
       useValue: {
         // **note** none of these features are ready yet, hide behind feature flag
         hideSearch: environment.production,
-        hideSortByDate: environment.production,
+        hideSortBy: environment.production,
         hideTagFilter: environment.production,
       } as ListCommonConfig,
     },
