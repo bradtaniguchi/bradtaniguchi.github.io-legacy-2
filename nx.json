@@ -32,5 +32,13 @@
       "tags": [],
       "implicitDependencies": ["client"]
     }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   }
 }
