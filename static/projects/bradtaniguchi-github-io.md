@@ -5,6 +5,9 @@ published: true
 date: 2021-07-21T00:00:00.000Z
 slugs:
   - bradtaniguchi-github-io
+tags: 
+  - github-action
+  - github
 ---
 
 # bradtaniguchi.github.io
