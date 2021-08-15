@@ -1,4 +1,5 @@
 import { Directive } from '@angular/core';
+import { ListCommonStoreService } from './list-common-store.service';
 
 /**
  * This directive is used as an interface with the common state service, and
@@ -8,4 +9,6 @@ import { Directive } from '@angular/core';
 @Directive({
   selector: '[btListCommonProvider]',
 })
-export class ListCommonProviderDirective {}
+export class ListCommonProviderDirective {
+  constructor(public store: ListCommonStoreService) {}
+}
