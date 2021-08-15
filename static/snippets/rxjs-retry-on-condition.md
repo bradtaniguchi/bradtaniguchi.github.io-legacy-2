@@ -5,6 +5,9 @@ published: true
 date: 2021-07-20T00:00:00.000Z
 slugs:
   - rxjs-retry-on-condition
+tags:
+  - rxjs
+  - typescript
 ---
 Below is an rxjs operator function example I was given.  I might want to use it in the future.
 

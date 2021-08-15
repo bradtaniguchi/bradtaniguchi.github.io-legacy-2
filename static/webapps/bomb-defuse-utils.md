@@ -5,6 +5,8 @@ published: true
 date: 2021-07-24T00:00:00.000Z
 slugs:
   - bomb-defuse-utils
+tags:
+  - angular
 ---
 
 # Bomb Defuse Utils
