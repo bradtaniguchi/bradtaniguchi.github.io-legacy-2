@@ -24,57 +24,59 @@
 
         <div class="d-flex flex-row">
           <!-- right-side elements-->
-          <details class="details-reset details-overlay mr-4"
-                   *ngIf="config?.hideSortBy !== true"
-                   [open]="sortByOpened"
-                   (toggle)="sortByOpenedChange.emit(sortByOpened)">
-            <summary class="btn"
-                     aria-haspopup="true">
-              Sort By
-            </summary>
-            <div class="SelectMenu">
-              <div class="SelectMenu-modal">
-                <div class="SelectMenu-list">
-                  <button class="SelectMenu-item"
-                          *ngFor="let sortByKey of sortByKeys"
-                          (click)="sortByChange.emit(sortByKey)"
-                          role="menuitem">
-                    <octicon octicon="check"
-                             role="icon"
-                             [attr.aria-hidden]="sortBy !== sortByKey"
-                             *ngIf="sortBy === sortByKey"></octicon>
-                    <span>{{sortByKey}}</span>
-                  </button>
+          <ng-container *ngIf="config?.hideSortBy !== true">
+            <details class="details-reset details-overlay mr-4"
+                     [open]="sortByOpened"
+                     (toggle)="sortByOpenedChange.emit(sortByOpened)">
+              <summary class="btn"
+                       aria-haspopup="true">
+                Sort By
+              </summary>
+              <div class="SelectMenu">
+                <div class="SelectMenu-modal">
+                  <div class="SelectMenu-list">
+                    <button class="SelectMenu-item"
+                            *ngFor="let sortByKey of sortByKeys"
+                            (click)="sortByChange.emit(sortByKey)"
+                            role="menuitem">
+                      <octicon octicon="check"
+                               role="icon"
+                               [attr.aria-hidden]="sortBy !== sortByKey"
+                               *ngIf="sortBy === sortByKey"></octicon>
+                      <span>{{sortByKey}}</span>
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </details>
+            </details>
+          </ng-container>
 
-          <details class="details-reset details-overlay"
-                   *ngIf="config?.hideSortBy !== true"
-                   [open]="tagsOpened"
-                   (toggle)="tagsOpenedChange.emit(tagsOpened)">
-            <summary class="btn"
-                     aria-haspopup="true">
-              Tags
-            </summary>
-            <div class="SelectMenu">
-              <div class="SelectMenu-modal">
-                <div class="SelectMenu-list">
-                  <button class="SelectMenu-item"
-                          *ngFor="let tag of availableTags"
-                          (click)="selectedTagsChange.emit(tag)"
-                          role="menuitem">
-                    <octicon octicon="check"
-                             role="icon"
-                             [attr.aria-hidden]="selectedTags?.includes(tag)"
-                             *ngIf="selectedTags?.includes(tag)"></octicon>
-                    <span>{{tag}}</span>
-                  </button>
+          <ng-container *ngIf="config?.hideTagFilter !== true">
+            <details class="details-reset details-overlay"
+                     [open]="tagsOpened"
+                     (toggle)="tagsOpenedChange.emit(tagsOpened)">
+              <summary class="btn"
+                       aria-haspopup="true">
+                Tags
+              </summary>
+              <div class="SelectMenu">
+                <div class="SelectMenu-modal">
+                  <div class="SelectMenu-list">
+                    <button class="SelectMenu-item"
+                            *ngFor="let tag of availableTags"
+                            (click)="selectedTagsChange.emit(tag)"
+                            role="menuitem">
+                      <octicon octicon="check"
+                               role="icon"
+                               [attr.aria-hidden]="selectedTags?.includes(tag)"
+                               *ngIf="selectedTags?.includes(tag)"></octicon>
+                      <span>{{tag}}</span>
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </details>
+            </details>
+          </ng-container>
         </div>
 
       </div>

@@ -5,6 +5,10 @@ published: true
 date: 2021-07-20T00:00:00.000Z
 slugs:
   - fcc-calculator
+tags:
+  - angular
+  - angular-material
+  - freeCodeCamp
 ---
 
 # fcc calculator

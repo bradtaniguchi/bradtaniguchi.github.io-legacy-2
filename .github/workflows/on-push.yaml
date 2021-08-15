@@ -47,7 +47,7 @@ jobs:
           path: dist/apps/client/stats.json
 
       - name: scully-build
-        run: npx scully -- --project=client --scan --no-warning --prod=true --no-prompt --host 0.0.0.0
+        run: npx nx run client:scully:prod
 
       - name: run e2e
         run: npm run e2e -- --project=client-e2e --headless

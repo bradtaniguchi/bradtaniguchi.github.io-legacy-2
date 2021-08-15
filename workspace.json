@@ -93,6 +93,14 @@
           "executor": "@nrwl/workspace:run-commands",
           "options": {
             "commands": ["npx scully --scan --project=client"]
+          },
+          "configurations": {
+            "prod": {
+              "commands": [
+                "npx scully --scan --project=client --prod=true --no-warning --no-prompt"
+              ],
+              "readyWhen": "Rendering the pages took"
+            }
           }
         },
         "scully-serve": {
@@ -131,19 +139,19 @@
           }
         },
         "docs-json": {
-          "builder": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "command": "npx compodoc --tsconfig=apps/client/tsconfig.json --exportFormat=json --output=apps/client"
           }
         },
         "docs-html": {
-          "builder": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "command": "npx compodoc --tsconfig=apps/client/tsconfig.json --exportFormat=html --output=dist/docs/client"
           }
         },
         "docs-smoke": {
-          "builder": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "commands": ["npx http-server dist/docs/client -p 4401"]
           }
