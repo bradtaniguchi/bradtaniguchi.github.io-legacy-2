@@ -5,6 +5,10 @@ published: true
 date: 2021-07-09T00:00:00.000Z
 slugs:
   - entity-selector-factory
+tags:
+  - typescript
+  - angular
+  - ngrx
 ---
 
 Below is a copy-paste example from another project. This `entitiySelectorFactory` can be used to create

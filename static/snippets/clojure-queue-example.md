@@ -5,7 +5,8 @@ published: true
 date: 2021-05-29T00:00:00.000Z
 slugs:
   - clojure-queue-example
-snippet: true
+tags:
+  - clojure
 ---
 
 

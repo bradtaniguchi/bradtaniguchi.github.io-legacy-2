@@ -7,7 +7,9 @@ slugs:
   - running-this-project
 tags:
   - ops
-snippet: true
+  - storybook
+  - angular
+  - scully
 ---
 
 Running this project requires 1 "pre" step, and then fully running the "scully" build requires 2 extra commands.
