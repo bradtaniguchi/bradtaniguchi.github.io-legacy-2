@@ -1,5 +1,9 @@
 <bt-content-wrapper>
-  <bt-list-common title="All Blog Posts"
-                  [routeItems]="(availableBlogRoutes$ | async) || []">
-  </bt-list-common>
+  <listProvider #provider="listProvider">
+    <bt-list-common
+      title="All Blog Posts"
+      [routeItems]="(provider.store.routeItems$ | async) || []"
+    >
+    </bt-list-common>
+  </listProvider>
 </bt-content-wrapper>

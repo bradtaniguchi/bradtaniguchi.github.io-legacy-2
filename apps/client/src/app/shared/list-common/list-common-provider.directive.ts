@@ -7,7 +7,9 @@ import { ListCommonStoreService } from './list-common-store.service';
  * the data being provided from the list-common.store.
  */
 @Directive({
-  selector: '[btListCommonProvider]',
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: 'listProvider',
+  exportAs: 'listProvider',
 })
 export class ListCommonProviderDirective {
   constructor(public store: ListCommonStoreService) {}

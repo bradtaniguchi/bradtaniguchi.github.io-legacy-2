@@ -10,6 +10,7 @@ import { BlogListComponent } from './blog-list.component';
   imports: [
     CommonModule,
     BlogListRoutingModule,
+    // child components
     ContentWrapperModule,
     ListCommonModule,
   ],
