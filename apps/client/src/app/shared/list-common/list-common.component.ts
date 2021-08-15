@@ -92,7 +92,12 @@ export class ListCommonComponent {
    * The direction to sort by, defaults to `asc`
    * **note** might change default
    */
-  @Input() sortDir: 'asc' | 'des' = 'asc';
+  @Input() sortDir: 'asc' | 'des' | string = 'asc';
+  /**
+   * Emits the direction when a user changes the sort direction
+   * **note** not used yet!
+   */
+  @Output() sortDirChange = new EventEmitter<'asc' | 'des'>();
   /**
    * The configuration for the list-component, can be used to override properties
    * set by the injectable `LIST_COMMON_CONFIG_INJECTION_TOKEN`
