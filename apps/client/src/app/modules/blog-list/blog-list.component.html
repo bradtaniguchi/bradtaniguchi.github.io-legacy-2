@@ -2,7 +2,7 @@
   <listProvider #provider="listProvider">
     <bt-list-common title="All Blog Posts"
                     [loading]="(provider.store.loading$ | async) || false"
-                    [routeItems]="(provider.store.routeItems$ | async) || []"
+                    [routeItems]="(provider.store.filteredItems$ | async) || []"
                     [search]="(provider.store.search$ | async) || undefined"
                     (searchChange)="provider.store.search($event)"
                     [selectedTags]="(provider.store.selectedTags$ | async) || []"

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ComponentStore } from '@ngrx/component-store';
 import { ScullyRoute } from '@scullyio/ng-lib';
+import Fuse from 'fuse.js';
 import { Observable } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
 import { ClientLoggerService } from '../../core/client-logger/client-logger.service';
@@ -63,6 +64,42 @@ export class ListCommonStoreService extends ComponentStore<ListCommonState> {
     routeItems,
     loading: false,
   }));
+
+  /**
+   * The list of filtered-items
+   */
+  public filteredItems$ = this.select(
+    this.routeItems$,
+    this.selectedTags$,
+    this.sortBy$,
+    this.sortDir$,
+    this.search$,
+    (items, tags, sortBy, sortDir, search) =>
+      // TODO load fuse async
+      new Fuse(
+        tags && tags.length
+          ? items.filter((item) =>
+              tags.every((tag) => (item.tags || []).include(tag))
+            )
+          : items,
+        {
+          keys: ['title', 'description', 'slugs', 'tags'],
+          sortFn: sortBy
+            ? ({ item: a }, { item: b }) => {
+                if (a[sortBy] < b[sortBy]) {
+                  return sortDir === 'asc' ? 1 : -1;
+                }
+                if (a[sortBy] > b[sortBy]) {
+                  return sortDir === 'asc' ? -1 : 1;
+                }
+                return 0;
+              }
+            : undefined,
+        }
+      )
+        .search(search || '')
+        .map(({ item }) => item)
+  );
 
   // TODO: add other methods
   constructor(
