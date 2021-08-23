@@ -2,7 +2,7 @@
 title: es6-timed-map
 description: '2020 Hacktoberfest, open source library'
 published: true
-date: 2021-08-22T00:00:00.000Z
+date: 2020-09-29T00:00:00.000Z
 slugs:
   - es6-timed-map
 tags: 

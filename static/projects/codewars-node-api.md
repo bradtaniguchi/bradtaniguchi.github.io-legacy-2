@@ -2,7 +2,7 @@
 title: codewars-node-api
 description: 'unofficial library written in TS to interact with codewars public api'
 published: true
-date: 2021-08-22T00:00:00.000Z
+date: 2021-06-12T00:00:00.000Z
 slugs:
   - codewars-node-api
 tags: 

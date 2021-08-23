@@ -2,7 +2,7 @@
 title: free-code-map-discord-bot
 description: 'Now official discord bot created to learn how to develop and maintain a discord bot'
 published: true
-date: 2021-08-22T00:00:00.000Z
+date: 2020-05-12T00:00:00.000Z
 slugs:
   - free-code-map-discord-bot
 tags: 
