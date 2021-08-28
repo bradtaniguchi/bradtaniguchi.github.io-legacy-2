@@ -6,7 +6,15 @@
   "properties": {
     "type": {
       "type": "string",
-      "enum": ["blog", "projects", "snippets", "webapps"],
+      "enum": [
+        "blog",
+        "projects",
+        "project",
+        "snippets",
+        "snippet",
+        "webapps",
+        "webapp"
+      ],
       "description": "Type of static asset to make",
       "default": "blog"
     },

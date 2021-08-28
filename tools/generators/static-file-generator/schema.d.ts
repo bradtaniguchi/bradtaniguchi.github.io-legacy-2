@@ -2,7 +2,14 @@ export interface Schema {
   /**
    * The type of asset to create
    */
-  type: 'blog' | 'projects' | 'snippets' | 'webapps';
+  type:
+    | 'blog'
+    | 'projects'
+    | 'project'
+    | 'snippets'
+    | 'snippet'
+    | 'webapps'
+    | 'webapp';
   /**
    * The title of the asset to create
    */
