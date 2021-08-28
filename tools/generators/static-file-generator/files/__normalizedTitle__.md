@@ -1,10 +1,10 @@
 ---
-title: '<%= title %>'
-description: ''
+title: <%= title %>
+description:
 published: <%= published %>
-date: '<%= date %>'
+date: <%= date %>
 slugs:
-  - '<%= title %>'
+  - <%= title %>
 ---
 
 # <%= title %>
