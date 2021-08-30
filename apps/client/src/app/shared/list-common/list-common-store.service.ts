@@ -4,7 +4,7 @@ import { ComponentStore } from '@ngrx/component-store';
 import { ScullyRoute } from '@scullyio/ng-lib';
 // import Fuse from 'fuse.js';
 import { from, Observable } from 'rxjs';
-import { filter, map, take } from 'rxjs/operators';
+import { filter, map, startWith, take, tap } from 'rxjs/operators';
 import { ClientLoggerService } from '../../core/client-logger/client-logger.service';
 import { ScullyTag } from '../../models/scully-tags';
 import { ListCommonState } from './list-common.state';
@@ -29,6 +29,7 @@ export class ListCommonStoreService extends ComponentStore<ListCommonState> {
   // route-based selectors
   public selectedTags$ = this.route.queryParamMap.pipe(
     map((queryParamMap) => queryParamMap.getAll('selectedTags') as ScullyTag[])
+    // startWith([] as ScullyTag[])
   );
   public sortBy$ = this.route.queryParamMap.pipe(
     map((queryParamMap) => queryParamMap.get('sortBy'))
@@ -36,7 +37,8 @@ export class ListCommonStoreService extends ComponentStore<ListCommonState> {
 
   public sortDir$ = this.route.queryParamMap.pipe(
     map((queryParamMap) => queryParamMap.get('sortDir') || ''),
-    filter((sortDir) => ['asc', 'des'].includes(sortDir))
+    filter((sortDir) => ['asc', 'des'].includes(sortDir)),
+    startWith('asc')
   ) as Observable<'asc' | 'des'>;
 
   public search$ = this.route.queryParamMap.pipe(
@@ -95,23 +97,19 @@ export class ListCommonStoreService extends ComponentStore<ListCommonState> {
     this.sortBy$,
     this.sortDir$,
     this.search$,
-    (fuse, sortBy, sortDir, search) => {
-      return sortBy
-        ? fuse
-            .search(search || '')
-            .map(({ item }) => item)
-            .sort((a, b) => {
-              if (a[sortBy] < b[sortBy]) {
-                return sortDir === 'asc' ? 1 : -1;
-              }
-              if (a[sortBy] > b[sortBy]) {
-                return sortDir === 'asc' ? -1 : 1;
-              }
-              return 0;
-            })
-        : fuse.search(search || '').map(({ item }) => item);
-    }
-  );
+    (fuse, sortBy, sortDir, search) =>
+      sortBy
+        ? fuse.search(search || '').sort((a, b) => {
+            if (a[sortBy] < b[sortBy]) {
+              return sortDir === 'asc' ? 1 : -1;
+            }
+            if (a[sortBy] > b[sortBy]) {
+              return sortDir === 'asc' ? -1 : 1;
+            }
+            return 0;
+          })
+        : fuse.search(search || '')
+  ).pipe(tap((items) => this.logger.log('filtered items', { items })));
 
   constructor(
     private route: ActivatedRoute,
