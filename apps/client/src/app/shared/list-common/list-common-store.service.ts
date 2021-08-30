@@ -99,16 +99,19 @@ export class ListCommonStoreService extends ComponentStore<ListCommonState> {
     this.search$,
     (fuse, sortBy, sortDir, search) =>
       sortBy
-        ? fuse.search(search || '').sort((a, b) => {
-            if (a[sortBy] < b[sortBy]) {
-              return sortDir === 'asc' ? 1 : -1;
-            }
-            if (a[sortBy] > b[sortBy]) {
-              return sortDir === 'asc' ? -1 : 1;
-            }
-            return 0;
-          })
-        : fuse.search(search || '')
+        ? fuse
+            .search(search || '')
+            .map(({ item }) => item)
+            .sort((a, b) => {
+              if (a[sortBy] < b[sortBy]) {
+                return sortDir === 'asc' ? 1 : -1;
+              }
+              if (a[sortBy] > b[sortBy]) {
+                return sortDir === 'asc' ? -1 : 1;
+              }
+              return 0;
+            })
+        : fuse.search(search || '').map(({ item }) => item)
   ).pipe(tap((items) => this.logger.log('filtered items', { items })));
 
   constructor(
