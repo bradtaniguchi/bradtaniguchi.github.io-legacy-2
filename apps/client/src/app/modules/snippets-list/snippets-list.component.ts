@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { StaticService } from '../../core/static.service';
+import { ListCommonStoreService } from '../../shared/list-common/list-common-store.service';
 
 @Component({
   selector: 'bt-snippets-list',
@@ -8,6 +9,10 @@ import { StaticService } from '../../core/static.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SnippetsListComponent {
-  public availableSnippetRoutes$ = this.staticService.availableSnippetsRoutes$;
-  constructor(private staticService: StaticService) {}
+  constructor(
+    private staticService: StaticService,
+    private store: ListCommonStoreService
+  ) {
+    this.store.init(this.staticService.availableSnippetsRoutes$);
+  }
 }
