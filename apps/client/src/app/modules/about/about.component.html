@@ -35,7 +35,8 @@
           These statistics are built by scully at build-time and are "self-referencing" in that scully+angular makes
           requests against the repo build on github to get these statistics.
         </p>
-        <pre *ngIf="buildStats$ | async as buildStats">{{ buildStats| json}}</pre>
+        <pre *ngIf="buildStats$ | async as buildStats"
+             class="overflow-scroll">{{ buildStats| json}}</pre>
       </div>
     </div>
   </div>
