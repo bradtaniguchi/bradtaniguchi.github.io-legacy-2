@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ComponentStore } from '@ngrx/component-store';
 import { ScullyRoute } from '@scullyio/ng-lib';
-import Fuse from 'fuse.js';
-import { Observable } from 'rxjs';
+// import Fuse from 'fuse.js';
+import { from, Observable } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
 import { ClientLoggerService } from '../../core/client-logger/client-logger.service';
 import { ScullyTag } from '../../models/scully-tags';
@@ -64,18 +64,16 @@ export class ListCommonStoreService extends ComponentStore<ListCommonState> {
     routeItems,
     loading: false,
   }));
-
   /**
-   * The list of filtered-items
+   * Fuse instance for searching,
+   * includes tags and is used as a "middle step"
+   * for the filtered items array.
    */
-  public filteredItems$ = this.select(
+  private fuseInstance$ = this.select(
+    from(import('fuse.js')).pipe(map(({ default: Fuse }) => Fuse)),
     this.routeItems$,
     this.selectedTags$,
-    this.sortBy$,
-    this.sortDir$,
-    this.search$,
-    (items, tags, sortBy, sortDir, search) =>
-      // TODO load fuse async
+    (Fuse, items, tags) =>
       new Fuse(
         tags && tags.length
           ? items.filter((item) =>
@@ -84,24 +82,37 @@ export class ListCommonStoreService extends ComponentStore<ListCommonState> {
           : items,
         {
           keys: ['title', 'description', 'slugs', 'tags'],
-          sortFn: sortBy
-            ? ({ item: a }, { item: b }) => {
-                if (a[sortBy] < b[sortBy]) {
-                  return sortDir === 'asc' ? 1 : -1;
-                }
-                if (a[sortBy] > b[sortBy]) {
-                  return sortDir === 'asc' ? -1 : 1;
-                }
-                return 0;
-              }
-            : undefined,
         }
       )
-        .search(search || '')
-        .map(({ item }) => item)
+  );
+  /**
+   * The list of filtered-items,
+   * goes against the sortBy, sortDir and search
+   * values.
+   */
+  public filteredItems$ = this.select(
+    this.fuseInstance$,
+    this.sortBy$,
+    this.sortDir$,
+    this.search$,
+    (fuse, sortBy, sortDir, search) => {
+      return sortBy
+        ? fuse
+            .search(search || '')
+            .map(({ item }) => item)
+            .sort((a, b) => {
+              if (a[sortBy] < b[sortBy]) {
+                return sortDir === 'asc' ? 1 : -1;
+              }
+              if (a[sortBy] > b[sortBy]) {
+                return sortDir === 'asc' ? -1 : 1;
+              }
+              return 0;
+            })
+        : fuse.search(search || '').map(({ item }) => item);
+    }
   );
 
-  // TODO: add other methods
   constructor(
     private route: ActivatedRoute,
     private router: Router,
