@@ -1,5 +1,16 @@
 <bt-content-wrapper>
-  <bt-list-common title="All Blog Posts"
-                  [routeItems]="(availableBlogRoutes$ | async) || []">
-  </bt-list-common>
+  <listProvider #provider="listProvider">
+    <bt-list-common title="All Blog Posts"
+                    [loading]="(provider.store.loading$ | async) || false"
+                    [routeItems]="(provider.store.filteredItems$ | async) || []"
+                    [search]="(provider.store.search$ | async) || undefined"
+                    (searchChange)="provider.store.search($event)"
+                    [selectedTags]="(provider.store.selectedTags$ | async) || []"
+                    (selectedTagsChange)="provider.store.selectedTags($event)"
+                    [availableTags]="(provider.store.availableTags$ | async) || []"
+                    [sortBy]="(provider.store.sortBy$ | async) || 'date'"
+                    (sortByChange)="provider.store.sortBy($event)"
+                    [sortDir]="(provider.store.sortBy$ | async) || 'asc'">
+    </bt-list-common>
+  </listProvider>
 </bt-content-wrapper>
