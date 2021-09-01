@@ -106,7 +106,7 @@
         "scully-serve": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["npx scully serve --scan --project=client"]
+            "commands": ["npx scully serve --project=client"]
           }
         },
         "smoke": {
