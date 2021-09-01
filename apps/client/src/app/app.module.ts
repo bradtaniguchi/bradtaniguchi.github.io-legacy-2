@@ -69,6 +69,7 @@ import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './shared/list-common/list-co
       provide: LIST_COMMON_CONFIG_INJECTION_TOKEN,
       useValue: {
         // **note** this features is not ready yet, hide behind feature flag
+        hideTagFilter: environment.production,
         hideSortBy: environment.production,
       } as ListCommonConfig,
     },
