@@ -24,7 +24,9 @@ export class ListCommonStoreService extends ComponentStore<ListCommonState> {
    *
    * **note** needs to be filtered from the below properties
    */
-  public routeItems$ = this.select((state) => state.routeItems || []);
+  public routeItems$ = this.select((state) => state.routeItems || []).pipe(
+    tap((items) => this.logger.log('route-items', items))
+  );
 
   // route-based selectors
   public selectedTags$ = this.route.queryParamMap.pipe(
@@ -84,6 +86,7 @@ export class ListCommonStoreService extends ComponentStore<ListCommonState> {
           : items,
         {
           keys: ['title', 'description', 'slugs', 'tags'],
+          findAllMatches: true,
         }
       )
   );
@@ -93,26 +96,29 @@ export class ListCommonStoreService extends ComponentStore<ListCommonState> {
    * values.
    */
   public filteredItems$ = this.select(
+    this.routeItems$,
     this.fuseInstance$,
     this.sortBy$,
     this.sortDir$,
     this.search$,
-    (fuse, sortBy, sortDir, search) =>
-      sortBy
-        ? fuse
-            .search(search || '')
-            .map(({ item }) => item)
-            .sort((a, b) => {
-              if (a[sortBy] < b[sortBy]) {
-                return sortDir === 'asc' ? 1 : -1;
-              }
-              if (a[sortBy] > b[sortBy]) {
-                return sortDir === 'asc' ? -1 : 1;
-              }
-              return 0;
-            })
-        : fuse.search(search || '').map(({ item }) => item)
-  ).pipe(tap((items) => this.logger.log('filtered items', { items })));
+    (routeItems, fuse, sortBy, sortDir, search) => {
+      const items = search
+        ? fuse.search(search || '').map(({ item }) => item)
+        : routeItems;
+
+      return sortBy
+        ? items.sort((a, b) => {
+            if (a[sortBy] < b[sortBy]) {
+              return sortDir === 'asc' ? 1 : -1;
+            }
+            if (a[sortBy] > b[sortBy]) {
+              return sortDir === 'asc' ? -1 : 1;
+            }
+            return 0;
+          })
+        : items;
+    }
+  ).pipe(tap((items) => this.logger.log('items to show', items)));
 
   constructor(
     private route: ActivatedRoute,

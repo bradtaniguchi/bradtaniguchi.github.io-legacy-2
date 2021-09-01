@@ -7,6 +7,7 @@ import { ListCommonStoreService } from '../../shared/list-common/list-common-sto
   templateUrl: './webapps-list.component.html',
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [ListCommonStoreService],
 })
 export class WebappsListComponent {
   constructor(

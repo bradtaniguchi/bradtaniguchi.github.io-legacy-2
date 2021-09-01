@@ -10,6 +10,7 @@ import { ProjectsListComponent } from './projects-list.component';
   imports: [
     CommonModule,
     ProjectsListRoutingModule,
+    // child components
     ContentWrapperModule,
     ListCommonModule,
   ],
