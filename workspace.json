@@ -103,6 +103,12 @@
             }
           }
         },
+        "scully-scan": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["npx scully --scan --project=client"]
+          }
+        },
         "scully-serve": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
@@ -119,6 +125,16 @@
           "executor": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "client:build"
+          }
+        },
+        "dev": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "nx run client:build --watch",
+              "nx run client:scully-serve"
+            ],
+            "parallel": true
           }
         },
         "lint": {
