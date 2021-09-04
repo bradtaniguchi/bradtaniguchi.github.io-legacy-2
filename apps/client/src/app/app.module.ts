@@ -68,10 +68,9 @@ import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './shared/list-common/list-co
     {
       provide: LIST_COMMON_CONFIG_INJECTION_TOKEN,
       useValue: {
-        // **note** none of these features are ready yet, hide behind feature flag
-        hideSearch: environment.production,
-        hideSortBy: environment.production,
+        // **note** this features is not ready yet, hide behind feature flag
         hideTagFilter: environment.production,
+        hideSortBy: environment.production,
       } as ListCommonConfig,
     },
     ClientLoggerService,

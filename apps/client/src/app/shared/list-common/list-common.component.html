@@ -39,6 +39,7 @@
                             *ngFor="let sortByKey of sortByKeys"
                             (click)="sortByChange.emit(sortByKey)"
                             role="menuitem">
+                      <!-- TODO: add toggle for sortDir -->
                       <octicon octicon="check"
                                role="icon"
                                [attr.aria-hidden]="sortBy !== sortByKey"
