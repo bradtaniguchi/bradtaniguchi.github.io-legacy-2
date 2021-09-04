@@ -4,7 +4,12 @@ import { ScullyRoute } from '@scullyio/ng-lib';
 @Component({
   selector: 'bt-article-wrapper',
   templateUrl: './article-wrapper.component.html',
-  styles: [],
+  styles: [
+    `
+      @import '@primer/css/box/index.scss';
+      @import '@primer/css/labels/index.scss';
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleWrapperComponent {

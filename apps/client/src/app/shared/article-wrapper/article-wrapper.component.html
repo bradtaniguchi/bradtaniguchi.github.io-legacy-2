@@ -1,1 +1,51 @@
-<p>article-wrapper works!</p>
+<!-- TODO: Add article wrapper content classes -->
+<div class="p-4">
+  <div class="p-2">
+    <div class="Box">
+      <!-- TODO: add back button -->
+      <div class="Box-body">
+        <div class="d-flex flex-row flex-justify-between">
+          <div class="mr-4">
+            <span *ngFor="let tag of route?.tags"
+                  class="Label Label--primary ml-1">
+              {{tag}}
+            </span>
+          </div>
+          <!-- TODO: add share buttons? -->
+          <div>
+            <a routerLink="../"
+               class="d-flex flex-row">
+              <octicon octicon="arrow-left"
+                       role="icon"></octicon>
+              <span>Back</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- main content classes go here -->
+  <div class="p-2">
+    <div class="Box">
+      <div class="Box-body">
+        <article>
+          <ng-content></ng-content>
+        </article>
+      </div>
+    </div>
+  </div>
+  <div class="p-2">
+    <div class="Box">
+      <div class="Box-body">
+        <div class="d-flex flex-row flex-justify-between">
+          <div [title]="route?.date | date: 'medium'">
+            Published on {{route?.date | date:'shortDate'}}
+          </div>
+          <div>
+            By {{route?.author || 'Brad Taniguchi'}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
