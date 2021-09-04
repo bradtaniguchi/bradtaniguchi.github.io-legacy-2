@@ -1,4 +1,8 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 
 @Component({
@@ -6,6 +10,7 @@ import { ScullyRoutesService } from '@scullyio/ng-lib';
   templateUrl: './blog.component.html',
   preserveWhitespaces: true,
   encapsulation: ViewEncapsulation.Emulated,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogComponent {
   public current$ = this.routes.getCurrent();
