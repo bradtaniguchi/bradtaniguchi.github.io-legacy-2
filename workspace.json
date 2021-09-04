@@ -103,18 +103,6 @@
             }
           }
         },
-        "scully-scan": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "commands": ["npx scully --scan --project=client"]
-          }
-        },
-        "scully-serve": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "commands": ["npx scully serve --project=client"]
-          }
-        },
         "smoke": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
@@ -132,7 +120,7 @@
           "options": {
             "commands": [
               "nx run client:build --watch",
-              "nx run client:scully-serve"
+              "nx run client:scully --watch --configFile=scully.client-dev.config.ts"
             ],
             "parallel": true
           }

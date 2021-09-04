@@ -1,12 +1,18 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
+import { ScullyRoutesService } from '@scullyio/ng-lib';
 
 @Component({
   selector: 'bt-blog',
   templateUrl: './blog.component.html',
   preserveWhitespaces: true,
   encapsulation: ViewEncapsulation.Emulated,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogComponent {
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  public current$ = this.routes.getCurrent();
+  constructor(private routes: ScullyRoutesService) {}
 }
