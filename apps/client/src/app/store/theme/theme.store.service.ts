@@ -20,14 +20,19 @@ export class ThemeStoreService extends ComponentStore<ThemeState> {
     @Inject(LOCAL_FORAGE) private localforage: LocalForage,
     private logger: ClientLoggerService
   ) {
-    super({});
+    super({
+      // default is dark_dimmed
+      theme: 'dark_dimmed',
+    });
 
     // get and set the default theme if available
     this.localforage
       .getItem(ThemeStoreService.THEME_STORAGE_KEY)
       .then((theme: Theme | unknown) => {
         this.logger.log('theme local-storage', theme);
-        this.isTheme(theme) && this.setTheme(theme);
+        this.isTheme(theme)
+          ? this.setTheme(theme)
+          : this.setTheme('dark_dimmed');
       })
       .catch((err: unknown) => logger.error(err));
     this.state$.subscribe(logger.log);
