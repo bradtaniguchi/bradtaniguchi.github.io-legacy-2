@@ -38,7 +38,7 @@ jobs:
         run: npm run affected:test -- --all
 
       - name: build
-        run: npm run build -- -c=production --statsJson
+        run: npx nx run client:build:production --statsJson
 
       - name: Upload json-stats
         uses: actions/upload-artifact@v2
@@ -50,7 +50,7 @@ jobs:
         run: npx nx run client:scully:prod
 
       - name: run e2e
-        run: npm run e2e -- --project=client-e2e --headless
+        run: npx nx run client-e2e:e2e --headless
 
       - name: Upload cypress files
         uses: actions/upload-artifact@v2
