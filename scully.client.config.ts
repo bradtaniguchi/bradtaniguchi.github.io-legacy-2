@@ -19,6 +19,26 @@ export const config: ScullyConfig = {
         folder: './static/blog',
       },
     },
+    '/snippets/:id': {
+      type: 'json',
+      id: {
+        url: 'https://api.github.com/users/bradtaniguchi/gists',
+        property: 'id',
+        headers: {
+          expectedContentType: 'application/vnd.github.v3+json',
+          'User-Agent': 'request',
+        },
+        // TODO: see if its possible to leverage this
+        // to get more meta-data out of the JSON.
+        // otherwise its kinda useless.
+        // postRenderers: [
+        //   (data: unknown) => {
+        //     console.log('test', data);
+        //     return data;
+        //   },
+        // ],
+      },
+    },
     '/snippets/:slug': {
       type: 'contentFolder',
       slug: {

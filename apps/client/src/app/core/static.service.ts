@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { ClientLoggerService } from './client-logger/client-logger.service';
 
 /**
  * The static service is used to manage static files provided through
@@ -22,15 +23,16 @@ export class StaticService {
   public availableProjectRoutes$ = this.routes.available$.pipe(
     map((routes) =>
       routes.filter(
-        (route) => route.published && route.route.startsWith('/project')
+        (route) => route.published && route.route.startsWith('/projects')
       )
     )
   );
 
   public availableSnippetsRoutes$ = this.routes.available$.pipe(
+    tap((routes) => this.logger.log('all routes', routes)),
     map((routes) =>
       routes.filter(
-        (route) => route.published && route.route.startsWith('/snippet')
+        (route) => route.published && route.route.startsWith('/snippets')
       )
     )
   );
@@ -43,5 +45,8 @@ export class StaticService {
       )
     )
   );
-  constructor(private routes: ScullyRoutesService) {}
+  constructor(
+    private routes: ScullyRoutesService,
+    private logger: ClientLoggerService
+  ) {}
 }

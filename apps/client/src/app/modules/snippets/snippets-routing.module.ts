@@ -7,6 +7,10 @@ const routes: Routes = [
     path: ':slug',
     component: SnippetsComponent,
   },
+  {
+    path: ':id',
+    component: SnippetsComponent,
+  },
 ];
 
 @NgModule({
