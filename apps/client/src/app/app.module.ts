@@ -11,7 +11,11 @@ import { GITHUB_API_REPO_INJECTION_TOKEN } from './api/github/github-api-repo-in
 import { GITHUB_API_USER_INJECTION_TOKEN } from './api/github/github-api-user-injection-token';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClientLoggerService } from './core/client-logger/client-logger.service';
+import {
+  ClientLoggerMethods,
+  ClientLoggerService,
+  CLIENT_LOGGER_HIDDEN_METHODS,
+} from './core/client-logger/client-logger.service';
 import { HeaderModule } from './core/header/header.module';
 import { LOCAL_FORAGE } from './core/local-forage/local-forage';
 import { Socials } from './core/socials/socials';
@@ -72,6 +76,10 @@ import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './shared/list-common/list-co
         hideTagFilter: environment.production,
         hideSortBy: environment.production,
       } as ListCommonConfig,
+    },
+    {
+      provide: CLIENT_LOGGER_HIDDEN_METHODS,
+      useValue: ['log', 'silly'] as ClientLoggerMethods[],
     },
     ClientLoggerService,
     StaticService,

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
-export const ClientLoggerHiddenMethods = new InjectionToken(
+export const CLIENT_LOGGER_HIDDEN_METHODS = new InjectionToken(
   'CLIENT_LOGGER_HIDDEN_METHODS'
 );
 export type ClientLoggerMethods = keyof ClientLoggerService;
@@ -9,7 +9,7 @@ export type ClientLoggerMethods = keyof ClientLoggerService;
 @Injectable()
 export class ClientLoggerService {
   constructor(
-    @Inject(ClientLoggerHiddenMethods)
+    @Inject(CLIENT_LOGGER_HIDDEN_METHODS)
     @Optional()
     private hide: ClientLoggerMethods[] = []
   ) {}
