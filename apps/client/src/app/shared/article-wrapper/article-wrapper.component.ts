@@ -8,6 +8,7 @@ import { ScullyRoute } from '@scullyio/ng-lib';
     `
       @import '@primer/css/box/index.scss';
       @import '@primer/css/labels/index.scss';
+      @import '@primer/css/utilities/layout.scss';
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
