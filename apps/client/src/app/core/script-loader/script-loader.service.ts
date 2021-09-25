@@ -3,7 +3,7 @@ import { Inject, Injectable, Optional } from '@angular/core';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import {
   ScriptLoaderInitScripts,
-  SCRIPT_LOADER_INIT_SCRIPTS
+  SCRIPT_LOADER_INIT_SCRIPTS,
 } from './script-loader-init-scripts';
 import { SCRIPT_LOADER_LOADED } from './script-loader-loaded';
 import { ScriptParams } from './script-params';
@@ -59,7 +59,7 @@ export class ScriptLoaderService {
     const existingScriptLoaded = this.scriptsLoaded$.value.find(
       (scriptsLoaded) => scriptsLoaded.src === src
     );
-    if (!!existingScriptLoaded) {
+    if (existingScriptLoaded) {
       // if the script is already loaded, skip it;
       return existingScriptLoaded.element;
     }
@@ -69,8 +69,8 @@ export class ScriptLoaderService {
       ...this.scriptsLoaded$.value,
       {
         element: scriptElement,
-        src
-      }
+        src,
+      },
     ]);
     if (typeof preLoad === 'function') {
       preLoad();
