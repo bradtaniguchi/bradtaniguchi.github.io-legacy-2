@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { Injector, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ScullyLibModule } from '@scullyio/ng-lib';
@@ -16,7 +16,6 @@ import {
   ClientLoggerService,
   CLIENT_LOGGER_HIDDEN_METHODS,
 } from './core/client-logger/client-logger.service';
-import { GoogleAnalyticsService } from './core/google-analytics.service';
 import { HeaderModule } from './core/header/header.module';
 import { LOCAL_FORAGE } from './core/local-forage/local-forage';
 import { Socials } from './core/socials/socials';
@@ -87,10 +86,4 @@ import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './shared/list-common/list-co
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor(injector: Injector) {
-    if (environment.production) {
-      injector.get(GoogleAnalyticsService);
-    }
-  }
-}
+export class AppModule {}
