@@ -16,6 +16,7 @@ nvm alias default node
 # set vim as git editor
 echo ">> updating git config"
 git config --global core.editor "nvim"
+git lfs install
 
 # set vim as other editors in general
 echo ">> setting environment variables"
@@ -39,7 +40,7 @@ echo ">> installing chrome for lighthouse"
 mkdir ./tmp
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 mv google-chrome-stable_current_amd64.deb ./tmp/google-chrome-stable_current_amd64.deb
-sudo apt install ./tmp/google-chrome-stable_current_amd64.deb
+sudo apt install -y ./tmp/google-chrome-stable_current_amd64.deb
 
 # clean up  codespace install
 echo ">> cleaning up chrome install"
