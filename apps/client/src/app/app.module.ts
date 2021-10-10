@@ -106,7 +106,9 @@ declare var gtag: any;
     },
     {
       provide: CLIENT_LOGGER_HIDDEN_METHODS,
-      useValue: ['log', 'silly'] as ClientLoggerMethods[],
+      useValue: environment.production
+        ? (['log', 'silly'] as ClientLoggerMethods[])
+        : [],
     },
     ClientLoggerService,
     StaticService,
