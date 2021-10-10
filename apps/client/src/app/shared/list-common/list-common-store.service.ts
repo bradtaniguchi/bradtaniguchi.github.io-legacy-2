@@ -40,7 +40,7 @@ export class ListCommonStoreService extends ComponentStore<ListCommonState> {
   public sortDir$ = this.route.queryParamMap.pipe(
     map((queryParamMap) => queryParamMap.get('sortDir') || ''),
     filter((sortDir) => ['asc', 'des'].includes(sortDir)),
-    startWith('asc')
+    startWith('des')
   ) as Observable<'asc' | 'des'>;
 
   public search$ = this.route.queryParamMap.pipe(
