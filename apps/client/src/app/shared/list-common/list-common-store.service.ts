@@ -24,23 +24,21 @@ export class ListCommonStoreService extends ComponentStore<ListCommonState> {
    *
    * **note** needs to be filtered from the below properties
    */
-  public routeItems$ = this.select((state) => state.routeItems || []).pipe(
-    tap((items) => this.logger.log('route-items', items))
-  );
+  public routeItems$ = this.select((state) => state.routeItems || []).pipe();
 
   // route-based selectors
   public selectedTags$ = this.route.queryParamMap.pipe(
     map((queryParamMap) => queryParamMap.getAll('selectedTags') as ScullyTag[])
-    // startWith([] as ScullyTag[])
   );
   public sortBy$ = this.route.queryParamMap.pipe(
-    map((queryParamMap) => queryParamMap.get('sortBy'))
+    map((queryParamMap) => queryParamMap.get('sortBy')),
+    startWith('date')
   );
 
   public sortDir$ = this.route.queryParamMap.pipe(
     map((queryParamMap) => queryParamMap.get('sortDir') || ''),
     filter((sortDir) => ['asc', 'des'].includes(sortDir)),
-    startWith('asc')
+    startWith('des')
   ) as Observable<'asc' | 'des'>;
 
   public search$ = this.route.queryParamMap.pipe(
@@ -109,10 +107,10 @@ export class ListCommonStoreService extends ComponentStore<ListCommonState> {
       return sortBy
         ? items.sort((a, b) => {
             if (a[sortBy] < b[sortBy]) {
-              return sortDir === 'asc' ? 1 : -1;
+              return sortDir === 'asc' ? -1 : 1;
             }
             if (a[sortBy] > b[sortBy]) {
-              return sortDir === 'asc' ? -1 : 1;
+              return sortDir === 'asc' ? 1 : -1;
             }
             return 0;
           })
