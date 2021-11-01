@@ -1,7 +1,7 @@
 ---
 title: the-halloween-edition
-description:
-published: false
+description: Longer overdue updates
+published: true
 date: 2021-10-31T00:00:00.000Z
 slugs:
   - the-halloween-edition

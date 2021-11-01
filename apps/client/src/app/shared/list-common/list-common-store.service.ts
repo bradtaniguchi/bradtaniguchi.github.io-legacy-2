@@ -32,13 +32,15 @@ export class ListCommonStoreService extends ComponentStore<ListCommonState> {
   );
   public sortBy$ = this.route.queryParamMap.pipe(
     map((queryParamMap) => queryParamMap.get('sortBy')),
-    startWith('date')
+    startWith(undefined),
+    map((sortBy) => sortBy || 'date')
   );
 
   public sortDir$ = this.route.queryParamMap.pipe(
     map((queryParamMap) => queryParamMap.get('sortDir') || ''),
     filter((sortDir) => ['asc', 'des'].includes(sortDir)),
-    startWith('des')
+    startWith(undefined),
+    map((sortDir) => sortDir || 'des')
   ) as Observable<'asc' | 'des'>;
 
   public search$ = this.route.queryParamMap.pipe(
