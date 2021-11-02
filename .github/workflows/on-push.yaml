@@ -49,6 +49,9 @@ jobs:
       - name: scully-build
         run: npx nx run client:scully:prod
 
+      - name: purgecss
+        run: npx nx run client:purgecss
+
       - name: run e2e
         run: npx nx run client-e2e:e2e --headless
 
