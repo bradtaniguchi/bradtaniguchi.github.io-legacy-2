@@ -93,6 +93,7 @@ declare var gtag: any;
           linkedIn: environment.linkedIn,
           npm: environment.npm,
           twitter: environment.twitter,
+          devto: environment.devto,
         } as Socials),
       deps: [FREE_CODE_CAMP_USER_INJECTION_TOKEN],
     },

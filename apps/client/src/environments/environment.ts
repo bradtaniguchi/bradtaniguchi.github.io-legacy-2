@@ -13,6 +13,7 @@ export const environment = {
   linkedIn: 'https://www.linkedin.com/in/bradley-taniguchi-62a052104/',
   npm: 'https://www.npmjs.com/~bradtaniguchi',
   twitter: 'https://twitter.com/brad_taniguchi',
+  devto: 'https://dev.to/bradtaniguchi',
 };
 
 /*
