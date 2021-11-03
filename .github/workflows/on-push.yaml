@@ -40,6 +40,9 @@ jobs:
       - name: build
         run: npx nx run client:build:production --statsJson
 
+      - name: purgecss
+        run: npx nx run client:purgecss
+
       - name: Upload json-stats
         uses: actions/upload-artifact@v2
         with:

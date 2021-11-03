@@ -164,6 +164,18 @@
             "commands": ["npx http-server dist/docs/client -p 4401"]
           }
         },
+        "purgecss": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "./tools/purgecss.sh",
+                "forwardAllArgs": false
+              }
+            ],
+            "parallel": false
+          }
+        },
         "storybook": {
           "executor": "@nrwl/storybook:storybook",
           "options": {
