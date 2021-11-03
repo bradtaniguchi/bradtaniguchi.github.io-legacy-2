@@ -2,8 +2,8 @@
 
 echo "starting purgecss.sh..."
 
-echo "changing directory to ./dist/static"
-cd ./dist/static
+echo "changing directory to ./dist/client"
+cd ./dist/client
 
 echo "Getting CSS_FILE variable"
 CSS_FILE=`find * -iname styles.*.css`
