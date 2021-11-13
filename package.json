@@ -36,7 +36,8 @@
     "storybook": "nx run client:storybook",
     "build:docs-json": "nx run client:docs-json",
     "build:docs-html": "nx run client:docs-html",
-    "build:storybook": "nx run client:storybook"
+    "build:storybook": "nx run client:storybook",
+    "new": "nx workspace-generator static-file-generator"
   },
   "private": true,
   "dependencies": {
