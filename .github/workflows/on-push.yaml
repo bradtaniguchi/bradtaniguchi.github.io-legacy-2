@@ -32,10 +32,10 @@ jobs:
         run: npm install
 
       - name: affected:lint
-        run: npm run affected:lint -- --all
+        run: npm run affected:lint
 
       - name: affected:test
-        run: npm run affected:test -- --all
+        run: npm run affected:test
 
       - name: build
         run: npx nx run client:build:production --statsJson
