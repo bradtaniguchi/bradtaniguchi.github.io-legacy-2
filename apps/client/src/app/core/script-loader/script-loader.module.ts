@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders, APP_INITIALIZER } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { ScriptLoaderService } from './script-loader.service';
 import { ScriptParams } from './script-params';
 import { SCRIPT_LOADER_INIT_SCRIPTS } from './script-loader-init-scripts';
@@ -10,9 +10,9 @@ import { ReplaySubject } from 'rxjs';
     ScriptLoaderService,
     {
       provide: SCRIPT_LOADER_LOADED,
-      useValue: new ReplaySubject(1)
-    }
-  ]
+      useValue: new ReplaySubject(1),
+    },
+  ],
 })
 export class ScriptLoaderModule {
   // **note** this is injected so the script loader service is setup, but handles everything internally
@@ -32,16 +32,16 @@ export class ScriptLoaderModule {
           ? {
               provide: SCRIPT_LOADER_INIT_SCRIPTS,
               useValue: {
-                scripts: params.scripts
-              }
+                scripts: params.scripts,
+              },
             }
           : [],
         // loaded event emitter, if there is one
         {
           provide: SCRIPT_LOADER_LOADED,
-          useValue: new ReplaySubject<boolean>(1)
-        }
-      ]
+          useValue: new ReplaySubject<boolean>(1),
+        },
+      ],
     };
   }
 }
