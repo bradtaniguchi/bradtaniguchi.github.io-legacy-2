@@ -1,4 +1,7 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
 import { ScullyConfig, RouteConfig } from '@scullyio/scully';
+
 export const config: ScullyConfig = {
   projectRoot: './apps/client/src',
   projectName: 'client',
@@ -22,21 +25,13 @@ export const config: ScullyConfig = {
     '/snippets/:id': {
       type: 'json',
       id: {
-        url: 'https://api.github.com/users/bradtaniguchi/gists',
+        url: 'https://api.github.com/users/bradtaniguchi/gists/public',
         property: 'id',
         headers: {
           expectedContentType: 'application/vnd.github.v3+json',
           'User-Agent': 'request',
+          Authoriztion: `bradtaniguchi:${process.env.GITHUB_TOKEN}`,
         },
-        // TODO: see if its possible to leverage this
-        // to get more meta-data out of the JSON.
-        // otherwise its kinda useless.
-        // postRenderers: [
-        //   (data: unknown) => {
-        //     console.log('test', data);
-        //     return data;
-        //   },
-        // ],
       },
     },
     '/snippets/:slug': {

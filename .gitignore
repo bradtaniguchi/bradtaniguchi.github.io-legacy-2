@@ -52,3 +52,5 @@ documentation.json
 
 # angular cache files
 .angular
+
+.env

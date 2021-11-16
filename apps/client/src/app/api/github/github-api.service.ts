@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { RestEndpointMethodTypes } from '@octokit/rest';
 import { TransferStateService } from '@scullyio/ng-lib';
@@ -6,11 +6,17 @@ import { map } from 'rxjs/operators';
 import { GITHUB_API_REPO_INJECTION_TOKEN } from './github-api-repo-injection-token';
 import { GITHUB_API_USER_INJECTION_TOKEN } from './github-api-user-injection-token';
 
-export type ListForUserResponse = RestEndpointMethodTypes['gists']['listForUser']['response']['data'];
+export type ListForUserResponse =
+  RestEndpointMethodTypes['gists']['listForUser']['response']['data'];
 
-export type GetByUsernameResponse = RestEndpointMethodTypes['users']['getByUsername']['response']['data'];
+export type GetByUsernameResponse =
+  RestEndpointMethodTypes['users']['getByUsername']['response']['data'];
 
-export type GetLatestCommitsResponse = RestEndpointMethodTypes['repos']['getCommit']['response']['data'][];
+export type GetLatestCommitsResponse =
+  RestEndpointMethodTypes['repos']['getCommit']['response']['data'][];
+
+export type GetGithubGist =
+  RestEndpointMethodTypes['gists']['get']['response']['data'];
 @Injectable({
   providedIn: 'root',
 })
@@ -68,5 +74,17 @@ export class GithubApiService {
 
   public getLatestRepoCommit() {
     return this.getRepoCommits().pipe(map(([commit]) => commit));
+  }
+
+  public getGithubGist(gistId: string) {
+    return this.transferState.useScullyTransferState(
+      `githubGists-${gistId}`,
+      this.http.get<GetGithubGist>(
+        `https://api.github.com/repos/${this.githubUser}/gists/${gistId}`,
+        {
+          headers: new HttpHeaders().set('User-Agent', 'request'),
+        }
+      )
+    );
   }
 }
