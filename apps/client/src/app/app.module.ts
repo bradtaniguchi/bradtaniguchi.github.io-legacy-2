@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,15 +12,23 @@ import { GITHUB_API_REPO_INJECTION_TOKEN } from './api/github/github-api-repo-in
 import { GITHUB_API_USER_INJECTION_TOKEN } from './api/github/github-api-user-injection-token';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClientLoggerService } from './core/client-logger/client-logger.service';
+import {
+  ClientLoggerMethods,
+  ClientLoggerService,
+  CLIENT_LOGGER_HIDDEN_METHODS,
+} from './core/client-logger/client-logger.service';
 import { HeaderModule } from './core/header/header.module';
 import { LOCAL_FORAGE } from './core/local-forage/local-forage';
+import { ScriptLoaderModule } from './core/script-loader/script-loader.module';
+import { ScriptParams } from './core/script-loader/script-params';
 import { Socials } from './core/socials/socials';
 import { SOCIALS_INJECTION_TOKEN } from './core/socials/socials-injection-token';
 import { StaticService } from './core/static.service';
 import { ListCommonConfig } from './shared/list-common/list-common-config';
 import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './shared/list-common/list-common-config-injection-token';
 
+// eslint-disable-next-line no-var
+declare var gtag: any;
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -32,6 +41,28 @@ import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './shared/list-common/list-co
     RouterModule,
     // Child Modules
     HeaderModule,
+
+    ScriptLoaderModule.forRoot({
+      scripts: [
+        ...(environment.gtagCode
+          ? [
+              {
+                src: `https://www.googletagmanager.com/gtag/js?id=${environment.gtagCode}`,
+                async: true,
+                preLoad: () => {
+                  (window as any).dataLayer = (window as any).dataLayer || [];
+                  (window as any).gtag = function () {
+                    // eslint-disable-next-line prefer-rest-params
+                    (window as any).dataLayer.push(arguments);
+                  };
+                  gtag('js', new Date());
+                  gtag('config', environment.gtagCode);
+                },
+              } as ScriptParams,
+            ]
+          : []),
+      ],
+    }),
   ],
   providers: [
     {
@@ -62,6 +93,7 @@ import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './shared/list-common/list-co
           linkedIn: environment.linkedIn,
           npm: environment.npm,
           twitter: environment.twitter,
+          devto: environment.devto,
         } as Socials),
       deps: [FREE_CODE_CAMP_USER_INJECTION_TOKEN],
     },
@@ -72,6 +104,12 @@ import { LIST_COMMON_CONFIG_INJECTION_TOKEN } from './shared/list-common/list-co
         hideTagFilter: environment.production,
         hideSortBy: environment.production,
       } as ListCommonConfig,
+    },
+    {
+      provide: CLIENT_LOGGER_HIDDEN_METHODS,
+      useValue: environment.production
+        ? (['log', 'silly'] as ClientLoggerMethods[])
+        : [],
     },
     ClientLoggerService,
     StaticService,

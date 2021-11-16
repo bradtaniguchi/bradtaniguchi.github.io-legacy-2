@@ -31,14 +31,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: affected:lint
-        run: npm run affected:lint -- --all
+      - name: lint
+        run: npm run lint
 
-      - name: affected:test
-        run: npm run affected:test -- --all
+      - name: test
+        run: npm run test
 
       - name: build
         run: npx nx run client:build:production --statsJson
+
+      - name: purgecss
+        run: npx nx run client:purgecss
 
       - name: Upload json-stats
         uses: actions/upload-artifact@v2
@@ -49,16 +52,17 @@ jobs:
       - name: scully-build
         run: npx nx run client:scully:prod
 
-      - name: run e2e
-        run: npx nx run client-e2e:e2e --headless
+      # skip this for now, as we don't even have tests.
+      # - name: run e2e
+      #   run: npx nx run client-e2e:e2e --headless
 
-      - name: Upload cypress files
-        uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: cypress-dist
-          path: dist/cypress
-          retention-days: 5
+      # - name: Upload cypress files
+      #   uses: actions/upload-artifact@v2
+      #   if: failure()
+      #   with:
+      #     name: cypress-dist
+      #     path: dist/cypress
+      #     retention-days: 5
 
       - name: run-lighthouse-ci
         uses: treosh/lighthouse-ci-action@v7

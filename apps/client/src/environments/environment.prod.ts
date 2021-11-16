@@ -4,7 +4,9 @@ export const environment = {
   githubRepo: 'bradtaniguchi.github.io',
   codewarsUser: 'bradtaniguchi',
   freeCodeCampUser: 'bradtaniguchi',
+  gtagCode: 'G-C61SZ9GLMC',
   linkedIn: 'https://www.linkedin.com/in/bradley-taniguchi-62a052104/',
   npm: 'https://www.npmjs.com/~bradtaniguchi',
   twitter: 'https://twitter.com/brad_taniguchi',
+  devto: 'https://dev.to/bradtaniguchi',
 };

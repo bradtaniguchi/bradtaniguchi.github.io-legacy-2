@@ -48,3 +48,7 @@ scully-routes.json
 
 # compodoc generated files
 documentation.json
+
+
+# angular cache files
+.angular

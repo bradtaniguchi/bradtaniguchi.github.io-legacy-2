@@ -12,13 +12,7 @@ tags:
   - scully
 ---
 
-Running this project requires 1 "pre" step, and then fully running the "scully" build requires 2 extra commands.
-
-## building the static files for bradtaniguchi
-
-```bash
-npm run build:static
-```
+Running this project requires 2 build steps ran at the same time.
 
 ## starting the Angular build process
 
@@ -43,6 +37,9 @@ scully - http://localhost:4201
 ```bash
 npm run start -- --host=0.0.0.0 --disable-host-check
 ```
+
+**note** if new files where added, then pass in the `--scan` flag to the `scully` npm script, which will scan for
+new static files.
 
 ## running e2e testing in codespaces
 

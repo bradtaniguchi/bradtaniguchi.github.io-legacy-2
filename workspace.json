@@ -1,28 +1,5 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
-  "defaultProject": "client",
-  "generators": {
-    "@nrwl/angular:application": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "scss",
-      "changeDetection": "OnPush",
-      "skipTests": true,
-      "inlineStyle": true
-    }
-  },
   "projects": {
     "client": {
       "projectType": "application",
@@ -66,6 +43,27 @@
                 {
                   "replace": "apps/client/src/environments/environment.ts",
                   "with": "apps/client/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "ci": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "40kb",
+                  "maximumError": "50kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/client/src/environments/environment.ts",
+                  "with": "apps/client/src/environments/environment.ci.ts"
                 }
               ],
               "outputHashing": "all"
@@ -136,7 +134,8 @@
               "apps/client/src/**/*.ts",
               "apps/client/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -162,6 +161,18 @@
           "executor": "@nrwl/workspace:run-commands",
           "options": {
             "commands": ["npx http-server dist/docs/client -p 4401"]
+          }
+        },
+        "purgecss": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "./tools/purgecss.sh",
+                "forwardAllArgs": false
+              }
+            ],
+            "parallel": false
           }
         },
         "storybook": {
@@ -195,7 +206,8 @@
             }
           }
         }
-      }
+      },
+      "tags": ["client"]
     },
     "client-e2e": {
       "root": "apps/client-e2e",
@@ -223,9 +235,12 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/client-e2e/**/*.{js,ts}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["client"]
     }
   }
 }

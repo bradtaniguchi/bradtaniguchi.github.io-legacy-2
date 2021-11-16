@@ -31,14 +31,8 @@ export default async function (host: Tree, schema: Schema) {
 
     // the variables to be substituted in the template
     {
-      title:
-        schema.type === 'blog'
-          ? `${DateTime.now().toISODate()}-blog`
-          : schema.title,
-      normalizedTitle:
-        schema.type === 'blog'
-          ? `${DateTime.now().toISODate()}-blog`
-          : names(schema.title).fileName,
+      title: schema.title,
+      normalizedTitle: names(schema.title).fileName,
       published: !!schema.published,
       date: `${DateTime.now().toISODate()}T00:00:00.000Z`,
     }

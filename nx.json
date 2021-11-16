@@ -24,15 +24,6 @@
       }
     }
   },
-  "projects": {
-    "client": {
-      "tags": ["client"]
-    },
-    "client-e2e": {
-      "tags": [],
-      "implicitDependencies": ["client"]
-    }
-  },
   "targetDependencies": {
     "build": [
       {
@@ -40,5 +31,28 @@
         "projects": "dependencies"
       }
     ]
-  }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss",
+      "changeDetection": "OnPush",
+      "skipTests": true,
+      "inlineStyle": true
+    }
+  },
+  "defaultProject": "client"
 }

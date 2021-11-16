@@ -19,4 +19,8 @@ export interface Socials {
    * Npm profile page URL
    */
   npm: string;
+  /**
+   * Dev.to profile page URL
+   */
+  devto: string;
 }
