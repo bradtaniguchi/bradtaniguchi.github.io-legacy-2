@@ -1,7 +1,12 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-import { ScullyConfig, RouteConfig } from '@scullyio/scully';
+import { ScullyConfig } from '@scullyio/scully';
 
+if (!process.env.GIST_GITHUB_TOKEN) {
+  throw new Error(
+    'No GIST_GITHUB_TOKEN environment variable found, can not load snippets'
+  );
+}
 export const config: ScullyConfig = {
   projectRoot: './apps/client/src',
   projectName: 'client',
@@ -30,7 +35,7 @@ export const config: ScullyConfig = {
         headers: {
           expectedContentType: 'application/vnd.github.v3+json',
           'User-Agent': 'request',
-          Authoriztion: `bradtaniguchi:${process.env.GITHUB_TOKEN}`,
+          Authoriztion: `bradtaniguchi:${process.env.GIST_GITHUB_TOKEN}`,
         },
       },
     },
