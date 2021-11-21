@@ -7,12 +7,6 @@ export const config: ScullyConfig = {
   staticPort: 4201,
   appPort: 4200,
   routes: {
-    '/apps/:slug': {
-      type: 'contentFolder',
-      slug: {
-        folder: './static/webapps',
-      },
-    },
     '/blog/:slug': {
       type: 'contentFolder',
       slug: {
