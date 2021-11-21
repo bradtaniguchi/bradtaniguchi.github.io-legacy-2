@@ -56,21 +56,6 @@ import { RouterModule } from '@angular/router';
             ),
         },
         {
-          path: 'apps',
-          pathMatch: 'full',
-          loadChildren: () =>
-            import('./modules/webapps-list/webapps-list.module').then(
-              (m) => m.WebappsListModule
-            ),
-        },
-        {
-          path: 'apps',
-          loadChildren: () =>
-            import('./modules/webapps/webapps.module').then(
-              (m) => m.WebappsModule
-            ),
-        },
-        {
           path: '',
           pathMatch: 'full',
           loadChildren: () =>
