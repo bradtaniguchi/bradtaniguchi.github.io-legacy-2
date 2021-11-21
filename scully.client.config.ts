@@ -1,12 +1,16 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 import { ScullyConfig } from '@scullyio/scully';
+import { RestEndpointMethodTypes } from '@octokit/rest';
 
 if (!process.env.GIST_GITHUB_TOKEN) {
   throw new Error(
     'No GIST_GITHUB_TOKEN environment variable found, can not load snippets'
   );
 }
+type ListGithubGists =
+  RestEndpointMethodTypes['gists']['list']['response']['data'];
+
 export const config: ScullyConfig = {
   projectRoot: './apps/client/src',
   projectName: 'client',
@@ -29,10 +33,8 @@ export const config: ScullyConfig = {
         headers: {
           expectedContentType: 'application/vnd.github.v3+json',
           'User-Agent': 'request',
-          Authoriztion: `bradtaniguchi ${process.env.GIST_GITHUB_TOKEN}`,
+          Authorization: `token ${process.env.GIST_GITHUB_TOKEN}`,
         },
-        resultsHandler: (response: Array<any>) =>
-          response.filter((res) => res.public),
       },
     },
     '/snippets/:slug': {
