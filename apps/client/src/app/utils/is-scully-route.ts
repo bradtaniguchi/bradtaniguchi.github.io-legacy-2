@@ -6,3 +6,11 @@ import { ScullyRoute } from '@scullyio/ng-lib';
  */
 export const isScullyRoute = (route: ScullyRoute): route is ScullyRoute =>
   !!(route.slugs || route.slug);
+
+/**
+ * Alternate varient of the `isScullyRoute`, used to type-check against
+ * just "snippet" routes
+ */
+export const isSnippetRoute = (
+  route: ScullyRoute
+): route is { route: string } => !!route.route;

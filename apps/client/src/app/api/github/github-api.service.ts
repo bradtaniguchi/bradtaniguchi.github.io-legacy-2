@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { RestEndpointMethodTypes } from '@octokit/rest';
 import { TransferStateService } from '@scullyio/ng-lib';
 import { map } from 'rxjs/operators';
+import { ClientLoggerService } from '../../core/client-logger/client-logger.service';
 import { GITHUB_API_REPO_INJECTION_TOKEN } from './github-api-repo-injection-token';
 import { GITHUB_API_USER_INJECTION_TOKEN } from './github-api-user-injection-token';
 
@@ -25,7 +26,8 @@ export class GithubApiService {
     @Inject(GITHUB_API_USER_INJECTION_TOKEN) private githubUser: string,
     @Inject(GITHUB_API_REPO_INJECTION_TOKEN) private githubRepo: string,
     private http: HttpClient,
-    private transferState: TransferStateService
+    private transferState: TransferStateService,
+    private logger: ClientLoggerService
   ) {}
 
   /**
@@ -77,6 +79,7 @@ export class GithubApiService {
   }
 
   public getGithubGist(gistId: string) {
+    this.logger.log('test in get api service', gistId);
     return this.transferState.useScullyTransferState(
       `githubGists-${gistId}`,
       this.http.get<GetGithubGist>(

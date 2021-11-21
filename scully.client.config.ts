@@ -8,8 +8,6 @@ if (!process.env.GIST_GITHUB_TOKEN) {
     'No GIST_GITHUB_TOKEN environment variable found, can not load snippets'
   );
 }
-type ListGithubGists =
-  RestEndpointMethodTypes['gists']['list']['response']['data'];
 
 export const config: ScullyConfig = {
   projectRoot: './apps/client/src',
