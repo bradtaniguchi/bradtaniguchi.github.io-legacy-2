@@ -24,13 +24,15 @@ export const config: ScullyConfig = {
     '/snippets/:id': {
       type: 'json',
       id: {
-        url: 'https://api.github.com/users/bradtaniguchi/gists/public',
+        url: 'https://api.github.com/users/bradtaniguchi/gists',
         property: 'id',
         headers: {
           expectedContentType: 'application/vnd.github.v3+json',
           'User-Agent': 'request',
-          Authoriztion: `bradtaniguchi:${process.env.GIST_GITHUB_TOKEN}`,
+          Authoriztion: `bradtaniguchi ${process.env.GIST_GITHUB_TOKEN}`,
         },
+        resultsHandler: (response: Array<any>) =>
+          response.filter((res) => res.public),
       },
     },
     '/snippets/:slug': {
