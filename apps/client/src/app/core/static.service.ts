@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { map, tap } from 'rxjs/operators';
+import { isScullyRoute } from '../utils/is-scully-route';
 import { ClientLoggerService } from './client-logger/client-logger.service';
 
 /**
@@ -31,10 +32,13 @@ export class StaticService {
   public availableSnippetsRoutes$ = this.routes.available$.pipe(
     tap((routes) => this.logger.log('all routes', routes)),
     map((routes) =>
-      routes.filter(
-        (route) => route.published && route.route.startsWith('/snippets')
+      routes.filter((route) =>
+        isScullyRoute(route)
+          ? route.published && route.route.startsWith('/snippets')
+          : true
       )
-    )
+    ),
+    tap((vals) => this.logger.log('test with available-snippets-route 2', vals))
   );
 
   public availableWebappRoutes$ = this.routes.available$.pipe(
