@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ScullyRoutesService } from '@scullyio/ng-lib';
-import { forkJoin, of } from 'rxjs';
+import { ScullyRoute, ScullyRoutesService } from '@scullyio/ng-lib';
+import { forkJoin, Observable, of, zip } from 'rxjs';
 import { map, mergeMap, tap } from 'rxjs/operators';
 import { GithubApiService } from '../api/github/github-api.service';
 import { getGistIdFromRoute } from '../utils/get-gist-id-from-route';
@@ -45,24 +45,22 @@ export class StaticService {
     tap((vals) =>
       this.logger.log('test with available-snippets-route 1', vals)
     ),
-    mergeMap((snippetRoutes) =>
-      forkJoin(
-        snippetRoutes
-          .map((route) =>
-            isScullyRoute(route)
-              ? of(route)
-              : isSnippetRoute(route)
-              ? this.githubApi.getGithubGist(getGistIdFromRoute(route)).pipe(
-                  map((gist) => {
-                    this.logger.log('test with gist from api', gist);
-                    return gistToScullyRoute(gist);
-                  })
-                )
-              : undefined
-          )
-          .filter((_) => !!_)
-      )
-    ),
+    mergeMap((snippetRoutes) => {
+      const snippetRoutes$ = snippetRoutes
+        .map((route) => {
+          if (isScullyRoute(route)) {
+            return of(route);
+          }
+          if (isSnippetRoute(route)) {
+            return this.githubApi
+              .getGithubGist(getGistIdFromRoute(route))
+              .pipe(map(gistToScullyRoute));
+          }
+          return undefined;
+        })
+        .filter((_) => !!_) as Array<Observable<ScullyRoute>>;
+      return zip(...snippetRoutes$);
+    }),
     tap((vals) => this.logger.log('test with available-snippets-route 2', vals))
   );
 

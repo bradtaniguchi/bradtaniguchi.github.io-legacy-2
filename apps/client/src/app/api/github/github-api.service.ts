@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { RestEndpointMethodTypes } from '@octokit/rest';
 import { TransferStateService } from '@scullyio/ng-lib';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { ClientLoggerService } from '../../core/client-logger/client-logger.service';
 import { GITHUB_API_REPO_INJECTION_TOKEN } from './github-api-repo-injection-token';
 import { GITHUB_API_USER_INJECTION_TOKEN } from './github-api-user-injection-token';
@@ -79,15 +79,23 @@ export class GithubApiService {
   }
 
   public getGithubGist(gistId: string) {
-    this.logger.log('test in get api service', gistId);
-    return this.transferState.useScullyTransferState(
-      `githubGists-${gistId}`,
-      this.http.get<GetGithubGist>(
+    // return this.transferState.useScullyTransferState(
+    //   `githubGists`,
+    return this.http
+      .get<GetGithubGist>(
         `https://api.github.com/repos/${this.githubUser}/gists/${gistId}`,
         {
-          headers: new HttpHeaders().set('User-Agent', 'request'),
+          headers: new HttpHeaders().set(
+            'expectedContentType',
+            'application/vnd.github.v3+json'
+          ),
         }
       )
-    );
+      .pipe(
+        tap((val) =>
+          this.logger.log('test in get-github-gist api service', val)
+        )
+      );
+    // );
   }
 }
