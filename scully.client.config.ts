@@ -35,6 +35,5 @@ export const config: ScullyConfig = {
     '/blog/',
     '/snippets/',
     '/projects/',
-    '/apps/',
   ],
 };
