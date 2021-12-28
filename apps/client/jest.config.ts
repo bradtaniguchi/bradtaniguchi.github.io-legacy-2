@@ -16,5 +16,8 @@ module.exports = {
   ],
   resolver: 'jest-preset-angular/build/resolvers/ng-jest-resolver.js',
   transformIgnorePatterns: ['node_modules/(?!@angular)'],
-  transform: { '^.+\\.(ts|js|mjs|html|svg)$': 'jest-preset-angular' },
+  transform: {
+    '^.+.(ts|mjs|js|html)$': 'jest-preset-angular',
+  },
+  transformIgnorePatterns: ['node_modules/(?!.*.mjs$)'],
 };
