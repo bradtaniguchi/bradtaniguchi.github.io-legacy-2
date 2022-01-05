@@ -15,7 +15,6 @@ module.exports = {
     'jest-preset-angular/build/serializers/html-comment',
   ],
   resolver: 'jest-preset-angular/build/resolvers/ng-jest-resolver.js',
-  transformIgnorePatterns: ['node_modules/(?!@angular)'],
   transform: {
     '^.+.(ts|mjs|js|html)$': 'jest-preset-angular',
   },
