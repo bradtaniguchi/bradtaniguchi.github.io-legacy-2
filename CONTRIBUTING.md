@@ -1,5 +1,16 @@
 # CONTRIBUTING
 
+## Creating a new blog-post
+
+The following is taken from the `static-file-generator` generator. Provided here
+for usability.
+
+```
+nx workspace-generator static-file-generator --type=blog --title=my-title
+```
+
+## Using NX
+
 This project is opened source in-case you want to report bugs/issues. Below is the auto-generated documentation on using the `nx-cli`.
 
 This project was generated using [Nx](https://nx.dev).
