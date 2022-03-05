@@ -88,6 +88,7 @@
     "@nrwl/storybook": "13.4.4",
     "@nrwl/tao": "13.4.4",
     "@nrwl/workspace": "13.4.4",
+    "@scullyio/scully-plugin-google-analytics": "^2.1.21",
     "@storybook/addon-essentials": "6.4.12",
     "@storybook/angular": "6.4.12",
     "@storybook/builder-webpack5": "6.4.12",
@@ -138,4 +139,3 @@
     }
   }
 }
-

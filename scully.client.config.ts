@@ -1,4 +1,13 @@
-import { ScullyConfig, RouteConfig } from '@scullyio/scully';
+import { setPluginConfig, ScullyConfig, prod } from '@scullyio/scully';
+import { GoogleAnalytics } from '@scullyio/scully-plugin-google-analytics';
+
+const defaultPostRenderers = [];
+
+if (prod) {
+  setPluginConfig(GoogleAnalytics, { globalSiteTag: 'G-C61SZ9GLMC' });
+  defaultPostRenderers.push(GoogleAnalytics);
+}
+
 export const config: ScullyConfig = {
   projectRoot: './apps/client/src',
   projectName: 'client',
@@ -12,18 +21,21 @@ export const config: ScullyConfig = {
       slug: {
         folder: './static/blog',
       },
+      postRenderers: [...defaultPostRenderers],
     },
     '/snippets/:slug': {
       type: 'contentFolder',
       slug: {
         folder: './static/snippets',
       },
+      postRenderers: [...defaultPostRenderers],
     },
     '/projects/:slug': {
       type: 'contentFolder',
       slug: {
         folder: './static/projects',
       },
+      postRenderers: [...defaultPostRenderers],
     },
   },
   /**
