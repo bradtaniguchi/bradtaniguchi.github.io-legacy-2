@@ -8,7 +8,7 @@ export const environment = {
   githubRepo: 'bradtaniguchi.github.io',
   codewarsUser: 'bradtaniguchi',
   freeCodeCampUser: 'bradtaniguchi',
-  gtagCode: '', // don't use analytics locally.
+  gtagCode: 'G-C61SZ9GLMC', // don't use analytics locally.
   // these are social media urls:
   linkedIn: 'https://www.linkedin.com/in/bradley-taniguchi-62a052104/',
   npm: 'https://www.npmjs.com/~bradtaniguchi',
