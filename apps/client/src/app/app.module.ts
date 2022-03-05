@@ -41,7 +41,6 @@ declare var gtag: any;
     RouterModule,
     // Child Modules
     HeaderModule,
-
     ScriptLoaderModule.forRoot({
       scripts: [
         ...(environment.gtagCode
